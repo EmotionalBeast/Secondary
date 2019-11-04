@@ -1,0 +1,177 @@
+{
+  "version": "1.0",
+  "elements": [
+    {
+      "type": "media",
+      "constraints": {
+        "left": {
+          "constant": 0.0,
+          "percentage": 0.0
+        },
+        "top": {
+          "constant": 0.0,
+          "percentage": 0.0
+        },
+        "width": {
+          "constant": 0.0,
+          "percentage": 1.0
+        },
+        "height": {
+          "constant": 0.0,
+          "percentage": 1.0
+        }
+      },
+      "cutSeparate": [
+        {
+          "type": 0,
+          "resourceDirectory": "/background",
+          "animation": "data.json",
+          "layers": [
+            {
+              "name": "img_0.png",
+              "resource": "images/img_0.png"
+            },
+            {
+              "name": "img_1.png",
+              "resource": "images/img_1.png"
+            }
+          ],
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 375,
+            "height": 667
+          },
+          "keyPath": "img_1.png",
+          "filter": ""
+        },
+        {
+          "type": 1,
+          "adjust": 0,
+          "resourceDirectory": "/underArrow",
+          "animation": "data.json",
+          "layers": [
+            {
+              "name": "img_0.png",
+              "resource": "images/img_0.png"
+            }
+          ],
+          "rect": {
+            "x": 18.5,
+            "y": 273.5,
+            "width": 302.5,
+            "height": 108
+          },
+          "keyPath": "img_0.png"
+        },
+        {
+          "type": 3,
+          "resourceDirectory": "/text",
+          "animation": "data.json",
+          "layers": [
+            {
+              "name": "text",
+              "resource": "images/img_0.png"
+            }
+          ],
+          "fontSize": 70.0,
+          "fontName": "ACaslonPro-Regular",
+          "placeHolder": "Fine",
+          "lineSpacing": 7.0,
+          "letterSpacing": 0.0,
+          "textAlignment": "center",
+          "textColor": "ffffff",
+          "canvasWidth": 0.0,
+          "contentSize": [
+            314,
+            134
+          ],
+          "keyPath": "text"
+        },
+        {
+          "type": 2,
+          "resourceDirectory": "/cutout",
+          "animation": "data.json",
+          "layers": [
+            {
+              "name": "img_0.png",
+              "resource": "images/img_0.png"
+            }
+          ],
+          "rect": {
+            "x": 54,
+            "y": 184,
+            "width": 277,
+            "height": 483
+          },
+          "keyPath": "img_0.png",
+          "filter": ""
+        },
+        {
+          "type": 1,
+          "adjust": 0,
+          "resourceDirectory": "/aboveArrow",
+          "animation": "data.json",
+          "layers": [
+            {
+              "name": "img_0.png",
+              "resource": "images/img_0.png"
+            }
+          ],
+          "rect": {
+            "x": 47,
+            "y": 361,
+            "width": 307.5,
+            "height": 108.5
+          },
+          "keyPath": "img_0.png"
+        },
+        {
+          "type": 0,
+          "resourceDirectory": "/foreground",
+          "animation": "data.json",
+          "layers": [
+            {
+              "name": "img_0.png",
+              "resource": "images/img_0.png"
+            }
+          ],
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 375,
+            "height": 667
+          },
+          "keyPath": "img_0.png"
+        }
+      ]
+    }
+  ],
+  "music": "Memorable.aac",
+  "blur": {
+    "type": 0,
+    "size": 5
+  },
+  "sticker": {
+    "resourceDirectory": "/sticker",
+    "constraints": {
+      "left": {
+        "constant": 0.0,
+        "percentage": 0.1
+      },
+      "top": {
+        "constant": 0.0,
+        "percentage": 0.1
+      },
+      "width": {
+        "constant": 0.0,
+        "percentage": 0.2
+      },
+      "height": {
+        "constant": 0.0,
+        "percentage": 0.2
+      }
+    }
+  },
+  "templateId": 10011
+}
