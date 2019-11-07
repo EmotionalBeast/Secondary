@@ -2,7 +2,12 @@
   "version": "1.0",
   "elements": [
     {
+      "id": "0",
       "type": "media",
+      "blur": {
+        "type": 0,
+        "size": 5
+      },
       "constraints": {
         "left": {
           "constant": 0.0,
@@ -23,6 +28,7 @@
       },
       "cutSeparate": [
         {
+          "id": "0",
           "type": 0,
           "resourceDirectory": "/background",
           "animation": "data.json",
@@ -46,6 +52,7 @@
           "filter": ""
         },
         {
+          "id": "1",
           "type": 1,
           "adjust": 0,
           "resourceDirectory": "/underArrow",
@@ -65,6 +72,7 @@
           "keyPath": "img_0.png"
         },
         {
+          "id": "2",
           "type": 3,
           "resourceDirectory": "/text",
           "animation": "data.json",
@@ -89,6 +97,7 @@
           "keyPath": "text"
         },
         {
+          "id": "3",
           "type": 2,
           "resourceDirectory": "/cutout",
           "animation": "data.json",
@@ -108,6 +117,7 @@
           "filter": ""
         },
         {
+          "id": "4",
           "type": 1,
           "adjust": 0,
           "resourceDirectory": "/aboveArrow",
@@ -127,6 +137,7 @@
           "keyPath": "img_0.png"
         },
         {
+          "id": "5",
           "type": 0,
           "resourceDirectory": "/foreground",
           "animation": "data.json",
@@ -148,30 +159,29 @@
     }
   ],
   "music": "Memorable.aac",
-  "blur": {
-    "type": 0,
-    "size": 5
-  },
-  "sticker": {
-    "resourceDirectory": "/sticker",
-    "constraints": {
-      "left": {
-        "constant": 0.0,
-        "percentage": 0.1
-      },
-      "top": {
-        "constant": 0.0,
-        "percentage": 0.1
-      },
-      "width": {
-        "constant": 0.0,
-        "percentage": 0.2
-      },
-      "height": {
-        "constant": 0.0,
-        "percentage": 0.2
+  "sticker": [
+    {
+      "id": "0",
+      "resourceDirectory": "/sticker",
+      "constraints": {
+        "left": {
+          "constant": 0.0,
+          "percentage": 0.1
+        },
+        "top": {
+          "constant": 0.0,
+          "percentage": 0.1
+        },
+        "width": {
+          "constant": 0.0,
+          "percentage": 0.2
+        },
+        "height": {
+          "constant": 0.0,
+          "percentage": 0.2
+        }
       }
     }
-  },
+  ],
   "templateId": 10011
 }
