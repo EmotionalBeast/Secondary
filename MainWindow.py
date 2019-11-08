@@ -19,6 +19,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 		super(MyMainWindow,self).__init__()
 		self.variableInit()
 		self.setupUi(self)
+		self.index = 0
 		
 
 	def variableInit(self):
@@ -153,33 +154,32 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 
 	def showTemplateData(self):
 		self.resolveJson()
-		# value main table
-		self.mainTable()
-		self.tableWidget_1.setRowCount(1)
-		self.tableWidget_1.setItem(0, 0, QTableWidgetItem(self.dic["version"]))
-		self.tableWidget_1.setItem(0, 1, QTableWidgetItem(self.dic["music"]))
-		self.tableWidget_1.setItem(0, 2, QTableWidgetItem(str(self.dic["templateId"])))
+		self.initTable()
+		if self.spinBox_2.value() != 0:
+			# value main table
+			self.tableWidget_1.setRowCount(1)
+			self.tableWidget_1.setItem(0, 0, QTableWidgetItem(self.dic["version"]))
+			self.tableWidget_1.setItem(0, 1, QTableWidgetItem(self.dic["music"]))
+			self.tableWidget_1.setItem(0, 2, QTableWidgetItem(str(self.dic["templateId"])))
 
-		#value elements
-		#value media table
-		self.mediaTable()
-		self.tableWidget_2.setRowCount(1)
-		self.tableWidget_2.setItem(0, 0, QTableWidgetItem(self.elements_list[0]["id"]))
-		self.tableWidget_2.setItem(0, 1, QTableWidgetItem(self.elements_list[0]["type"]))
-		self.tableWidget_2.setItem(0, 2, QTableWidgetItem(str(self.elements_list[0]["blur"]["type"])))
-		self.tableWidget_2.setItem(0, 3, QTableWidgetItem(str(self.elements_list[0]["blur"]["size"])))
-		self.tableWidget_2.setItem(0, 4, QTableWidgetItem(str(self.elements_list[0]["constraints"]["left"]["constant"])))
-		self.tableWidget_2.setItem(0, 5, QTableWidgetItem(str(self.elements_list[0]["constraints"]["left"]["percentage"])))
-		self.tableWidget_2.setItem(0, 6, QTableWidgetItem(str(self.elements_list[0]["constraints"]["top"]["constant"])))
-		self.tableWidget_2.setItem(0, 7, QTableWidgetItem(str(self.elements_list[0]["constraints"]["top"]["percentage"])))
-		self.tableWidget_2.setItem(0, 8, QTableWidgetItem(str(self.elements_list[0]["constraints"]["width"]["constant"])))
-		self.tableWidget_2.setItem(0, 9, QTableWidgetItem(str(self.elements_list[0]["constraints"]["width"]["percentage"])))
-		self.tableWidget_2.setItem(0, 10, QTableWidgetItem(str(self.elements_list[0]["constraints"]["height"]["constant"])))
-		self.tableWidget_2.setItem(0, 11, QTableWidgetItem(str(self.elements_list[0]["constraints"]["height"]["percentage"])))
+			#value elements
+			#value media table
+			self.tableWidget_2.setRowCount(1)
+			self.tableWidget_2.setItem(0, 0, QTableWidgetItem(self.elements_list[0]["id"]))
+			self.tableWidget_2.setItem(0, 1, QTableWidgetItem(self.elements_list[0]["type"]))
+			self.tableWidget_2.setItem(0, 2, QTableWidgetItem(str(self.elements_list[0]["blur"]["type"])))
+			self.tableWidget_2.setItem(0, 3, QTableWidgetItem(str(self.elements_list[0]["blur"]["size"])))
+			self.tableWidget_2.setItem(0, 4, QTableWidgetItem(str(self.elements_list[0]["constraints"]["left"]["constant"])))
+			self.tableWidget_2.setItem(0, 5, QTableWidgetItem(str(self.elements_list[0]["constraints"]["left"]["percentage"])))
+			self.tableWidget_2.setItem(0, 6, QTableWidgetItem(str(self.elements_list[0]["constraints"]["top"]["constant"])))
+			self.tableWidget_2.setItem(0, 7, QTableWidgetItem(str(self.elements_list[0]["constraints"]["top"]["percentage"])))
+			self.tableWidget_2.setItem(0, 8, QTableWidgetItem(str(self.elements_list[0]["constraints"]["width"]["constant"])))
+			self.tableWidget_2.setItem(0, 9, QTableWidgetItem(str(self.elements_list[0]["constraints"]["width"]["percentage"])))
+			self.tableWidget_2.setItem(0, 10, QTableWidgetItem(str(self.elements_list[0]["constraints"]["height"]["constant"])))
+			self.tableWidget_2.setItem(0, 11, QTableWidgetItem(str(self.elements_list[0]["constraints"]["height"]["percentage"])))
 
 		#value background table
 		if self.checkBox_1.isChecked() == True:
-			self.backgroundTable()
 			self.tableWidget_3.setRowCount(1)
 			self.tableWidget_3.setItem(0, 0, QTableWidgetItem(str(self.background_dic["id"])))
 			self.tableWidget_3.setItem(0, 1, QTableWidgetItem(str(self.background_dic["type"])))
@@ -194,7 +194,6 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 
 		#value underArrow table
 		if self.checkBox_2.isChecked() == True:
-			self.underArrowTable()
 			self.tableWidget_4.setRowCount(1)
 			self.tableWidget_4.setItem(0, 0, QTableWidgetItem(str(self.underArrow_dic["id"])))
 			self.tableWidget_4.setItem(0, 1, QTableWidgetItem(str(self.underArrow_dic["type"])))
@@ -209,7 +208,6 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 			
 		#value text table
 		if self.checkBox_3.isChecked() == True:
-			self.textTable()
 			self.tableWidget_5.setRowCount(1)
 			self.tableWidget_5.setItem(0, 0, QTableWidgetItem(str(self.text_dic["id"])))
 			self.tableWidget_5.setItem(0, 1, QTableWidgetItem(str(self.text_dic["type"])))
@@ -229,7 +227,6 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 
 		#value cutout table
 		if self.checkBox_3.isChecked() == True:
-			self.cutoutTable()
 			self.tableWidget_6.setRowCount(1)
 			self.tableWidget_6.setItem(0, 0, QTableWidgetItem(str(self.cutout_dic["id"])))
 			self.tableWidget_6.setItem(0, 1, QTableWidgetItem(str(self.cutout_dic["type"])))
@@ -244,7 +241,6 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 
 		#value aboveArrow table
 		if self.checkBox_5.isChecked() == True:
-			self.aboveArrowTable()
 			self.tableWidget_7.setRowCount(1)
 			self.tableWidget_7.setItem(0, 0, QTableWidgetItem(str(self.aboveArrow_dic["id"])))
 			self.tableWidget_7.setItem(0, 1, QTableWidgetItem(str(self.aboveArrow_dic["type"])))
@@ -259,7 +255,6 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 
 		#value foreground table
 		if self.checkBox_6.isChecked() == True:
-			self.foregroundTable()
 			self.tableWidget_8.setRowCount(1)
 			self.tableWidget_8.setItem(0, 0, QTableWidgetItem(str(self.foreground_dic["id"])))
 			self.tableWidget_8.setItem(0, 1, QTableWidgetItem(str(self.foreground_dic["type"])))
@@ -272,7 +267,6 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 			self.tableWidget_8.setItem(0, 8, QTableWidgetItem(self.foreground_dic["keyPath"]))
 
 		if self.spinBox_1.value() != 0:
-			self.stickerTable()
 			self.tableWidget_9.setRowCount(self.spinBox_1.value())
 			for i in range(self.spinBox_1.value()):
 				self.tableWidget_9.setItem(i, 0, QTableWidgetItem(str(self.sticker_list[i]["id"])))
@@ -287,8 +281,72 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 				self.tableWidget_9.setItem(i, 9, QTableWidgetItem(str(self.sticker_list[i]["constraints"]["height"]["percentage"])))
 
 	def editable(self):
-		pass
+		if self.comboBox_2.currentText() != null:
+			if self.spinBox_2.value() != 0:
+				self.tableWidget_1.setEditTriggers(QAbstractItemView.CurrentChanged)
+				self.tableWidget_2.setEditTriggers(QAbstractItemView.CurrentChanged)
 
+			if self.checkBox_1.isChecked() == True:
+				self.tableWidget_3.setEditTriggers(QAbstractItemView.CurrentChanged)
+
+			if self.checkBox_2.isChecked() == True:
+				self.tableWidget_4.setEditTriggers(QAbstractItemView.CurrentChanged)
+
+			if self.checkBox_3.isChecked() == True:
+				self.tableWidget_5.setEditTriggers(QAbstractItemView.CurrentChanged)
+
+			if self.checkBox_4.isChecked() == True:
+				self.tableWidget_6.setEditTriggers(QAbstractItemView.CurrentChanged)
+
+			if self.checkBox_5.isChecked() == True:
+				self.tableWidget_7.setEditTriggers(QAbstractItemView.CurrentChanged)
+
+			if self.checkBox_6.isChecked() == True:
+				self.tableWidget_8.setEditTriggers(QAbstractItemView.CurrentChanged)
+
+			if self.spinBox_1.value() != 0:
+				self.tableWidget_9.setEditTriggers(QAbstractItemView.CurrentChanged)
+
+			if self.spinBox_2.value() != 0:
+				self.tableWidget_2.setEditTriggers(QAbstractItemView.CurrentChanged)
+
+			self.statusbar.showMessage("Editable")
+		else:
+			QMessageBox.information(self, "提示", "请选择json文件")
+
+	def nonEditable(self):
+		if self.comboBox_2.currentText() != null:
+			if self.spinBox_2.value() != 0:
+				self.tableWidget_1.setEditTriggers(QAbstractItemView.NoEditTriggers)
+				self.tableWidget_2.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+			if self.checkBox_1.isChecked() == True:
+				self.tableWidget_3.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+			if self.checkBox_2.isChecked() == True:
+				self.tableWidget_4.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+			if self.checkBox_3.isChecked() == True:
+				self.tableWidget_5.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+			if self.checkBox_4.isChecked() == True:
+				self.tableWidget_6.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+			if self.checkBox_5.isChecked() == True:
+				self.tableWidget_7.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+			if self.checkBox_6.isChecked() == True:
+				self.tableWidget_8.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+			if self.spinBox_1.value() != 0:
+				self.tableWidget_9.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+			if self.spinBox_2.value() != 0:
+				self.tableWidget_2.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+			self.statusbar.showMessage("Non Editable")
+		else:
+			QMessageBox.information(self, "提示", "请选择json文件")
 
 	def setRefresh(self):
 		bc = self.comboBox_1.count()
@@ -303,7 +361,60 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 			self.comboBox_1.setCurrentText(text_1)
 	
 	def createTable(self):
-		pass
+		self.initTable()
+		count = 0
+		if self.spinBox_2.value() != 0:
+			#main table
+			self.tableWidget_1.setRowCount(1)
+			self.tableWidget_1.setItem(0, 0, QTableWidgetItem("1.0"))
+			self.tableWidget_1.setItem(0, 2, QTableWidgetItem(self.comboBox_2.currentText()[self.count:]))
+			#media table
+			self.tableWidget_2.setRowCount(1)
+			self.tableWidget_2.setItem(0, 0, QTableWidgetItem("0"))
+			self.tableWidget_2.setItem(0, 1, QTableWidgetItem("media"))
+			self.tableWidget_2.setItem(0, 5, QTableWidgetItem("0"))
+			self.tableWidget_2.setItem(0, 7, QTableWidgetItem("0"))
+			self.tableWidget_2.setItem(0, 9, QTableWidgetItem("0"))
+			self.tableWidget_2.setItem(0, 11, QTableWidgetItem("0"))
+
+		if self.checkBox_1.isChecked() == True:
+			#background table 
+			self.tableWidget_3.setRowCount(1)
+			self.tableWidget_3.setItem(0, 0, QTableWidgetItem(str(count)))
+			self.tableWidget_3.setItem(0, 1, QTableWidgetItem("0"))
+			self.tableWidget_3.setItem(0, 2, QTableWidgetItem("/background"))
+			self.tableWidget_3.setItem(0, 3, QTableWidgetItem("data.json"))
+			count += 1
+
+		if self.checkBox_2.isChecked() == True:
+			self.tableWidget_4.setRowCount(1)
+			self.tableWidget_4.setItem(0, 0, QTableWidgetItem(str(count)))
+			self.tableWidget_4.setItem(0, 1, QTableWidgetItem("1"))
+			self.tableWidget_4.setItem(0, 3, QTableWidgetItem("/aboveArrow"))
+			self.tableWidget_4.setItem(0, 4, QTableWidgetItem("data.json"))
+			count += 1
+
+		if self.checkBox_3.isChecked() == True:
+			self.tableWidget_5.setRowCount(1)
+			self.tableWidget_5.setItem(0, 0, QTableWidgetItem(str(count)))
+			self.tableWidget_4.setItem(0, 2, QTableWidgetItem("3"))
+			self.tableWidget_4.setItem(0, 1, QTableWidgetItem("/text"))
+
+		if self.checkBox_4.isChecked() == True:
+			self.tableWidget_6.setRowCount(1)
+
+		if self.checkBox_5.isChecked() == True:
+			self.tableWidget_7.setRowCount(1)
+
+		if self.checkBox_6.isChecked() == True:
+			self.tableWidget_8.setRowCount(1)
+
+		if self.spinBox_1.value() != 0:
+			self.tableWidget_9.setRowCount(self.spinBox_1.value())
+
+		if self.spinBox_2.value() != 0:
+			self.tableWidget_2.setRowCount(1)
+
 
 	def saveTable(self):
 		pass
@@ -327,19 +438,9 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 		else:
 			QMessageBox.information(self, "提示", "请选择素材组！")
 
-	def openOrigin(self):
-		pass
-
 	def layers(self):
     		pass
-    		
-    	# self.backgroundLayer = []
-		# self.underArrowLayer = []
-		# self.textLayer = []
-		# self.cutoutLayer = []
-		# self.aboveArrowLayer = []
-		# self.foregroundLayer = []
-    				
+
     			
     				
     			
