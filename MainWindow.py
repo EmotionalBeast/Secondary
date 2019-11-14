@@ -111,175 +111,255 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 		self.elements_list = []
 		self.cutSeparate_list = []
 		self.sticker_list = []
+		self.background_list = []
+		self.underArrow_list = []
+		self.text_list = []
+		self.cutout_list = []
+		self.aboveArrow_list = []
+		self.foreground_list = []
+		self.layers_list = []
 
-		self.checkBox_1.setChecked(False)
-		self.checkBox_1.setChecked(False)
-		self.checkBox_1.setChecked(False)
-		self.checkBox_1.setChecked(False)
-		self.checkBox_1.setChecked(False)
 		self.checkBox_1.setChecked(False)
 		self.dic = self.readJson()
 
 		if self.dic == 0:
 			self.spinBox_1.setValue(0)
 			self.spinBox_2.setValue(0)
+			self.spinBox_3.setValue(0)
+			self.spinBox_4.setValue(0)
+			self.spinBox_5.setValue(0)
+			self.spinBox_6.setValue(0)
+			self.spinBox_7.setValue(0)
+			self.spinBox_8.setValue(0)
+			self.spinBox_9.setValue(0)
 		else:
+			self.checkBox_1.setChecked(True)
 			self.elements_list = self.dic["elements"]
-			self.cutSeparate_list = self.elements_list[0]["cutSeparate"]
+			self.spinBox_1.setValue(len(self.elements_list))
+			
 			self.sticker_list = self.dic["sticker"]
-			self.templateId = self.dic['templateId']
+			self.spinBox_8.setValue(len(self.sticker_list))
+			temp_dic = {"mediaId":"","id":""}
+			temp_dic1 = {"mediaId":""}
+			for j in range(len(self.elements_list)):
+				self.cutSeparate_list = self.elements_list[j]["cutSeparate"]
+				temp_dic1["mediaId"] = self.elements_list[j]["id"]
+				for i in range(len(self.cutSeparate_list)):
+					if self.cutSeparate_list[i]["resourceDirectory"][1:] == "background":
+						temp1 = self.cutSeparate_list[i]
+						temp1.update(temp_dic1)
+						self.background_list.append(self.cutSeparate_list[i].update(temp_dic1))
+						temp = self.cutSeparate_list[i]["layers"]
+						for j in range(len(temp)):
+							temp_dic["mediaId"] == str(i)
+							temp_dic["id"] == self.cutSeparate_list[i]["id"]
+							temp[j].update(temp_dic)
+							self.layers_list.append(temp[j])
 
-			self.spinBox_1.setValue(len(self.sticker_list))
-			self.spinBox_2.setValue(len(self.elements_list))
+					if self.cutSeparate_list[i]["resourceDirectory"][1:] == "underArrow":
+						self.underArrow_list.append(self.cutSeparate_list[i].update(temp_dic1))
+						temp = self.cutSeparate_list[i]["layers"]
+						for j in range(len(temp)):
+							temp_dic["mediaId"] == str(i)
+							temp_dic["id"] == self.cutSeparate_list[i]["id"]
+							temp[j].update(temp_dic)
+							self.layers_list.append(temp[j])
 
-			for i in range(len(self.cutSeparate_list)):
-				if self.cutSeparate_list[i]["resourceDirectory"][1:] == "background":
-					self.background_dic = self.cutSeparate_list[i]
-					self.checkBox_1.setChecked(True)
-				if self.cutSeparate_list[i]["resourceDirectory"][1:] == "underArrow":
-					self.underArrow_dic = self.cutSeparate_list[i]
-					self.checkBox_2.setChecked(True)
-				if self.cutSeparate_list[i]["resourceDirectory"][1:] == "text":
-					self.text_dic = self.cutSeparate_list[i]
-					self.checkBox_3.setChecked(True)
-				if self.cutSeparate_list[i]["resourceDirectory"][1:] == "cutout":
-					self.cutout_dic = self.cutSeparate_list[i]
-					self.checkBox_4.setChecked(True)
-				if self.cutSeparate_list[i]["resourceDirectory"][1:] == "aboveArrow":
-					self.aboveArrow_dic = self.cutSeparate_list[i]
-					self.checkBox_5.setChecked(True)
-				if self.cutSeparate_list[i]["resourceDirectory"][1:] == "foreground":
-					self.foreground_dic = self.cutSeparate_list[i]
-					self.checkBox_6.setChecked(True)
+					if self.cutSeparate_list[i]["resourceDirectory"][1:] == "text":
+						self.text_list.append(self.cutSeparate_list[i].update(temp_dic1))
+						temp = self.cutSeparate_list[i]["layers"]
+						for j in range(len(temp)):
+							temp_dic["mediaId"] == str(i)
+							temp_dic["id"] == self.cutSeparate_list[i]["id"]
+							temp[j].update(temp_dic)
+							self.layers_list.append(temp[j])
+
+					if self.cutSeparate_list[i]["resourceDirectory"][1:] == "cutout":
+						self.cutout_list.append(self.cutSeparate_list[i].update(temp_dic1))
+						temp = self.cutSeparate_list[i]["layers"]
+						for j in range(len(temp)):
+							temp_dic["mediaId"] == str(i)
+							temp_dic["id"] == self.cutSeparate_list[i]["id"]
+							temp[j].update(temp_dic)
+							self.layers_list.append(temp[j])
+
+					if self.cutSeparate_list[i]["resourceDirectory"][1:] == "aboveArrow":
+						self.aboveArrow_list.append(self.cutSeparate_list[i].update(temp_dic1))
+						temp = self.cutSeparate_list[i]["layers"]
+						for j in range(len(temp)):
+							temp_dic["mediaId"] == str(i)
+							temp_dic["id"] == self.cutSeparate_list[i]["id"]
+							temp[j].update(temp_dic)
+							self.layers_list.append(temp[j])
+							
+					if self.cutSeparate_list[i]["resourceDirectory"][1:] == "foreground":
+						self.foreground_list.append(self.cutSeparate_list[i].update(temp_dic1))
+						temp = self.cutSeparate_list[i]["layers"]
+						for j in range(len(temp)):
+							temp_dic["mediaId"] == str(i)
+							temp_dic["id"] == self.cutSeparate_list[i]["id"]
+							temp[j].update(temp_dic)
+							self.layers_list.append(temp[j])
+
+			self.spinBox_2.setValue(len(self.background_list))
+			self.spinBox_3.setValue(len(self.underArrow_list))
+			self.spinBox_4.setValue(len(self.text_list))
+			self.spinBox_5.setValue(len(self.cutout_list))
+			self.spinBox_6.setValue(len(self.aboveArrow_list))
+			self.spinBox_7.setValue(len(self.foreground_list))
+			self.spinBox_9.setValue(len(self.layers_list))
+
 
 	def showTemplateData(self):
 		self.resolveJson()
 		self.initTable()
-		if self.spinBox_2.value() != 0:
+		if self.checkBox_1.isChecked() == True:
 			# value main table
 			self.tableWidget_1.setRowCount(1)
 			self.tableWidget_1.setItem(0, 0, QTableWidgetItem(self.dic["version"]))
 			self.tableWidget_1.setItem(0, 1, QTableWidgetItem(self.dic["music"]))
 			self.tableWidget_1.setItem(0, 2, QTableWidgetItem(str(self.dic["templateId"])))
 
+		if self.spinBox_1.value() != 0:
 			#value elements
 			#value media table
-			self.tableWidget_2.setRowCount(1)
-			self.tableWidget_2.setItem(0, 0, QTableWidgetItem(self.elements_list[0]["id"]))
-			self.tableWidget_2.setItem(0, 1, QTableWidgetItem(self.elements_list[0]["type"]))
-			self.tableWidget_2.setItem(0, 2, QTableWidgetItem(str(self.elements_list[0]["blur"]["type"])))
-			self.tableWidget_2.setItem(0, 3, QTableWidgetItem(str(self.elements_list[0]["blur"]["size"])))
-			self.tableWidget_2.setItem(0, 4, QTableWidgetItem(str(self.elements_list[0]["constraints"]["left"]["constant"])))
-			self.tableWidget_2.setItem(0, 5, QTableWidgetItem(str(self.elements_list[0]["constraints"]["left"]["percentage"])))
-			self.tableWidget_2.setItem(0, 6, QTableWidgetItem(str(self.elements_list[0]["constraints"]["top"]["constant"])))
-			self.tableWidget_2.setItem(0, 7, QTableWidgetItem(str(self.elements_list[0]["constraints"]["top"]["percentage"])))
-			self.tableWidget_2.setItem(0, 8, QTableWidgetItem(str(self.elements_list[0]["constraints"]["width"]["constant"])))
-			self.tableWidget_2.setItem(0, 9, QTableWidgetItem(str(self.elements_list[0]["constraints"]["width"]["percentage"])))
-			self.tableWidget_2.setItem(0, 10, QTableWidgetItem(str(self.elements_list[0]["constraints"]["height"]["constant"])))
-			self.tableWidget_2.setItem(0, 11, QTableWidgetItem(str(self.elements_list[0]["constraints"]["height"]["percentage"])))
+			self.tableWidget_2.setRowCount(self.spinBox_1.value())  
+			for j in range(len(self.elements_list)):
+				self.tableWidget_2.setItem(j, 0, QTableWidgetItem(self.elements_list[j]["id"]))
+				self.tableWidget_2.setItem(j, 1, QTableWidgetItem(self.elements_list[j]["type"]))
+				self.tableWidget_2.setItem(j, 2, QTableWidgetItem(str(self.elements_list[j]["blur"]["type"])))
+				self.tableWidget_2.setItem(j, 3, QTableWidgetItem(str(self.elements_list[j]["blur"]["size"])))
+				self.tableWidget_2.setItem(j, 4, QTableWidgetItem(str(self.elements_list[j]["constraints"]["left"]["constant"])))
+				self.tableWidget_2.setItem(j, 5, QTableWidgetItem(str(self.elements_list[j]["constraints"]["left"]["percentage"])))
+				self.tableWidget_2.setItem(j, 6, QTableWidgetItem(str(self.elements_list[j]["constraints"]["top"]["constant"])))
+				self.tableWidget_2.setItem(j, 7, QTableWidgetItem(str(self.elements_list[j]["constraints"]["top"]["percentage"])))
+				self.tableWidget_2.setItem(j, 8, QTableWidgetItem(str(self.elements_list[j]["constraints"]["width"]["constant"])))
+				self.tableWidget_2.setItem(j, 9, QTableWidgetItem(str(self.elements_list[j]["constraints"]["width"]["percentage"])))
+				self.tableWidget_2.setItem(j, 10, QTableWidgetItem(str(self.elements_list[j]["constraints"]["height"]["constant"])))
+				self.tableWidget_2.setItem(j, 11, QTableWidgetItem(str(self.elements_list[j]["constraints"]["height"]["percentage"])))
 
 		#value background table
-		if self.checkBox_1.isChecked() == True:
-			self.tableWidget_3.setRowCount(1)
-			self.tableWidget_3.setItem(0, 0, QTableWidgetItem(str(self.background_dic["id"])))
-			self.tableWidget_3.setItem(0, 1, QTableWidgetItem(str(self.background_dic["type"])))
-			self.tableWidget_3.setItem(0, 2, QTableWidgetItem(self.background_dic["resourceDirectory"]))
-			self.tableWidget_3.setItem(0, 3, QTableWidgetItem(self.background_dic["animation"]))
-			self.tableWidget_3.setItem(0, 4, QTableWidgetItem(str(self.background_dic["rect"]["x"])))
-			self.tableWidget_3.setItem(0, 5, QTableWidgetItem(str(self.background_dic["rect"]["y"])))
-			self.tableWidget_3.setItem(0, 6, QTableWidgetItem(str(self.background_dic["rect"]["width"])))
-			self.tableWidget_3.setItem(0, 7, QTableWidgetItem(str(self.background_dic["rect"]["height"])))
-			self.tableWidget_3.setItem(0, 8, QTableWidgetItem(self.background_dic["keyPath"]))
-			self.tableWidget_3.setItem(0, 9, QTableWidgetItem(self.background_dic["filter"]))
+		if self.spinBox_2.value() != 0:
+			self.tableWidget_3.setRowCount(self.spinBox_2.value())
+			print(self.background_list)
+			for i in range(len(self.background_list)):
+				self.tableWidget_3.setItem(i, 0, QTableWidgetItem(str(self.background_list[i]["meidaId"])))
+				self.tableWidget_3.setItem(i, 1, QTableWidgetItem(str(self.background_list[i]["id"])))
+				self.tableWidget_3.setItem(i, 2, QTableWidgetItem(str(self.background_list[i]["type"])))
+				self.tableWidget_3.setItem(i, 3, QTableWidgetItem(self.background_list[i]["resourceDirectory"]))
+				self.tableWidget_3.setItem(i, 4, QTableWidgetItem(self.background_list[i]["animation"]))
+				self.tableWidget_3.setItem(i, 5, QTableWidgetItem(str(self.background_list[i]["rect"]["x"])))
+				self.tableWidget_3.setItem(i, 6, QTableWidgetItem(str(self.background_list[i]["rect"]["y"])))
+				self.tableWidget_3.setItem(i, 7, QTableWidgetItem(str(self.background_list[i]["rect"]["width"])))
+				self.tableWidget_3.setItem(i, 8, QTableWidgetItem(str(self.background_list[i]["rect"]["height"])))
+				self.tableWidget_3.setItem(i, 9, QTableWidgetItem(self.background_list[i]["keyPath"]))
+				self.tableWidget_3.setItem(i, 10, QTableWidgetItem(self.background_list[i]["filter"]))
 
 		#value underArrow table
-		if self.checkBox_2.isChecked() == True:
-			self.tableWidget_4.setRowCount(1)
-			self.tableWidget_4.setItem(0, 0, QTableWidgetItem(str(self.underArrow_dic["id"])))
-			self.tableWidget_4.setItem(0, 1, QTableWidgetItem(str(self.underArrow_dic["type"])))
-			self.tableWidget_4.setItem(0, 2, QTableWidgetItem(str(self.underArrow_dic["adjust"])))
-			self.tableWidget_4.setItem(0, 3, QTableWidgetItem(self.underArrow_dic["resourceDirectory"]))
-			self.tableWidget_4.setItem(0, 4, QTableWidgetItem(self.underArrow_dic["animation"]))
-			self.tableWidget_4.setItem(0, 5, QTableWidgetItem(str(self.underArrow_dic["rect"]["x"])))
-			self.tableWidget_4.setItem(0, 6, QTableWidgetItem(str(self.underArrow_dic["rect"]["y"])))
-			self.tableWidget_4.setItem(0, 7, QTableWidgetItem(str(self.underArrow_dic["rect"]["width"])))
-			self.tableWidget_4.setItem(0, 8, QTableWidgetItem(str(self.underArrow_dic["rect"]["height"])))
-			self.tableWidget_4.setItem(0, 9, QTableWidgetItem(self.underArrow_dic["keyPath"]))
+		if self.spinBox_3.value() != 0:
+			self.tableWidget_4.setRowCount(self.spinBox_3.value())
+			for i in range(len(self.underArrow_list)):
+				self.tableWidget_4.setItem(i, 0, QTableWidgetItem(str(self.underArrow_list[i]["mediaId"])))
+				self.tableWidget_4.setItem(i, 1, QTableWidgetItem(str(self.underArrow_list[i]["id"])))
+				self.tableWidget_4.setItem(i, 2, QTableWidgetItem(str(self.underArrow_list[i]["type"])))
+				self.tableWidget_4.setItem(i, 3, QTableWidgetItem(str(self.underArrow_list[i]["adjust"])))
+				self.tableWidget_4.setItem(i, 4, QTableWidgetItem(self.underArrow_list[i]["resourceDirectory"]))
+				self.tableWidget_4.setItem(i, 5, QTableWidgetItem(self.underArrow_list[i]["animation"]))
+				self.tableWidget_4.setItem(i, 6, QTableWidgetItem(str(self.underArrow_list[i]["rect"]["x"])))
+				self.tableWidget_4.setItem(i, 7, QTableWidgetItem(str(self.underArrow_list[i]["rect"]["y"])))
+				self.tableWidget_4.setItem(i, 8, QTableWidgetItem(str(self.underArrow_list[i]["rect"]["width"])))
+				self.tableWidget_4.setItem(i, 9, QTableWidgetItem(str(self.underArrow_list[i]["rect"]["height"])))
+				self.tableWidget_4.setItem(i, 10, QTableWidgetItem(self.underArrow_list[i]["keyPath"]))
 			
 		#value text table
-		if self.checkBox_3.isChecked() == True:
-			self.tableWidget_5.setRowCount(1)
-			self.tableWidget_5.setItem(0, 0, QTableWidgetItem(str(self.text_dic["id"])))
-			self.tableWidget_5.setItem(0, 1, QTableWidgetItem(str(self.text_dic["type"])))
-			self.tableWidget_5.setItem(0, 2, QTableWidgetItem(self.text_dic["resourceDirectory"]))
-			self.tableWidget_5.setItem(0, 3, QTableWidgetItem(self.text_dic["animation"]))
-			self.tableWidget_5.setItem(0, 4, QTableWidgetItem(str(self.text_dic["fontSize"])))
-			self.tableWidget_5.setItem(0, 5, QTableWidgetItem(self.text_dic["fontName"]))
-			self.tableWidget_5.setItem(0, 6, QTableWidgetItem(self.text_dic["placeHolder"]))
-			self.tableWidget_5.setItem(0, 7, QTableWidgetItem(str(self.text_dic["lineSpacing"])))
-			self.tableWidget_5.setItem(0, 8, QTableWidgetItem(str(self.text_dic["letterSpacing"])))
-			self.tableWidget_5.setItem(0, 9, QTableWidgetItem(self.text_dic["textAlignment"]))
-			self.tableWidget_5.setItem(0, 10, QTableWidgetItem(self.text_dic["textColor"]))
-			self.tableWidget_5.setItem(0, 11, QTableWidgetItem(str(self.text_dic["canvasWidth"])))
-			self.tableWidget_5.setItem(0, 12, QTableWidgetItem(str(self.text_dic["contentSize"][0])))
-			self.tableWidget_5.setItem(0, 13, QTableWidgetItem(str(self.text_dic["contentSize"][1])))
-			self.tableWidget_5.setItem(0, 14, QTableWidgetItem(self.text_dic["keyPath"]))
+		if self.spinBox_4.value() != 0:
+			self.tableWidget_5.setRowCount(self.spinBox_4.value())
+			for i in range(len(self.text_list)):
+				self.tableWidget_4.setItem(i, 0, QTableWidgetItem(str(self.underArrow_list[i]["meidaId"])))
+				self.tableWidget_5.setItem(i, 1, QTableWidgetItem(str(self.text_list[i]["id"])))
+				self.tableWidget_5.setItem(i, 2, QTableWidgetItem(str(self.text_list[i]["type"])))
+				self.tableWidget_5.setItem(i, 3, QTableWidgetItem(self.text_list[i]["resourceDirectory"]))
+				self.tableWidget_5.setItem(i, 4, QTableWidgetItem(self.text_list[i]["animation"]))
+				self.tableWidget_5.setItem(i, 5, QTableWidgetItem(str(self.text_list[i]["fontSize"])))
+				self.tableWidget_5.setItem(i, 6, QTableWidgetItem(self.text_list[i]["fontName"]))
+				self.tableWidget_5.setItem(i, 7, QTableWidgetItem(self.text_list[i]["placeHolder"]))
+				self.tableWidget_5.setItem(i, 8, QTableWidgetItem(str(self.text_list[i]["lineSpacing"])))
+				self.tableWidget_5.setItem(i, 9, QTableWidgetItem(str(self.text_list[i]["letterSpacing"])))
+				self.tableWidget_5.setItem(i, 10, QTableWidgetItem(self.text_list[i]["textAlignment"]))
+				self.tableWidget_5.setItem(i, 11, QTableWidgetItem(self.text_list[i]["textColor"]))
+				self.tableWidget_5.setItem(i, 12, QTableWidgetItem(str(self.text_list[i]["canvasWidth"])))
+				self.tableWidget_5.setItem(i, 13, QTableWidgetItem(str(self.text_list[i]["contentSize"][0])))
+				self.tableWidget_5.setItem(i, 14, QTableWidgetItem(str(self.text_list[i]["contentSize"][1])))
+				self.tableWidget_5.setItem(i, 15, QTableWidgetItem(self.text_list[i]["keyPath"]))
 
 		#value cutout table
-		if self.checkBox_3.isChecked() == True:
-			self.tableWidget_6.setRowCount(1)
-			self.tableWidget_6.setItem(0, 0, QTableWidgetItem(str(self.cutout_dic["id"])))
-			self.tableWidget_6.setItem(0, 1, QTableWidgetItem(str(self.cutout_dic["type"])))
-			self.tableWidget_6.setItem(0, 2, QTableWidgetItem(self.cutout_dic["resourceDirectory"]))
-			self.tableWidget_6.setItem(0, 3, QTableWidgetItem(self.cutout_dic["animation"]))
-			self.tableWidget_6.setItem(0, 4, QTableWidgetItem(str(self.cutout_dic["rect"]["x"])))
-			self.tableWidget_6.setItem(0, 5, QTableWidgetItem(str(self.cutout_dic["rect"]["y"])))
-			self.tableWidget_6.setItem(0, 6, QTableWidgetItem(str(self.cutout_dic["rect"]["width"])))
-			self.tableWidget_6.setItem(0, 7, QTableWidgetItem(str(self.cutout_dic["rect"]["height"])))
-			self.tableWidget_6.setItem(0, 8, QTableWidgetItem(self.cutout_dic["keyPath"]))
-			self.tableWidget_6.setItem(0, 9, QTableWidgetItem(self.cutout_dic["filter"]))
+		if self.spinBox_5.value() != 0:
+			self.tableWidget_6.setRowCount(self.spinBox_5.value())
+			for i in range(len(self.cutout_list)):
+				self.tableWidget_6.setItem(i, 0, QTableWidgetItem(str(self.cutout_list[i]["mediaId"])))
+				self.tableWidget_6.setItem(i, 1, QTableWidgetItem(str(self.cutout_list[i]["id"])))
+				self.tableWidget_6.setItem(i, 2, QTableWidgetItem(str(self.cutout_list[i]["type"])))
+				self.tableWidget_6.setItem(i, 3, QTableWidgetItem(self.cutout_list[i]["resourceDirectory"]))
+				self.tableWidget_6.setItem(i, 4, QTableWidgetItem(self.cutout_list[i]["animation"]))
+				self.tableWidget_6.setItem(i, 5, QTableWidgetItem(str(self.cutout_list[i]["rect"]["x"])))
+				self.tableWidget_6.setItem(i, 6, QTableWidgetItem(str(self.cutout_list[i]["rect"]["y"])))
+				self.tableWidget_6.setItem(i, 7, QTableWidgetItem(str(self.cutout_list[i]["rect"]["width"])))
+				self.tableWidget_6.setItem(i, 8, QTableWidgetItem(str(self.cutout_list[i]["rect"]["height"])))
+				self.tableWidget_6.setItem(i, 9, QTableWidgetItem(self.cutout_list[i]["keyPath"]))
+				self.tableWidget_6.setItem(i, 10, QTableWidgetItem(self.cutout_list[i]["filter"]))
 
 		#value aboveArrow table
-		if self.checkBox_5.isChecked() == True:
-			self.tableWidget_7.setRowCount(1)
-			self.tableWidget_7.setItem(0, 0, QTableWidgetItem(str(self.aboveArrow_dic["id"])))
-			self.tableWidget_7.setItem(0, 1, QTableWidgetItem(str(self.aboveArrow_dic["type"])))
-			self.tableWidget_7.setItem(0, 2, QTableWidgetItem(str(self.aboveArrow_dic["adjust"])))
-			self.tableWidget_7.setItem(0, 3, QTableWidgetItem(self.aboveArrow_dic["resourceDirectory"]))
-			self.tableWidget_7.setItem(0, 4, QTableWidgetItem(self.aboveArrow_dic["animation"]))
-			self.tableWidget_7.setItem(0, 5, QTableWidgetItem(str(self.aboveArrow_dic["rect"]["x"])))
-			self.tableWidget_7.setItem(0, 6, QTableWidgetItem(str(self.aboveArrow_dic["rect"]["y"])))
-			self.tableWidget_7.setItem(0, 7, QTableWidgetItem(str(self.aboveArrow_dic["rect"]["width"])))
-			self.tableWidget_7.setItem(0, 8, QTableWidgetItem(str(self.aboveArrow_dic["rect"]["height"])))
-			self.tableWidget_7.setItem(0, 9, QTableWidgetItem(self.aboveArrow_dic["keyPath"]))
+		if self.spinBox_6.value() != 0:
+			self.tableWidget_7.setRowCount(self.spinBox_6.value())
+			print(len(self.aboveArrow_list))
+			for i in range(len(self.aboveArrow_list)):
+				self.tableWidget_7.setItem(i, 0, QTableWidgetItem(str(self.aboveArrow_list[i]["mediaId"])))
+				self.tableWidget_7.setItem(i, 1, QTableWidgetItem(str(self.aboveArrow_list[i]["id"])))
+				self.tableWidget_7.setItem(i, 2, QTableWidgetItem(str(self.aboveArrow_list[i]["type"])))
+				self.tableWidget_7.setItem(i, 3, QTableWidgetItem(str(self.aboveArrow_list[i]["adjust"])))
+				self.tableWidget_7.setItem(i, 4, QTableWidgetItem(self.aboveArrow_list[i]["resourceDirectory"]))
+				self.tableWidget_7.setItem(i, 5, QTableWidgetItem(self.aboveArrow_list[i]["animation"]))
+				self.tableWidget_7.setItem(i, 6, QTableWidgetItem(str(self.aboveArrow_list[i]["rect"]["x"])))
+				self.tableWidget_7.setItem(i, 7, QTableWidgetItem(str(self.aboveArrow_list[i]["rect"]["y"])))
+				self.tableWidget_7.setItem(i, 8, QTableWidgetItem(str(self.aboveArrow_list[i]["rect"]["width"])))
+				self.tableWidget_7.setItem(i, 9, QTableWidgetItem(str(self.aboveArrow_list[i]["rect"]["height"])))
+				self.tableWidget_7.setItem(i, 10, QTableWidgetItem(self.aboveArrow_list[i]["keyPath"]))
 
 		#value foreground table
-		if self.checkBox_6.isChecked() == True:
-			self.tableWidget_8.setRowCount(1)
-			self.tableWidget_8.setItem(0, 0, QTableWidgetItem(str(self.foreground_dic["id"])))
-			self.tableWidget_8.setItem(0, 1, QTableWidgetItem(str(self.foreground_dic["type"])))
-			self.tableWidget_8.setItem(0, 2, QTableWidgetItem(self.foreground_dic["resourceDirectory"]))
-			self.tableWidget_8.setItem(0, 3, QTableWidgetItem(self.foreground_dic["animation"]))
-			self.tableWidget_8.setItem(0, 4, QTableWidgetItem(str(self.foreground_dic["rect"]["x"])))
-			self.tableWidget_8.setItem(0, 5, QTableWidgetItem(str(self.foreground_dic["rect"]["y"])))
-			self.tableWidget_8.setItem(0, 6, QTableWidgetItem(str(self.foreground_dic["rect"]["width"])))
-			self.tableWidget_8.setItem(0, 7, QTableWidgetItem(str(self.foreground_dic["rect"]["height"])))
-			self.tableWidget_8.setItem(0, 8, QTableWidgetItem(self.foreground_dic["keyPath"]))
+		if self.spinBox_7.value() != 0:
+			self.tableWidget_8.setRowCount(self.spinBox_7.value())
+			print(self.spinBox_7.value())
+			for i in range(len(self.foreground_list)):
+				self.tableWidget_8.setItem(i, 0, QTableWidgetItem(str(self.foreground_list[i]["meidaId"])))
+				self.tableWidget_8.setItem(i, 1, QTableWidgetItem(str(self.foreground_list[i]["id"])))
+				self.tableWidget_8.setItem(i, 2, QTableWidgetItem(str(self.foreground_list[i]["type"])))
+				self.tableWidget_8.setItem(i, 3, QTableWidgetItem(self.foreground_list[i]["resourceDirectory"]))
+				self.tableWidget_8.setItem(i, 4, QTableWidgetItem(self.foreground_list[i]["animation"]))
+				self.tableWidget_8.setItem(i, 5, QTableWidgetItem(str(self.foreground_list[i]["rect"]["x"])))
+				self.tableWidget_8.setItem(i, 6, QTableWidgetItem(str(self.foreground_list[i]["rect"]["y"])))
+				self.tableWidget_8.setItem(i, 7, QTableWidgetItem(str(self.foreground_list[i]["rect"]["width"])))
+				self.tableWidget_8.setItem(i, 8, QTableWidgetItem(str(self.foreground_list[i]["rect"]["height"])))
+				self.tableWidget_8.setItem(i, 9, QTableWidgetItem(self.foreground_list[i]["keyPath"]))
 
-		if self.spinBox_1.value() != 0:
-			self.tableWidget_9.setRowCount(self.spinBox_1.value())
-			for i in range(self.spinBox_1.value()):
+		if self.spinBox_8.value() != 0:
+			self.tableWidget_9.setRowCount(self.spinBox_8.value())
+			for i in range(len(self.sticker_list)):
 				self.tableWidget_9.setItem(i, 0, QTableWidgetItem(str(self.sticker_list[i]["id"])))
 				self.tableWidget_9.setItem(i, 1, QTableWidgetItem(str(self.sticker_list[i]["resourceDirectory"])))
-				self.tableWidget_9.setItem(i, 2, QTableWidgetItem(str(self.sticker_list[i]["constraints"]["left"]["constant"])))
-				self.tableWidget_9.setItem(i, 3, QTableWidgetItem(str(self.sticker_list[i]["constraints"]["left"]["percentage"])))
-				self.tableWidget_9.setItem(i, 4, QTableWidgetItem(str(self.sticker_list[i]["constraints"]["top"]["constant"])))
-				self.tableWidget_9.setItem(i, 5, QTableWidgetItem(str(self.sticker_list[i]["constraints"]["top"]["percentage"])))
-				self.tableWidget_9.setItem(i, 6, QTableWidgetItem(str(self.sticker_list[i]["constraints"]["width"]["constant"])))
-				self.tableWidget_9.setItem(i, 7, QTableWidgetItem(str(self.sticker_list[i]["constraints"]["width"]["percentage"])))
-				self.tableWidget_9.setItem(i, 8, QTableWidgetItem(str(self.sticker_list[i]["constraints"]["height"]["constant"])))
-				self.tableWidget_9.setItem(i, 9, QTableWidgetItem(str(self.sticker_list[i]["constraints"]["height"]["percentage"])))
+				self.tableWidget_9.setItem(i, 2, QTableWidgetItem(str(self.sticker_list[i]["rect"]["x"])))
+				self.tableWidget_9.setItem(i, 3, QTableWidgetItem(str(self.sticker_list[i]["rect"]["y"])))
+				self.tableWidget_9.setItem(i, 4, QTableWidgetItem(str(self.sticker_list[i]["rect"]["width"])))
+				self.tableWidget_9.setItem(i, 5, QTableWidgetItem(str(self.sticker_list[i]["rect"]["height"])))
 
+		if self.spinBox_9.value() != 0:
+			self.tableWidget_9.setRowCount(self.spinBox_8.value())
+			for i in range(len(self.layers_list)):
+				self.tableWidget_9.setItem(i, 0, QTableWidgetItem(str(self.layers_list[i]["mediaId"])))
+				self.tableWidget_9.setItem(i, 1, QTableWidgetItem(str(self.layers_list[i]["id"])))
+				self.tableWidget_9.setItem(i, 2, QTableWidgetItem(str(self.layers_list[i]["name"])))
+				self.tableWidget_9.setItem(i, 3, QTableWidgetItem(str(self.layers_list[i]["resource"])))
+				
+				
 	def editable(self):
 		if self.comboBox_2.currentText() != null:
 			if self.spinBox_2.value() != 0:
@@ -414,7 +494,6 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 
 		if self.spinBox_2.value() != 0:
 			self.tableWidget_2.setRowCount(1)
-
 
 	def saveTable(self):
 		pass

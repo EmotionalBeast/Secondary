@@ -14,8 +14,8 @@ class Ui_MainWindow(object):
     #初始化界面控件
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1120, 640)
-        MainWindow.setFixedSize(1000, 640)
+        MainWindow.resize(1000, 740)
+        MainWindow.setFixedSize(1000, 740)
         MainWindow.setWindowIcon(QtGui.QIcon("./resources/icons/tool.png"))
 
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -42,85 +42,85 @@ class Ui_MainWindow(object):
 
         #数组box
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
-        self.label_3.setGeometry(QtCore.QRect(20, 60, 60, 30))
+        self.label_3.setGeometry(QtCore.QRect(40, 60, 78, 30))
         self.label_3.setObjectName("label_3")
 
         self.spinBox_1 = QtWidgets.QSpinBox(self.centralwidget)
-        self.spinBox_1.setGeometry(QtCore.QRect(90, 60, 40, 30))
+        self.spinBox_1.setGeometry(QtCore.QRect(128, 60, 40, 30))
         self.spinBox_1.setObjectName("spinBox_1")
 
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
-        self.label_4.setGeometry(QtCore.QRect(150, 60, 60, 30))
+        self.label_4.setGeometry(QtCore.QRect(208, 60, 78, 30))
         self.label_4.setObjectName("label_4")
 
         self.spinBox_2 = QtWidgets.QSpinBox(self.centralwidget)
-        self.spinBox_2.setGeometry(QtCore.QRect(220, 60, 40, 30))
+        self.spinBox_2.setGeometry(QtCore.QRect(296, 60, 40, 30))
         self.spinBox_2.setObjectName("spinBox_2")
 
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
-        self.label_5.setGeometry(QtCore.QRect(280, 60, 60, 30))
+        self.label_5.setGeometry(QtCore.QRect(376, 60, 78, 30))
         self.label_5.setObjectName("label_5")
 
         self.spinBox_3 = QtWidgets.QSpinBox(self.centralwidget)
-        self.spinBox_3.setGeometry(QtCore.QRect(350, 60, 40, 30))
+        self.spinBox_3.setGeometry(QtCore.QRect(464, 60, 40, 30))
         self.spinBox_3.setObjectName("spinBox_3")
 
         self.label_6 = QtWidgets.QLabel(self.centralwidget)
-        self.label_6.setGeometry(QtCore.QRect(410, 60, 60, 30))
+        self.label_6.setGeometry(QtCore.QRect(544, 60, 78, 30))
         self.label_6.setObjectName("label_6")
 
         self.spinBox_4 = QtWidgets.QSpinBox(self.centralwidget)
-        self.spinBox_4.setGeometry(QtCore.QRect(480, 60, 40, 30))
+        self.spinBox_4.setGeometry(QtCore.QRect(632, 60, 40, 30))
         self.spinBox_4.setObjectName("spinBox_4")
 
         self.label_7 = QtWidgets.QLabel(self.centralwidget)
-        self.label_7.setGeometry(QtCore.QRect(540, 60, 60, 30))
+        self.label_7.setGeometry(QtCore.QRect(712, 60, 78, 30))
         self.label_7.setObjectName("label_7")
 
         self.spinBox_5 = QtWidgets.QSpinBox(self.centralwidget)
-        self.spinBox_5.setGeometry(QtCore.QRect(610, 60, 40, 30))
+        self.spinBox_5.setGeometry(QtCore.QRect(800, 60, 40, 30))
         self.spinBox_5.setObjectName("spinBox_5")
 
         self.label_8 = QtWidgets.QLabel(self.centralwidget)
-        self.label_8.setGeometry(QtCore.QRect(540, 60, 60, 30))
+        self.label_8.setGeometry(QtCore.QRect(40, 100, 78, 30))
         self.label_8.setObjectName("label_8")
 
         self.spinBox_6 = QtWidgets.QSpinBox(self.centralwidget)
-        self.spinBox_6.setGeometry(QtCore.QRect(610, 60, 40, 30))
+        self.spinBox_6.setGeometry(QtCore.QRect(128, 100, 40, 30))
         self.spinBox_6.setObjectName("spinBox_6")
 
         self.label_9 = QtWidgets.QLabel(self.centralwidget)
-        self.label_9.setGeometry(QtCore.QRect(540, 60, 60, 30))
+        self.label_9.setGeometry(QtCore.QRect(208, 100, 78, 30))
         self.label_9.setObjectName("label_9")
 
         self.spinBox_7 = QtWidgets.QSpinBox(self.centralwidget)
-        self.spinBox_7.setGeometry(QtCore.QRect(610, 60, 40, 30))
+        self.spinBox_7.setGeometry(QtCore.QRect(296, 100, 40, 30))
         self.spinBox_7.setObjectName("spinBox_7")
 
         self.label_10 = QtWidgets.QLabel(self.centralwidget)
-        self.label_10.setGeometry(QtCore.QRect(540, 60, 60, 30))
+        self.label_10.setGeometry(QtCore.QRect(376, 100, 78, 30))
         self.label_10.setObjectName("label_10")
 
         self.spinBox_8 = QtWidgets.QSpinBox(self.centralwidget)
-        self.spinBox_8.setGeometry(QtCore.QRect(610, 60, 40, 30))
+        self.spinBox_8.setGeometry(QtCore.QRect(464, 100, 40, 30))
         self.spinBox_8.setObjectName("spinBox_8")
 
         self.label_11 = QtWidgets.QLabel(self.centralwidget)
-        self.label_11.setGeometry(QtCore.QRect(540, 60, 60, 30))
+        self.label_11.setGeometry(QtCore.QRect(544, 100, 78, 30))
         self.label_11.setObjectName("label_11")
 
         self.spinBox_9 = QtWidgets.QSpinBox(self.centralwidget)
-        self.spinBox_9.setGeometry(QtCore.QRect(610, 60, 40, 30))
+        self.spinBox_9.setGeometry(QtCore.QRect(632, 100, 40, 30))
         self.spinBox_9.setObjectName("spinBox_9")
 
         #第二行，json选项
         self.checkBox_1 = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBox_1.setGeometry(QtCore.QRect(20, 60, 100, 30))
+        self.checkBox_1.setGeometry(QtCore.QRect(712, 100, 100, 30))
         self.checkBox_1.setObjectName("checkBox_1")
 
 
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(920, 60, 80, 30))
+        self.pushButton.setGeometry(QtCore.QRect(852, 100, 80, 30))
         self.pushButton.setObjectName("pushButton")
 
         
@@ -217,7 +217,8 @@ class Ui_MainWindow(object):
         self.label_7.setText(_translate("MainWindow", "cutout："))
         self.label_8.setText(_translate("MainWindow", "aboveArrow："))
         self.label_9.setText(_translate("MainWindow", "foreground："))
-        self.label_10.setText(_translate("MainWindow", "layers："))
+        self.label_10.setText(_translate("MainWindow", "sticker："))
+        self.label_11.setText(_translate("MainWindow", "layers："))
 
         self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.menuTools.setTitle(_translate("MainWindow", "Tools"))
@@ -239,6 +240,8 @@ class Ui_MainWindow(object):
         self.tableWidget_1.setHorizontalHeaderItem(2, item)
         item = QtWidgets.QTableWidgetItem()
         self.tabWidget.addTab(self.tab_1, "")
+
+        self.tableWidget_1.setColumnWidth(1,120)
 
 
         _translate = QtCore.QCoreApplication.translate
@@ -284,7 +287,11 @@ class Ui_MainWindow(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_2.setHorizontalHeaderItem(11, item)
         self.tabWidget.addTab(self.tab_2, "")
-        self.tableWidget_2.setColumnWidth(1,120)
+
+        self.tableWidget_2.setColumnWidth(9,120)
+        self.tableWidget_2.setColumnWidth(10,120)
+        self.tableWidget_2.setColumnWidth(11,120)
+
 
         _translate = QtCore.QCoreApplication.translate
         item = self.tableWidget_2.horizontalHeaderItem(0)
@@ -694,7 +701,7 @@ class Ui_MainWindow(object):
         self.tab_9 = QtWidgets.QWidget()
         self.tab_9.setObjectName("tab_9")
         self.tableWidget_9 = QtWidgets.QTableWidget(self.tab_9)
-        self.tableWidget_9.setColumnCount(11)
+        self.tableWidget_9.setColumnCount(7)
         self.tableWidget_9.setGeometry(QtCore.QRect(0, 0, 1000, 430))
         self.tableWidget_9.setObjectName("tableWidget_9") 
 
@@ -712,15 +719,6 @@ class Ui_MainWindow(object):
         self.tableWidget_9.setHorizontalHeaderItem(5, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_9.setHorizontalHeaderItem(6, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_9.setHorizontalHeaderItem(7, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_9.setHorizontalHeaderItem(8, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_9.setHorizontalHeaderItem(9, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_9.setHorizontalHeaderItem(10, item)
-        item = QtWidgets.QTableWidgetItem()
         self.tabWidget.addTab(self.tab_9, "")
         self.tableWidget_9.setColumnWidth(1,120)
 
@@ -732,53 +730,80 @@ class Ui_MainWindow(object):
         item = self.tableWidget_9.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "resourceDirectory"))
         item = self.tableWidget_9.horizontalHeaderItem(3)
-        item.setText(_translate("MainWindow", "left_constant"))
+        item.setText(_translate("MainWindow", "rect_x"))
         item = self.tableWidget_9.horizontalHeaderItem(4)
-        item.setText(_translate("MainWindow", "left_percentage"))
+        item.setText(_translate("MainWindow", "rect_y"))
         item = self.tableWidget_9.horizontalHeaderItem(5)
-        item.setText(_translate("MainWindow", "top_constant"))
+        item.setText(_translate("MainWindow", "rect_width"))
         item = self.tableWidget_9.horizontalHeaderItem(6)
-        item.setText(_translate("MainWindow", "top_percentage"))
-        item = self.tableWidget_9.horizontalHeaderItem(7)
-        item.setText(_translate("MainWindow", "width_constant"))
-        item = self.tableWidget_9.horizontalHeaderItem(8)
-        item.setText(_translate("MainWindow", "width_percentage"))
-        item = self.tableWidget_9.horizontalHeaderItem(9)
-        item.setText(_translate("MainWindow", "height_constant"))
-        item = self.tableWidget_9.horizontalHeaderItem(10)
-        item.setText(_translate("MainWindow", "height_percentage"))
+        item.setText(_translate("MainWindow", "rect_height"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_9), _translate("MainWindow", "sticker"))
         self.tableWidget_9.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
 
     def layersTable(self):
-        pass
+        self.tab_10 = QtWidgets.QWidget()
+        self.tab_10.setObjectName("tab_10")
+        self.tableWidget_10 = QtWidgets.QTableWidget(self.tab_10)
+        self.tableWidget_10.setColumnCount(4)
+        self.tableWidget_10.setGeometry(QtCore.QRect(0, 0, 1000, 430))
+        self.tableWidget_10.setObjectName("tableWidget_10") 
+
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_10.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_10.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_10.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_10.setHorizontalHeaderItem(3, item)
+
+        _translate = QtCore.QCoreApplication.translate
+        item = self.tableWidget_9.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "mediaId"))
+        item = self.tableWidget_9.horizontalHeaderItem(1)
+        item.setText(_translate("MainWindow", "id"))
+        item = self.tableWidget_9.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "name"))
+        item = self.tableWidget_9.horizontalHeaderItem(3)
+        item.setText(_translate("MainWindow", "resource"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_9), _translate("MainWindow", "layer"))
+        self.tableWidget_9.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
 
     def initTable(self):
         if self.index > 0:
             self.tabWidget.close()
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
-        self.tabWidget.setGeometry(QtCore.QRect(0, 90, 1000, 550))
+        self.tabWidget.setGeometry(QtCore.QRect(0, 140, 1000, 600))
         self.tabWidget.setObjectName("tabWidget")
         self.tabWidget.setCurrentIndex(0)
 
-        if self.spinBox_2.value() != 0:
+        if self.checkBox_1.isChecked() == True and self.spinBox_1.value() != 0:
             self.mainTable()
             self.mediaTable()
-        if self.checkBox_1.isChecked() == True:
-            self.backgroundTable()
-        if self.checkBox_2.isChecked() == True:
-            self.underArrowTable()
-        if self.checkBox_3.isChecked() == True:
-            self.textTable()
-        if self.checkBox_4.isChecked() == True:
-            self.cutoutTable()
-        if self.checkBox_5.isChecked() == True:
-            self.aboveArrowTable()
-        if self.checkBox_6.isChecked() == True:
-            self.foregroundTable()
-        if self.spinBox_1.value() != 0:
-            self.stickerTable()
 
+        if self.spinBox_2.value() != 0:
+            self.backgroundTable()
+
+        if self.spinBox_3.value() != 0:
+            self.underArrowTable()
+
+        if self.spinBox_4.value() != 0:
+            self.textTable()
+
+        if self.spinBox_5.value() != 0:
+            self.cutoutTable()
+
+        if self.spinBox_6.value() != 0:
+            self.aboveArrowTable()
+
+        if self.spinBox_7.value() != 0:
+            self.foregroundTable()
+
+        if self.spinBox_8.value() != 0:
+            self.stickerTable()
+            
+        if self.spinBox_9.value() != 0:
+            self.layersTable()
 
         self.tabWidget.show()
         self.index +=1

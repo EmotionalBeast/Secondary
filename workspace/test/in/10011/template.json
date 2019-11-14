@@ -163,23 +163,11 @@
     {
       "id": "0",
       "resourceDirectory": "/sticker",
-      "constraints": {
-        "left": {
-          "constant": 0.0,
-          "percentage": 0.1
-        },
-        "top": {
-          "constant": 0.0,
-          "percentage": 0.1
-        },
-        "width": {
-          "constant": 0.0,
-          "percentage": 0.2
-        },
-        "height": {
-          "constant": 0.0,
-          "percentage": 0.2
-        }
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 667
       }
     }
   ],
