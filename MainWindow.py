@@ -40,7 +40,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 		self.myDirWindow.show()
 
 	def openPaintWindow(self):
-		if self.comboBox_2.currentText() != null:
+		if self.comboBox_2.currentText() != "":
 			self.myPaintWindow = MyPaintWindow(self.comboBox_1.currentText(), self.comboBox_2.currentText())
 			self.myPaintWindow.setWindowModality(Qt.ApplicationModal)
 			self.myPaintWindow.show()
@@ -48,7 +48,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 			QMessageBox.information(self,"提示","请选择json文件!")
 
 	def openOrigin(self):
-		if self.comboBox_1.currentText() != null:
+		if self.comboBox_1.currentText() != "":
 			pathOrigin ="file:///" + self.workspacePath + "/" + self.comboBox_1.currentText() + "/origin/"
 			QDesktopServices.openUrl(QUrl(pathOrigin))
 		else:
@@ -141,63 +141,53 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 			self.spinBox_8.setValue(len(self.sticker_list))
 			temp_dic = {"mediaId":"","id":""}
 			temp_dic1 = {"mediaId":""}
-			for j in range(len(self.elements_list)):
-				self.cutSeparate_list = self.elements_list[j]["cutSeparate"]
-				temp_dic1["mediaId"] = self.elements_list[j]["id"]
+			for k in range(len(self.elements_list)):	
+				temp_dic["mediaId"] = self.elements_list[k]["id"]
+				temp_dic1["mediaId"] = self.elements_list[k]["id"]
+				self.cutSeparate_list = self.elements_list[k]["cutSeparate"]
 				for i in range(len(self.cutSeparate_list)):
-					if self.cutSeparate_list[i]["resourceDirectory"][1:] == "background":
-						temp1 = self.cutSeparate_list[i]
-						temp1.update(temp_dic1)
-						self.background_list.append(self.cutSeparate_list[i].update(temp_dic1))
+					temp_dic["id"] = self.cutSeparate_list[i]["id"]
+					temp1 = self.cutSeparate_list[i]
+					temp1.update(temp_dic1)
+					if self.cutSeparate_list[i]["resourceDirectory"][1:] == "background":						
+						self.background_list.append(temp1)
 						temp = self.cutSeparate_list[i]["layers"]
 						for j in range(len(temp)):
-							temp_dic["mediaId"] == str(i)
-							temp_dic["id"] == self.cutSeparate_list[i]["id"]
 							temp[j].update(temp_dic)
 							self.layers_list.append(temp[j])
 
 					if self.cutSeparate_list[i]["resourceDirectory"][1:] == "underArrow":
-						self.underArrow_list.append(self.cutSeparate_list[i].update(temp_dic1))
+						self.underArrow_list.append(temp1)
 						temp = self.cutSeparate_list[i]["layers"]
 						for j in range(len(temp)):
-							temp_dic["mediaId"] == str(i)
-							temp_dic["id"] == self.cutSeparate_list[i]["id"]
 							temp[j].update(temp_dic)
 							self.layers_list.append(temp[j])
 
 					if self.cutSeparate_list[i]["resourceDirectory"][1:] == "text":
-						self.text_list.append(self.cutSeparate_list[i].update(temp_dic1))
+						self.text_list.append(temp1)
 						temp = self.cutSeparate_list[i]["layers"]
 						for j in range(len(temp)):
-							temp_dic["mediaId"] == str(i)
-							temp_dic["id"] == self.cutSeparate_list[i]["id"]
 							temp[j].update(temp_dic)
 							self.layers_list.append(temp[j])
 
 					if self.cutSeparate_list[i]["resourceDirectory"][1:] == "cutout":
-						self.cutout_list.append(self.cutSeparate_list[i].update(temp_dic1))
+						self.cutout_list.append(temp1)
 						temp = self.cutSeparate_list[i]["layers"]
 						for j in range(len(temp)):
-							temp_dic["mediaId"] == str(i)
-							temp_dic["id"] == self.cutSeparate_list[i]["id"]
 							temp[j].update(temp_dic)
 							self.layers_list.append(temp[j])
 
 					if self.cutSeparate_list[i]["resourceDirectory"][1:] == "aboveArrow":
-						self.aboveArrow_list.append(self.cutSeparate_list[i].update(temp_dic1))
+						self.aboveArrow_list.append(temp1)
 						temp = self.cutSeparate_list[i]["layers"]
 						for j in range(len(temp)):
-							temp_dic["mediaId"] == str(i)
-							temp_dic["id"] == self.cutSeparate_list[i]["id"]
 							temp[j].update(temp_dic)
 							self.layers_list.append(temp[j])
 							
 					if self.cutSeparate_list[i]["resourceDirectory"][1:] == "foreground":
-						self.foreground_list.append(self.cutSeparate_list[i].update(temp_dic1))
+						self.foreground_list.append(temp1)
 						temp = self.cutSeparate_list[i]["layers"]
 						for j in range(len(temp)):
-							temp_dic["mediaId"] == str(i)
-							temp_dic["id"] == self.cutSeparate_list[i]["id"]
 							temp[j].update(temp_dic)
 							self.layers_list.append(temp[j])
 
@@ -226,7 +216,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 			self.tableWidget_2.setRowCount(self.spinBox_1.value())  
 			for j in range(len(self.elements_list)):
 				self.tableWidget_2.setItem(j, 0, QTableWidgetItem(self.elements_list[j]["id"]))
-				self.tableWidget_2.setItem(j, 1, QTableWidgetItem(self.elements_list[j]["type"]))
+				self.tableWidget_2.setItem(j, 1, QTableWidgetItem(str(self.elements_list[j]["type"])))
 				self.tableWidget_2.setItem(j, 2, QTableWidgetItem(str(self.elements_list[j]["blur"]["type"])))
 				self.tableWidget_2.setItem(j, 3, QTableWidgetItem(str(self.elements_list[j]["blur"]["size"])))
 				self.tableWidget_2.setItem(j, 4, QTableWidgetItem(str(self.elements_list[j]["constraints"]["left"]["constant"])))
@@ -241,10 +231,9 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 		#value background table
 		if self.spinBox_2.value() != 0:
 			self.tableWidget_3.setRowCount(self.spinBox_2.value())
-			print(self.background_list)
 			for i in range(len(self.background_list)):
-				self.tableWidget_3.setItem(i, 0, QTableWidgetItem(str(self.background_list[i]["meidaId"])))
-				self.tableWidget_3.setItem(i, 1, QTableWidgetItem(str(self.background_list[i]["id"])))
+				self.tableWidget_3.setItem(i, 0, QTableWidgetItem(self.background_list[i]["mediaId"]))
+				self.tableWidget_3.setItem(i, 1, QTableWidgetItem(self.background_list[i]["id"]))
 				self.tableWidget_3.setItem(i, 2, QTableWidgetItem(str(self.background_list[i]["type"])))
 				self.tableWidget_3.setItem(i, 3, QTableWidgetItem(self.background_list[i]["resourceDirectory"]))
 				self.tableWidget_3.setItem(i, 4, QTableWidgetItem(self.background_list[i]["animation"]))
@@ -259,8 +248,8 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 		if self.spinBox_3.value() != 0:
 			self.tableWidget_4.setRowCount(self.spinBox_3.value())
 			for i in range(len(self.underArrow_list)):
-				self.tableWidget_4.setItem(i, 0, QTableWidgetItem(str(self.underArrow_list[i]["mediaId"])))
-				self.tableWidget_4.setItem(i, 1, QTableWidgetItem(str(self.underArrow_list[i]["id"])))
+				self.tableWidget_4.setItem(i, 0, QTableWidgetItem(self.underArrow_list[i]["mediaId"]))
+				self.tableWidget_4.setItem(i, 1, QTableWidgetItem(self.underArrow_list[i]["id"]))
 				self.tableWidget_4.setItem(i, 2, QTableWidgetItem(str(self.underArrow_list[i]["type"])))
 				self.tableWidget_4.setItem(i, 3, QTableWidgetItem(str(self.underArrow_list[i]["adjust"])))
 				self.tableWidget_4.setItem(i, 4, QTableWidgetItem(self.underArrow_list[i]["resourceDirectory"]))
@@ -275,8 +264,8 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 		if self.spinBox_4.value() != 0:
 			self.tableWidget_5.setRowCount(self.spinBox_4.value())
 			for i in range(len(self.text_list)):
-				self.tableWidget_4.setItem(i, 0, QTableWidgetItem(str(self.underArrow_list[i]["meidaId"])))
-				self.tableWidget_5.setItem(i, 1, QTableWidgetItem(str(self.text_list[i]["id"])))
+				self.tableWidget_5.setItem(i, 0, QTableWidgetItem(self.text_list[i]["mediaId"]))
+				self.tableWidget_5.setItem(i, 1, QTableWidgetItem(self.text_list[i]["id"]))
 				self.tableWidget_5.setItem(i, 2, QTableWidgetItem(str(self.text_list[i]["type"])))
 				self.tableWidget_5.setItem(i, 3, QTableWidgetItem(self.text_list[i]["resourceDirectory"]))
 				self.tableWidget_5.setItem(i, 4, QTableWidgetItem(self.text_list[i]["animation"]))
@@ -296,8 +285,8 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 		if self.spinBox_5.value() != 0:
 			self.tableWidget_6.setRowCount(self.spinBox_5.value())
 			for i in range(len(self.cutout_list)):
-				self.tableWidget_6.setItem(i, 0, QTableWidgetItem(str(self.cutout_list[i]["mediaId"])))
-				self.tableWidget_6.setItem(i, 1, QTableWidgetItem(str(self.cutout_list[i]["id"])))
+				self.tableWidget_6.setItem(i, 0, QTableWidgetItem(self.cutout_list[i]["mediaId"]))
+				self.tableWidget_6.setItem(i, 1, QTableWidgetItem(self.cutout_list[i]["id"]))
 				self.tableWidget_6.setItem(i, 2, QTableWidgetItem(str(self.cutout_list[i]["type"])))
 				self.tableWidget_6.setItem(i, 3, QTableWidgetItem(self.cutout_list[i]["resourceDirectory"]))
 				self.tableWidget_6.setItem(i, 4, QTableWidgetItem(self.cutout_list[i]["animation"]))
@@ -311,10 +300,9 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 		#value aboveArrow table
 		if self.spinBox_6.value() != 0:
 			self.tableWidget_7.setRowCount(self.spinBox_6.value())
-			print(len(self.aboveArrow_list))
 			for i in range(len(self.aboveArrow_list)):
-				self.tableWidget_7.setItem(i, 0, QTableWidgetItem(str(self.aboveArrow_list[i]["mediaId"])))
-				self.tableWidget_7.setItem(i, 1, QTableWidgetItem(str(self.aboveArrow_list[i]["id"])))
+				self.tableWidget_7.setItem(i, 0, QTableWidgetItem(self.aboveArrow_list[i]["mediaId"]))
+				self.tableWidget_7.setItem(i, 1, QTableWidgetItem(self.aboveArrow_list[i]["id"]))
 				self.tableWidget_7.setItem(i, 2, QTableWidgetItem(str(self.aboveArrow_list[i]["type"])))
 				self.tableWidget_7.setItem(i, 3, QTableWidgetItem(str(self.aboveArrow_list[i]["adjust"])))
 				self.tableWidget_7.setItem(i, 4, QTableWidgetItem(self.aboveArrow_list[i]["resourceDirectory"]))
@@ -328,10 +316,9 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 		#value foreground table
 		if self.spinBox_7.value() != 0:
 			self.tableWidget_8.setRowCount(self.spinBox_7.value())
-			print(self.spinBox_7.value())
 			for i in range(len(self.foreground_list)):
-				self.tableWidget_8.setItem(i, 0, QTableWidgetItem(str(self.foreground_list[i]["meidaId"])))
-				self.tableWidget_8.setItem(i, 1, QTableWidgetItem(str(self.foreground_list[i]["id"])))
+				self.tableWidget_8.setItem(i, 0, QTableWidgetItem(self.foreground_list[i]["mediaId"]))
+				self.tableWidget_8.setItem(i, 1, QTableWidgetItem(self.foreground_list[i]["id"]))
 				self.tableWidget_8.setItem(i, 2, QTableWidgetItem(str(self.foreground_list[i]["type"])))
 				self.tableWidget_8.setItem(i, 3, QTableWidgetItem(self.foreground_list[i]["resourceDirectory"]))
 				self.tableWidget_8.setItem(i, 4, QTableWidgetItem(self.foreground_list[i]["animation"]))
@@ -344,7 +331,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 		if self.spinBox_8.value() != 0:
 			self.tableWidget_9.setRowCount(self.spinBox_8.value())
 			for i in range(len(self.sticker_list)):
-				self.tableWidget_9.setItem(i, 0, QTableWidgetItem(str(self.sticker_list[i]["id"])))
+				self.tableWidget_9.setItem(i, 0, QTableWidgetItem(self.sticker_list[i]["id"]))
 				self.tableWidget_9.setItem(i, 1, QTableWidgetItem(str(self.sticker_list[i]["resourceDirectory"])))
 				self.tableWidget_9.setItem(i, 2, QTableWidgetItem(str(self.sticker_list[i]["rect"]["x"])))
 				self.tableWidget_9.setItem(i, 3, QTableWidgetItem(str(self.sticker_list[i]["rect"]["y"])))
@@ -352,79 +339,85 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 				self.tableWidget_9.setItem(i, 5, QTableWidgetItem(str(self.sticker_list[i]["rect"]["height"])))
 
 		if self.spinBox_9.value() != 0:
-			self.tableWidget_9.setRowCount(self.spinBox_8.value())
+			self.tableWidget_10.setRowCount(self.spinBox_9.value())
 			for i in range(len(self.layers_list)):
-				self.tableWidget_9.setItem(i, 0, QTableWidgetItem(str(self.layers_list[i]["mediaId"])))
-				self.tableWidget_9.setItem(i, 1, QTableWidgetItem(str(self.layers_list[i]["id"])))
-				self.tableWidget_9.setItem(i, 2, QTableWidgetItem(str(self.layers_list[i]["name"])))
-				self.tableWidget_9.setItem(i, 3, QTableWidgetItem(str(self.layers_list[i]["resource"])))
+				self.tableWidget_10.setItem(i, 0, QTableWidgetItem(self.layers_list[i]["mediaId"]))
+				self.tableWidget_10.setItem(i, 1, QTableWidgetItem(self.layers_list[i]["id"]))
+				self.tableWidget_10.setItem(i, 2, QTableWidgetItem(str(self.layers_list[i]["name"])))
+				self.tableWidget_10.setItem(i, 3, QTableWidgetItem(str(self.layers_list[i]["resource"])))
+
+		self.statusbar.showMessage("NonEditable")
 				
 				
 	def editable(self):
-		if self.comboBox_2.currentText() != null:
-			if self.spinBox_2.value() != 0:
-				self.tableWidget_1.setEditTriggers(QAbstractItemView.CurrentChanged)
-				self.tableWidget_2.setEditTriggers(QAbstractItemView.CurrentChanged)
-
+		if self.comboBox_2.currentText() != "":
 			if self.checkBox_1.isChecked() == True:
-				self.tableWidget_3.setEditTriggers(QAbstractItemView.CurrentChanged)
-
-			if self.checkBox_2.isChecked() == True:
-				self.tableWidget_4.setEditTriggers(QAbstractItemView.CurrentChanged)
-
-			if self.checkBox_3.isChecked() == True:
-				self.tableWidget_5.setEditTriggers(QAbstractItemView.CurrentChanged)
-
-			if self.checkBox_4.isChecked() == True:
-				self.tableWidget_6.setEditTriggers(QAbstractItemView.CurrentChanged)
-
-			if self.checkBox_5.isChecked() == True:
-				self.tableWidget_7.setEditTriggers(QAbstractItemView.CurrentChanged)
-
-			if self.checkBox_6.isChecked() == True:
-				self.tableWidget_8.setEditTriggers(QAbstractItemView.CurrentChanged)
+				self.tableWidget_1.setEditTriggers(QAbstractItemView.CurrentChanged)
 
 			if self.spinBox_1.value() != 0:
-				self.tableWidget_9.setEditTriggers(QAbstractItemView.CurrentChanged)
+				self.tableWidget_2.setEditTriggers(QAbstractItemView.CurrentChanged)
 
 			if self.spinBox_2.value() != 0:
-				self.tableWidget_2.setEditTriggers(QAbstractItemView.CurrentChanged)
+				self.tableWidget_3.setEditTriggers(QAbstractItemView.CurrentChanged)
+
+			if self.spinBox_3.value() != 0:
+				self.tableWidget_4.setEditTriggers(QAbstractItemView.CurrentChanged)
+
+			if self.spinBox_4.value() != 0:
+				self.tableWidget_5.setEditTriggers(QAbstractItemView.CurrentChanged)
+
+			if self.spinBox_5.value() != 0:
+				self.tableWidget_6.setEditTriggers(QAbstractItemView.CurrentChanged)
+
+			if self.spinBox_6.value() != 0:
+				self.tableWidget_7.setEditTriggers(QAbstractItemView.CurrentChanged)
+
+			if self.spinBox_7.value() != 0:
+				self.tableWidget_8.setEditTriggers(QAbstractItemView.CurrentChanged)
+
+			if self.spinBox_8.value() != 0:
+				self.tableWidget_9.setEditTriggers(QAbstractItemView.CurrentChanged)
+
+			if self.spinBox_9.value() != 0:
+				self.tableWidget_10.setEditTriggers(QAbstractItemView.CurrentChanged)
 
 			self.statusbar.showMessage("Editable")
 		else:
 			QMessageBox.information(self, "提示", "请选择json文件")
 
 	def nonEditable(self):
-		if self.comboBox_2.currentText() != null:
-			if self.spinBox_2.value() != 0:
-				self.tableWidget_1.setEditTriggers(QAbstractItemView.NoEditTriggers)
-				self.tableWidget_2.setEditTriggers(QAbstractItemView.NoEditTriggers)
-
+		if self.comboBox_2.currentText() != "":
 			if self.checkBox_1.isChecked() == True:
-				self.tableWidget_3.setEditTriggers(QAbstractItemView.NoEditTriggers)
-
-			if self.checkBox_2.isChecked() == True:
-				self.tableWidget_4.setEditTriggers(QAbstractItemView.NoEditTriggers)
-
-			if self.checkBox_3.isChecked() == True:
-				self.tableWidget_5.setEditTriggers(QAbstractItemView.NoEditTriggers)
-
-			if self.checkBox_4.isChecked() == True:
-				self.tableWidget_6.setEditTriggers(QAbstractItemView.NoEditTriggers)
-
-			if self.checkBox_5.isChecked() == True:
-				self.tableWidget_7.setEditTriggers(QAbstractItemView.NoEditTriggers)
-
-			if self.checkBox_6.isChecked() == True:
-				self.tableWidget_8.setEditTriggers(QAbstractItemView.NoEditTriggers)
+				self.tableWidget_1.setEditTriggers(QAbstractItemView.NoEditTriggers)
 
 			if self.spinBox_1.value() != 0:
-				self.tableWidget_9.setEditTriggers(QAbstractItemView.NoEditTriggers)
-
-			if self.spinBox_2.value() != 0:
 				self.tableWidget_2.setEditTriggers(QAbstractItemView.NoEditTriggers)
 
-			self.statusbar.showMessage("Non Editable")
+			if self.spinBox_2.value() != 0:
+				self.tableWidget_3.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+			if self.spinBox_3.value() != 0:
+				self.tableWidget_4.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+			if self.spinBox_4.value() != 0:
+				self.tableWidget_5.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+			if self.spinBox_5.value() != 0:
+				self.tableWidget_6.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+			if self.spinBox_6.value() != 0:
+				self.tableWidget_7.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+			if self.spinBox_7.value() != 0:
+				self.tableWidget_8.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+			if self.spinBox_8.value() != 0:
+				self.tableWidget_9.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+			if self.spinBox_9.value() != 0:
+				self.tableWidget_10.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+			self.statusbar.showMessage("Editable")
 		else:
 			QMessageBox.information(self, "提示", "请选择json文件")
 
@@ -443,13 +436,14 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 	def createTable(self):
 		self.initTable()
 		count = 0
-		if self.spinBox_2.value() != 0:
+		if self.checkBox_1.isChecked() == True:
 			#main table
 			self.tableWidget_1.setRowCount(1)
 			self.tableWidget_1.setItem(0, 0, QTableWidgetItem("1.0"))
 			self.tableWidget_1.setItem(0, 2, QTableWidgetItem(self.comboBox_2.currentText()[self.count:]))
 			#media table
-			self.tableWidget_2.setRowCount(1)
+		if self.spinBox_1.value() != 0:
+			self.tableWidget_2.setRowCount(self.spinBox_1.value())
 			self.tableWidget_2.setItem(0, 0, QTableWidgetItem("0"))
 			self.tableWidget_2.setItem(0, 1, QTableWidgetItem("media"))
 			self.tableWidget_2.setItem(0, 5, QTableWidgetItem("0"))
@@ -457,17 +451,17 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 			self.tableWidget_2.setItem(0, 9, QTableWidgetItem("0"))
 			self.tableWidget_2.setItem(0, 11, QTableWidgetItem("0"))
 
-		if self.checkBox_1.isChecked() == True:
+		if self.spinBox_2.value() != 0:
 			#background table 
-			self.tableWidget_3.setRowCount(1)
+			self.tableWidget_3.setRowCount(self.spinBox_2.value())
 			self.tableWidget_3.setItem(0, 0, QTableWidgetItem(str(count)))
 			self.tableWidget_3.setItem(0, 1, QTableWidgetItem("0"))
 			self.tableWidget_3.setItem(0, 2, QTableWidgetItem("/background"))
 			self.tableWidget_3.setItem(0, 3, QTableWidgetItem("data.json"))
-			count += 1
 
-		if self.checkBox_2.isChecked() == True:
-			self.tableWidget_4.setRowCount(1)
+
+		if self.spinBox_3.value() != 0:
+			self.tableWidget_4.setRowCount(self.spinBox_3.value())
 			self.tableWidget_4.setItem(0, 0, QTableWidgetItem(str(count)))
 			self.tableWidget_4.setItem(0, 1, QTableWidgetItem("1"))
 			self.tableWidget_4.setItem(0, 3, QTableWidgetItem("/aboveArrow"))
@@ -511,7 +505,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 		pass
 
 	def EnCom(self):
-		if self.comboBox_1.currentText() != null:
+		if self.comboBox_1.currentText() != "":
 			self.encryption()
 			self.compressing()
 		else:

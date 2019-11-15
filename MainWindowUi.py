@@ -229,7 +229,7 @@ class Ui_MainWindow(object):
         self.tab_1.setObjectName("tab_1")
         self.tableWidget_1 = QtWidgets.QTableWidget(self.tab_1)
         self.tableWidget_1.setColumnCount(3)
-        self.tableWidget_1.setGeometry(QtCore.QRect(0, 0, 1000, 430))
+        self.tableWidget_1.setGeometry(QtCore.QRect(0, 0, 1000, 600))
         self.tableWidget_1.setObjectName("tableWidget_1") 
 
         item = QtWidgets.QTableWidgetItem()
@@ -259,7 +259,7 @@ class Ui_MainWindow(object):
         self.tab_2.setObjectName("tab_2")
         self.tableWidget_2 = QtWidgets.QTableWidget(self.tab_2)
         self.tableWidget_2.setColumnCount(12)
-        self.tableWidget_2.setGeometry(QtCore.QRect(0, 0, 1000, 430))
+        self.tableWidget_2.setGeometry(QtCore.QRect(0, 0, 1000, 600))
         self.tableWidget_2.setObjectName("tableWidget_2") 
 
         item = QtWidgets.QTableWidgetItem()
@@ -326,7 +326,7 @@ class Ui_MainWindow(object):
         self.tab_3.setObjectName("tab_3")
         self.tableWidget_3 = QtWidgets.QTableWidget(self.tab_3)
         self.tableWidget_3.setColumnCount(11)
-        self.tableWidget_3.setGeometry(QtCore.QRect(0, 0, 1000, 430))
+        self.tableWidget_3.setGeometry(QtCore.QRect(0, 0, 1000, 600))
         self.tableWidget_3.setObjectName("tableWidget_3") 
 
         item = QtWidgets.QTableWidgetItem()
@@ -353,7 +353,8 @@ class Ui_MainWindow(object):
         self.tableWidget_3.setHorizontalHeaderItem(10, item)
         item = QtWidgets.QTableWidgetItem()
         self.tabWidget.addTab(self.tab_3, "")
-        self.tableWidget_3.setColumnWidth(1,120)
+
+        self.tableWidget_3.setColumnWidth(4,150)
 
         _translate = QtCore.QCoreApplication.translate
         item = self.tableWidget_3.horizontalHeaderItem(0)
@@ -386,7 +387,7 @@ class Ui_MainWindow(object):
         self.tab_4.setObjectName("tab_4")
         self.tableWidget_4 = QtWidgets.QTableWidget(self.tab_4)
         self.tableWidget_4.setColumnCount(11)
-        self.tableWidget_4.setGeometry(QtCore.QRect(0, 0, 1000, 430))
+        self.tableWidget_4.setGeometry(QtCore.QRect(0, 0, 1000, 600))
         self.tableWidget_4.setObjectName("tableWidget_4") 
 
         item = QtWidgets.QTableWidgetItem()
@@ -413,7 +414,8 @@ class Ui_MainWindow(object):
         self.tableWidget_4.setHorizontalHeaderItem(10, item)
         item = QtWidgets.QTableWidgetItem()
         self.tabWidget.addTab(self.tab_4, "")
-        self.tableWidget_4.setColumnWidth(2,120)
+
+        self.tableWidget_4.setColumnWidth(4,150)
 
         _translate = QtCore.QCoreApplication.translate
         item = self.tableWidget_4.horizontalHeaderItem(0)
@@ -446,7 +448,7 @@ class Ui_MainWindow(object):
         self.tab_5.setObjectName("tab_5")
         self.tableWidget_5 = QtWidgets.QTableWidget(self.tab_5)
         self.tableWidget_5.setColumnCount(16)
-        self.tableWidget_5.setGeometry(QtCore.QRect(0, 0, 1000, 430))
+        self.tableWidget_5.setGeometry(QtCore.QRect(0, 0, 1000, 600))
         self.tableWidget_5.setObjectName("tableWidget_5") 
 
         item = QtWidgets.QTableWidgetItem()
@@ -483,7 +485,11 @@ class Ui_MainWindow(object):
         self.tableWidget_5.setHorizontalHeaderItem(15, item)
         item = QtWidgets.QTableWidgetItem()
         self.tabWidget.addTab(self.tab_5, "")
-        self.tableWidget_5.setColumnWidth(1,120)
+
+        self.tableWidget_5.setColumnWidth(3,150)
+        self.tableWidget_5.setColumnWidth(6,200)
+        self.tableWidget_5.setColumnWidth(7,400)
+
 
         _translate = QtCore.QCoreApplication.translate
         item = self.tableWidget_5.horizontalHeaderItem(0)
@@ -526,7 +532,7 @@ class Ui_MainWindow(object):
         self.tab_6.setObjectName("tab_6")
         self.tableWidget_6 = QtWidgets.QTableWidget(self.tab_6)
         self.tableWidget_6.setColumnCount(11)
-        self.tableWidget_6.setGeometry(QtCore.QRect(0, 0, 1000, 430))
+        self.tableWidget_6.setGeometry(QtCore.QRect(0, 0, 1000, 600))
         self.tableWidget_6.setObjectName("tableWidget_6") 
 
         item = QtWidgets.QTableWidgetItem()
@@ -553,7 +559,8 @@ class Ui_MainWindow(object):
         self.tableWidget_6.setHorizontalHeaderItem(10, item)
         item = QtWidgets.QTableWidgetItem()
         self.tabWidget.addTab(self.tab_6, "")
-        self.tableWidget_6.setColumnWidth(1,120)
+
+        self.tableWidget_6.setColumnWidth(3,150)
 
         _translate = QtCore.QCoreApplication.translate
         item = self.tableWidget_6.horizontalHeaderItem(0)
@@ -586,7 +593,7 @@ class Ui_MainWindow(object):
         self.tab_7.setObjectName("tab_7")
         self.tableWidget_7 = QtWidgets.QTableWidget(self.tab_7)
         self.tableWidget_7.setColumnCount(11)
-        self.tableWidget_7.setGeometry(QtCore.QRect(0, 0, 1000, 430))
+        self.tableWidget_7.setGeometry(QtCore.QRect(0, 0, 1000, 600))
         self.tableWidget_7.setObjectName("tableWidget_7") 
 
         item = QtWidgets.QTableWidgetItem()
@@ -613,7 +620,8 @@ class Ui_MainWindow(object):
         self.tableWidget_7.setHorizontalHeaderItem(10, item)
         item = QtWidgets.QTableWidgetItem()
         self.tabWidget.addTab(self.tab_7, "")
-        self.tableWidget_7.setColumnWidth(2,120)
+
+        self.tableWidget_7.setColumnWidth(4,150)
 
         _translate = QtCore.QCoreApplication.translate
         item = self.tableWidget_7.horizontalHeaderItem(0)
@@ -646,7 +654,7 @@ class Ui_MainWindow(object):
         self.tab_8.setObjectName("tab_8")
         self.tableWidget_8 = QtWidgets.QTableWidget(self.tab_8)
         self.tableWidget_8.setColumnCount(10)
-        self.tableWidget_8.setGeometry(QtCore.QRect(0, 0, 1000, 430))
+        self.tableWidget_8.setGeometry(QtCore.QRect(0, 0, 1000, 600))
         self.tableWidget_8.setObjectName("tableWidget_8") 
 
         item = QtWidgets.QTableWidgetItem()
@@ -671,7 +679,8 @@ class Ui_MainWindow(object):
         self.tableWidget_8.setHorizontalHeaderItem(9, item)
         item = QtWidgets.QTableWidgetItem()
         self.tabWidget.addTab(self.tab_8, "")
-        self.tableWidget_8.setColumnWidth(1,120)
+
+        self.tableWidget_8.setColumnWidth(3,150)
 
         _translate = QtCore.QCoreApplication.translate
         item = self.tableWidget_8.horizontalHeaderItem(0)
@@ -701,8 +710,8 @@ class Ui_MainWindow(object):
         self.tab_9 = QtWidgets.QWidget()
         self.tab_9.setObjectName("tab_9")
         self.tableWidget_9 = QtWidgets.QTableWidget(self.tab_9)
-        self.tableWidget_9.setColumnCount(7)
-        self.tableWidget_9.setGeometry(QtCore.QRect(0, 0, 1000, 430))
+        self.tableWidget_9.setColumnCount(6)
+        self.tableWidget_9.setGeometry(QtCore.QRect(0, 0, 1000, 600))
         self.tableWidget_9.setObjectName("tableWidget_9") 
 
         item = QtWidgets.QTableWidgetItem()
@@ -717,25 +726,22 @@ class Ui_MainWindow(object):
         self.tableWidget_9.setHorizontalHeaderItem(4, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_9.setHorizontalHeaderItem(5, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_9.setHorizontalHeaderItem(6, item)
         self.tabWidget.addTab(self.tab_9, "")
-        self.tableWidget_9.setColumnWidth(1,120)
+
+        self.tableWidget_9.setColumnWidth(1,150)
 
         _translate = QtCore.QCoreApplication.translate
         item = self.tableWidget_9.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "mediaId"))
-        item = self.tableWidget_9.horizontalHeaderItem(1)
         item.setText(_translate("MainWindow", "id"))
-        item = self.tableWidget_9.horizontalHeaderItem(2)
+        item = self.tableWidget_9.horizontalHeaderItem(1)
         item.setText(_translate("MainWindow", "resourceDirectory"))
-        item = self.tableWidget_9.horizontalHeaderItem(3)
+        item = self.tableWidget_9.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "rect_x"))
-        item = self.tableWidget_9.horizontalHeaderItem(4)
+        item = self.tableWidget_9.horizontalHeaderItem(3)
         item.setText(_translate("MainWindow", "rect_y"))
-        item = self.tableWidget_9.horizontalHeaderItem(5)
+        item = self.tableWidget_9.horizontalHeaderItem(4)
         item.setText(_translate("MainWindow", "rect_width"))
-        item = self.tableWidget_9.horizontalHeaderItem(6)
+        item = self.tableWidget_9.horizontalHeaderItem(5)
         item.setText(_translate("MainWindow", "rect_height"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_9), _translate("MainWindow", "sticker"))
         self.tableWidget_9.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
@@ -745,7 +751,7 @@ class Ui_MainWindow(object):
         self.tab_10.setObjectName("tab_10")
         self.tableWidget_10 = QtWidgets.QTableWidget(self.tab_10)
         self.tableWidget_10.setColumnCount(4)
-        self.tableWidget_10.setGeometry(QtCore.QRect(0, 0, 1000, 430))
+        self.tableWidget_10.setGeometry(QtCore.QRect(0, 0, 1000, 600))
         self.tableWidget_10.setObjectName("tableWidget_10") 
 
         item = QtWidgets.QTableWidgetItem()
@@ -756,18 +762,22 @@ class Ui_MainWindow(object):
         self.tableWidget_10.setHorizontalHeaderItem(2, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_10.setHorizontalHeaderItem(3, item)
+        self.tabWidget.addTab(self.tab_10, "")
+
+        self.tableWidget_10.setColumnWidth(3,150)
+
 
         _translate = QtCore.QCoreApplication.translate
-        item = self.tableWidget_9.horizontalHeaderItem(0)
+        item = self.tableWidget_10.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "mediaId"))
-        item = self.tableWidget_9.horizontalHeaderItem(1)
+        item = self.tableWidget_10.horizontalHeaderItem(1)
         item.setText(_translate("MainWindow", "id"))
-        item = self.tableWidget_9.horizontalHeaderItem(2)
+        item = self.tableWidget_10.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "name"))
-        item = self.tableWidget_9.horizontalHeaderItem(3)
+        item = self.tableWidget_10.horizontalHeaderItem(3)
         item.setText(_translate("MainWindow", "resource"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_9), _translate("MainWindow", "layer"))
-        self.tableWidget_9.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_10), _translate("MainWindow", "layers"))
+        self.tableWidget_10.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
 
     def initTable(self):
         if self.index > 0:
