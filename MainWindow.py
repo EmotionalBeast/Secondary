@@ -214,19 +214,19 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 			#value elements
 			#value media table
 			self.tableWidget_2.setRowCount(self.spinBox_1.value())  
-			for j in range(len(self.elements_list)):
-				self.tableWidget_2.setItem(j, 0, QTableWidgetItem(self.elements_list[j]["id"]))
-				self.tableWidget_2.setItem(j, 1, QTableWidgetItem(str(self.elements_list[j]["type"])))
-				self.tableWidget_2.setItem(j, 2, QTableWidgetItem(str(self.elements_list[j]["blur"]["type"])))
-				self.tableWidget_2.setItem(j, 3, QTableWidgetItem(str(self.elements_list[j]["blur"]["size"])))
-				self.tableWidget_2.setItem(j, 4, QTableWidgetItem(str(self.elements_list[j]["constraints"]["left"]["constant"])))
-				self.tableWidget_2.setItem(j, 5, QTableWidgetItem(str(self.elements_list[j]["constraints"]["left"]["percentage"])))
-				self.tableWidget_2.setItem(j, 6, QTableWidgetItem(str(self.elements_list[j]["constraints"]["top"]["constant"])))
-				self.tableWidget_2.setItem(j, 7, QTableWidgetItem(str(self.elements_list[j]["constraints"]["top"]["percentage"])))
-				self.tableWidget_2.setItem(j, 8, QTableWidgetItem(str(self.elements_list[j]["constraints"]["width"]["constant"])))
-				self.tableWidget_2.setItem(j, 9, QTableWidgetItem(str(self.elements_list[j]["constraints"]["width"]["percentage"])))
-				self.tableWidget_2.setItem(j, 10, QTableWidgetItem(str(self.elements_list[j]["constraints"]["height"]["constant"])))
-				self.tableWidget_2.setItem(j, 11, QTableWidgetItem(str(self.elements_list[j]["constraints"]["height"]["percentage"])))
+			for i in range(len(self.elements_list)):
+				self.tableWidget_2.setItem(i, 0, QTableWidgetItem(self.elements_list[i]["id"]))
+				self.tableWidget_2.setItem(i, 1, QTableWidgetItem(self.elements_list[i]["type"]))
+				self.tableWidget_2.setItem(i, 2, QTableWidgetItem(str(self.elements_list[i]["blur"]["type"])))
+				self.tableWidget_2.setItem(i, 3, QTableWidgetItem(str(self.elements_list[i]["blur"]["size"])))
+				self.tableWidget_2.setItem(i, 4, QTableWidgetItem(str(self.elements_list[i]["constraints"]["left"]["constant"])))
+				self.tableWidget_2.setItem(i, 5, QTableWidgetItem(str(self.elements_list[i]["constraints"]["left"]["percentage"])))
+				self.tableWidget_2.setItem(i, 6, QTableWidgetItem(str(self.elements_list[i]["constraints"]["top"]["constant"])))
+				self.tableWidget_2.setItem(i, 7, QTableWidgetItem(str(self.elements_list[i]["constraints"]["top"]["percentage"])))
+				self.tableWidget_2.setItem(i, 8, QTableWidgetItem(str(self.elements_list[i]["constraints"]["width"]["constant"])))
+				self.tableWidget_2.setItem(i, 9, QTableWidgetItem(str(self.elements_list[i]["constraints"]["width"]["percentage"])))
+				self.tableWidget_2.setItem(i, 10, QTableWidgetItem(str(self.elements_list[i]["constraints"]["height"]["constant"])))
+				self.tableWidget_2.setItem(i, 11, QTableWidgetItem(str(self.elements_list[i]["constraints"]["height"]["percentage"])))
 
 		#value background table
 		if self.spinBox_2.value() != 0:
@@ -444,12 +444,13 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 			#media table
 		if self.spinBox_1.value() != 0:
 			self.tableWidget_2.setRowCount(self.spinBox_1.value())
-			self.tableWidget_2.setItem(0, 0, QTableWidgetItem("0"))
-			self.tableWidget_2.setItem(0, 1, QTableWidgetItem("media"))
-			self.tableWidget_2.setItem(0, 5, QTableWidgetItem("0"))
-			self.tableWidget_2.setItem(0, 7, QTableWidgetItem("0"))
-			self.tableWidget_2.setItem(0, 9, QTableWidgetItem("0"))
-			self.tableWidget_2.setItem(0, 11, QTableWidgetItem("0"))
+			for i in range(self.spinBox_1.value()):
+				self.tableWidget_2.setItem(i, 0, QTableWidgetItem(str(i)))
+				self.tableWidget_2.setItem(i, 1, QTableWidgetItem("media"))
+				self.tableWidget_2.setItem(i, 4, QTableWidgetItem("0"))
+				self.tableWidget_2.setItem(i, 6, QTableWidgetItem("0"))
+				self.tableWidget_2.setItem(i, 8, QTableWidgetItem("0"))
+				self.tableWidget_2.setItem(i, 10, QTableWidgetItem("0"))
 
 		if self.spinBox_2.value() != 0:
 			#background table 
@@ -468,26 +469,26 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 			self.tableWidget_4.setItem(0, 4, QTableWidgetItem("data.json"))
 			count += 1
 
-		if self.checkBox_3.isChecked() == True:
-			self.tableWidget_5.setRowCount(1)
+		if self.spinBox_4.value() != 0:
+			self.tableWidget_5.setRowCount(self.spinBox_4.value())
 			self.tableWidget_5.setItem(0, 0, QTableWidgetItem(str(count)))
 			self.tableWidget_4.setItem(0, 2, QTableWidgetItem("3"))
 			self.tableWidget_4.setItem(0, 1, QTableWidgetItem("/text"))
 
-		if self.checkBox_4.isChecked() == True:
-			self.tableWidget_6.setRowCount(1)
+		if self.spinBox_5.value() != 0:
+			self.tableWidget_6.setRowCount(self.spinBox_5.value())
 
-		if self.checkBox_5.isChecked() == True:
-			self.tableWidget_7.setRowCount(1)
+		if self.spinBox_6.value() != 0:
+			self.tableWidget_7.setRowCount(self.spinBox_5.value())
 
-		if self.checkBox_6.isChecked() == True:
-			self.tableWidget_8.setRowCount(1)
+		if self.spinBox_7.value() != 0:
+			self.tableWidget_8.setRowCount(self.spinBox_5.value())
 
-		if self.spinBox_1.value() != 0:
+		if self.spinBox_8.value() != 0:
 			self.tableWidget_9.setRowCount(self.spinBox_1.value())
 
-		if self.spinBox_2.value() != 0:
-			self.tableWidget_2.setRowCount(1)
+		if self.spinBox_9.value() != 0:
+			self.tableWidget_2.setRowCount(self.spinBox_5.value())
 
 	def saveTable(self):
 		pass

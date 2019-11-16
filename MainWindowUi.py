@@ -21,6 +21,10 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
 
+        self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
+        self.tabWidget.setGeometry(QtCore.QRect(0, 140, 1000, 600))
+        self.tabWidget.setObjectName("tabWidget")
+
         #素材组
         self.label_1 = QtWidgets.QLabel(self.centralwidget)
         self.label_1.setGeometry(QtCore.QRect(45,10,100,30))
@@ -180,6 +184,9 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuTools.menuAction())
 
+        #tabWidget index init
+        self.tabWidget.setCurrentIndex(0)
+
         #The function defined in menu linking
         self.actionNew.triggered.connect(self.openFileWindow)
         self.actionSave.triggered.connect(self.saveTable)
@@ -229,7 +236,7 @@ class Ui_MainWindow(object):
         self.tab_1.setObjectName("tab_1")
         self.tableWidget_1 = QtWidgets.QTableWidget(self.tab_1)
         self.tableWidget_1.setColumnCount(3)
-        self.tableWidget_1.setGeometry(QtCore.QRect(0, 0, 1000, 600))
+        self.tableWidget_1.setGeometry(QtCore.QRect(0, 0, 1000, 500))
         self.tableWidget_1.setObjectName("tableWidget_1") 
 
         item = QtWidgets.QTableWidgetItem()
@@ -259,7 +266,7 @@ class Ui_MainWindow(object):
         self.tab_2.setObjectName("tab_2")
         self.tableWidget_2 = QtWidgets.QTableWidget(self.tab_2)
         self.tableWidget_2.setColumnCount(12)
-        self.tableWidget_2.setGeometry(QtCore.QRect(0, 0, 1000, 600))
+        self.tableWidget_2.setGeometry(QtCore.QRect(0, 0, 1000, 500))
         self.tableWidget_2.setObjectName("tableWidget_2") 
 
         item = QtWidgets.QTableWidgetItem()
@@ -326,7 +333,7 @@ class Ui_MainWindow(object):
         self.tab_3.setObjectName("tab_3")
         self.tableWidget_3 = QtWidgets.QTableWidget(self.tab_3)
         self.tableWidget_3.setColumnCount(11)
-        self.tableWidget_3.setGeometry(QtCore.QRect(0, 0, 1000, 600))
+        self.tableWidget_3.setGeometry(QtCore.QRect(0, 0, 1000, 500))
         self.tableWidget_3.setObjectName("tableWidget_3") 
 
         item = QtWidgets.QTableWidgetItem()
@@ -387,7 +394,7 @@ class Ui_MainWindow(object):
         self.tab_4.setObjectName("tab_4")
         self.tableWidget_4 = QtWidgets.QTableWidget(self.tab_4)
         self.tableWidget_4.setColumnCount(11)
-        self.tableWidget_4.setGeometry(QtCore.QRect(0, 0, 1000, 600))
+        self.tableWidget_4.setGeometry(QtCore.QRect(0, 0, 1000, 500))
         self.tableWidget_4.setObjectName("tableWidget_4") 
 
         item = QtWidgets.QTableWidgetItem()
@@ -448,12 +455,13 @@ class Ui_MainWindow(object):
         self.tab_5.setObjectName("tab_5")
         self.tableWidget_5 = QtWidgets.QTableWidget(self.tab_5)
         self.tableWidget_5.setColumnCount(16)
-        self.tableWidget_5.setGeometry(QtCore.QRect(0, 0, 1000, 600))
+        self.tableWidget_5.setGeometry(QtCore.QRect(0, 0, 1000, 500))
         self.tableWidget_5.setObjectName("tableWidget_5") 
 
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_5.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
+
         self.tableWidget_5.setHorizontalHeaderItem(1, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_5.setHorizontalHeaderItem(2, item)
@@ -532,7 +540,7 @@ class Ui_MainWindow(object):
         self.tab_6.setObjectName("tab_6")
         self.tableWidget_6 = QtWidgets.QTableWidget(self.tab_6)
         self.tableWidget_6.setColumnCount(11)
-        self.tableWidget_6.setGeometry(QtCore.QRect(0, 0, 1000, 600))
+        self.tableWidget_6.setGeometry(QtCore.QRect(0, 0, 1000, 500))
         self.tableWidget_6.setObjectName("tableWidget_6") 
 
         item = QtWidgets.QTableWidgetItem()
@@ -593,7 +601,7 @@ class Ui_MainWindow(object):
         self.tab_7.setObjectName("tab_7")
         self.tableWidget_7 = QtWidgets.QTableWidget(self.tab_7)
         self.tableWidget_7.setColumnCount(11)
-        self.tableWidget_7.setGeometry(QtCore.QRect(0, 0, 1000, 600))
+        self.tableWidget_7.setGeometry(QtCore.QRect(0, 0, 1000, 500))
         self.tableWidget_7.setObjectName("tableWidget_7") 
 
         item = QtWidgets.QTableWidgetItem()
@@ -654,7 +662,7 @@ class Ui_MainWindow(object):
         self.tab_8.setObjectName("tab_8")
         self.tableWidget_8 = QtWidgets.QTableWidget(self.tab_8)
         self.tableWidget_8.setColumnCount(10)
-        self.tableWidget_8.setGeometry(QtCore.QRect(0, 0, 1000, 600))
+        self.tableWidget_8.setGeometry(QtCore.QRect(0, 0, 1000, 500))
         self.tableWidget_8.setObjectName("tableWidget_8") 
 
         item = QtWidgets.QTableWidgetItem()
@@ -711,7 +719,7 @@ class Ui_MainWindow(object):
         self.tab_9.setObjectName("tab_9")
         self.tableWidget_9 = QtWidgets.QTableWidget(self.tab_9)
         self.tableWidget_9.setColumnCount(6)
-        self.tableWidget_9.setGeometry(QtCore.QRect(0, 0, 1000, 600))
+        self.tableWidget_9.setGeometry(QtCore.QRect(0, 0, 1000, 500))
         self.tableWidget_9.setObjectName("tableWidget_9") 
 
         item = QtWidgets.QTableWidgetItem()
@@ -751,7 +759,7 @@ class Ui_MainWindow(object):
         self.tab_10.setObjectName("tab_10")
         self.tableWidget_10 = QtWidgets.QTableWidget(self.tab_10)
         self.tableWidget_10.setColumnCount(4)
-        self.tableWidget_10.setGeometry(QtCore.QRect(0, 0, 1000, 600))
+        self.tableWidget_10.setGeometry(QtCore.QRect(0, 0, 1000, 500))
         self.tableWidget_10.setObjectName("tableWidget_10") 
 
         item = QtWidgets.QTableWidgetItem()
