@@ -455,18 +455,21 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 		if self.spinBox_2.value() != 0:
 			#background table 
 			self.tableWidget_3.setRowCount(self.spinBox_2.value())
-			self.tableWidget_3.setItem(0, 0, QTableWidgetItem(str(count)))
-			self.tableWidget_3.setItem(0, 1, QTableWidgetItem("0"))
-			self.tableWidget_3.setItem(0, 2, QTableWidgetItem("/background"))
-			self.tableWidget_3.setItem(0, 3, QTableWidgetItem("data.json"))
-
+			for i in range(self.spinBox_2.value()):
+				self.tableWidget_3.setItem(i, 0, QTableWidgetItem("0")
+				self.tableWidget_3.setItem(i, 1, QTableWidgetItem(str(count)))
+				self.tableWidget_3.setItem(i, 2, QTableWidgetItem("0"))
+				self.tableWidget_3.setItem(i, 3, QTableWidgetItem("/background"))
+				self.tableWidget_3.setItem(i, 4, QTableWidgetItem("data.json"))
+				count += 1
 
 		if self.spinBox_3.value() != 0:
 			self.tableWidget_4.setRowCount(self.spinBox_3.value())
-			self.tableWidget_4.setItem(0, 0, QTableWidgetItem(str(count)))
-			self.tableWidget_4.setItem(0, 1, QTableWidgetItem("1"))
-			self.tableWidget_4.setItem(0, 3, QTableWidgetItem("/aboveArrow"))
-			self.tableWidget_4.setItem(0, 4, QTableWidgetItem("data.json"))
+			for i in range(self.spinBox_3.value())
+				self.tableWidget_4.setItem(0, 0, QTableWidgetItem(str(count + i)))
+				self.tableWidget_4.setItem(0, 1, QTableWidgetItem("1"))
+				self.tableWidget_4.setItem(0, 3, QTableWidgetItem("/aboveArrow"))
+				self.tableWidget_4.setItem(0, 4, QTableWidgetItem("data.json"))
 			count += 1
 
 		if self.spinBox_4.value() != 0:
