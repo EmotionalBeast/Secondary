@@ -11,6 +11,8 @@ from MainWindowUi import Ui_MainWindow
 from PaintWindow import MyPaintWindow
 from DirWindow import MyDirWindow
 from FileWindow import MyFileWindow
+import tools
+
 
 
 class MyMainWindow(QMainWindow, Ui_MainWindow):
@@ -21,7 +23,6 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 		self.setupUi(self)
 		self.index = 0
 		
-
 	def variableInit(self):
 		with open("./resources/json/setting.json", "r") as lf:
 			jsonStr = lf.read()
@@ -435,7 +436,6 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 	
 	def createTable(self):
 		self.initTable()
-		count = 0
 		if self.checkBox_1.isChecked() == True:
 			#main table
 			self.tableWidget_1.setRowCount(1)
@@ -444,54 +444,137 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 			#media table
 		if self.spinBox_1.value() != 0:
 			self.tableWidget_2.setRowCount(self.spinBox_1.value())
-			for i in range(self.spinBox_1.value()):
-				self.tableWidget_2.setItem(i, 0, QTableWidgetItem(str(i)))
-				self.tableWidget_2.setItem(i, 1, QTableWidgetItem("media"))
-				self.tableWidget_2.setItem(i, 4, QTableWidgetItem("0"))
-				self.tableWidget_2.setItem(i, 6, QTableWidgetItem("0"))
-				self.tableWidget_2.setItem(i, 8, QTableWidgetItem("0"))
-				self.tableWidget_2.setItem(i, 10, QTableWidgetItem("0"))
+			for j in range(self.spinBox_1.value()):
+				self.tableWidget_2.setItem(j, 0, QTableWidgetItem(str(j)))
+				self.tableWidget_2.setItem(j, 1, QTableWidgetItem("media"))
+				self.tableWidget_2.setItem(j, 4, QTableWidgetItem("0"))
+				self.tableWidget_2.setItem(j, 6, QTableWidgetItem("0"))
+				self.tableWidget_2.setItem(j, 8, QTableWidgetItem("0"))
+				self.tableWidget_2.setItem(j, 10, QTableWidgetItem("0"))
 
-		if self.spinBox_2.value() != 0:
-			#background table 
-			self.tableWidget_3.setRowCount(self.spinBox_2.value())
-			for i in range(self.spinBox_2.value()):
-				self.tableWidget_3.setItem(i, 0, QTableWidgetItem("0")
-				self.tableWidget_3.setItem(i, 1, QTableWidgetItem(str(count)))
-				self.tableWidget_3.setItem(i, 2, QTableWidgetItem("0"))
-				self.tableWidget_3.setItem(i, 3, QTableWidgetItem("/background"))
-				self.tableWidget_3.setItem(i, 4, QTableWidgetItem("data.json"))
-				count += 1
+				if self.spinBox_9.value() != 0:
+					self.tableWidget_10.setRowCount(self.spinBox_9.value())
+					for k in range(self.spinBox_9.value()):
+						self.tableWidget_10.setItem(k, 0, QTableWidgetItem(str(j)))
 
-		if self.spinBox_3.value() != 0:
-			self.tableWidget_4.setRowCount(self.spinBox_3.value())
-			for i in range(self.spinBox_3.value())
-				self.tableWidget_4.setItem(0, 0, QTableWidgetItem(str(count + i)))
-				self.tableWidget_4.setItem(0, 1, QTableWidgetItem("1"))
-				self.tableWidget_4.setItem(0, 3, QTableWidgetItem("/aboveArrow"))
-				self.tableWidget_4.setItem(0, 4, QTableWidgetItem("data.json"))
-			count += 1
+				count = 0
+				if self.spinBox_2.value() != 0:
+					#background table
+					self.tableWidget_3.setRowCount(self.spinBox_2.value())
+					for i in range(self.spinBox_2.value()):
+						self.tableWidget_3.setItem(i, 0, QTableWidgetItem(str(j)))
+						self.tableWidget_3.setItem(i, 1, QTableWidgetItem(str(count)))
+						self.tableWidget_3.setItem(i, 2, QTableWidgetItem("0"))
+						self.tableWidget_3.setItem(i, 3, QTableWidgetItem("/background"))
+						self.tableWidget_3.setItem(i, 4, QTableWidgetItem("data.json"))
+					count += 1
 
-		if self.spinBox_4.value() != 0:
-			self.tableWidget_5.setRowCount(self.spinBox_4.value())
-			self.tableWidget_5.setItem(0, 0, QTableWidgetItem(str(count)))
-			self.tableWidget_4.setItem(0, 2, QTableWidgetItem("3"))
-			self.tableWidget_4.setItem(0, 1, QTableWidgetItem("/text"))
+				if self.spinBox_3.value() != 0:
+					self.tableWidget_4.setRowCount(self.spinBox_3.value())
+					for i in range(self.spinBox_3.value()):
+						self.tableWidget_4.setItem(i, 0, QTableWidgetItem(str(j)))
+						self.tableWidget_4.setItem(i, 1, QTableWidgetItem(str(count)))
+						self.tableWidget_4.setItem(i, 2, QTableWidgetItem("1"))
+						self.tableWidget_4.setItem(i, 3, QTableWidgetItem("0"))
+						self.tableWidget_4.setItem(i, 4, QTableWidgetItem("/underArrow"))
+						self.tableWidget_4.setItem(i, 5, QTableWidgetItem("data.json"))
+					count += 1
 
-		if self.spinBox_5.value() != 0:
-			self.tableWidget_6.setRowCount(self.spinBox_5.value())
+				if self.spinBox_4.value() != 0:
+					self.tableWidget_5.setRowCount(self.spinBox_4.value())
+					for i in range(self.spinBox_3.value()):
+						self.tableWidget_5.setItem(i, 0, QTableWidgetItem(str(j)))
+						self.tableWidget_5.setItem(i, 1, QTableWidgetItem(str(count)))
+						self.tableWidget_5.setItem(i, 2, QTableWidgetItem("3"))
+						self.tableWidget_5.setItem(i, 3, QTableWidgetItem("/text"))
+						self.tableWidget_5.setItem(i, 4, QTableWidgetItem("data.json"))
+					count += 1
 
-		if self.spinBox_6.value() != 0:
-			self.tableWidget_7.setRowCount(self.spinBox_5.value())
+				if self.spinBox_5.value() != 0:
+					self.tableWidget_6.setRowCount(self.spinBox_5.value())
+					for i in range(self.spinBox_5.value()):
+						self.tableWidget_6.setItem(i, 0, QTableWidgetItem(str(j)))
+						self.tableWidget_6.setItem(i, 1, QTableWidgetItem(str(count)))
+						self.tableWidget_6.setItem(i, 2, QTableWidgetItem("2"))
+						self.tableWidget_6.setItem(i, 3, QTableWidgetItem("/cutout"))
+						self.tableWidget_6.setItem(i, 4, QTableWidgetItem("data.json"))
+					count += 1
 
-		if self.spinBox_7.value() != 0:
-			self.tableWidget_8.setRowCount(self.spinBox_5.value())
+				if self.spinBox_6.value() != 0:
+					self.tableWidget_7.setRowCount(self.spinBox_6.value())
+					for i in range(self.spinBox_6.value()):
+						self.tableWidget_7.setItem(i, 0, QTableWidgetItem(str(j)))
+						self.tableWidget_7.setItem(i, 1, QTableWidgetItem(str(count)))
+						self.tableWidget_7.setItem(i, 2, QTableWidgetItem("1"))
+						self.tableWidget_7.setItem(i, 3, QTableWidgetItem("0"))
+						self.tableWidget_7.setItem(i, 4, QTableWidgetItem("/aboveArrow"))
+						self.tableWidget_7.setItem(i, 5, QTableWidgetItem("data.json"))
+					count += 1
 
+				if self.spinBox_7.value() != 0:
+					self.tableWidget_8.setRowCount(self.spinBox_7.value())
+					for i in range(self.spinBox_6.value()):
+						self.tableWidget_8.setItem(i, 0, QTableWidgetItem(str(j)))
+						self.tableWidget_8.setItem(i, 1, QTableWidgetItem(str(count)))
+						self.tableWidget_8.setItem(i, 2, QTableWidgetItem("0"))
+						self.tableWidget_8.setItem(i, 3, QTableWidgetItem("/foreground"))
+						self.tableWidget_8.setItem(i, 0, QTableWidgetItem("data.json"))
+					
 		if self.spinBox_8.value() != 0:
-			self.tableWidget_9.setRowCount(self.spinBox_1.value())
+			self.tableWidget_9.setRowCount(self.spinBox_8.value())
+			for i in range(self.spinBox_8.value()):
+				self.tableWidget_9.setItem(i, 0, QTableWidgetItem(str(i)))
+				self.tableWidget_9.setItem(i, 1, QTableWidgetItem("/sticker"))
 
-		if self.spinBox_9.value() != 0:
-			self.tableWidget_2.setRowCount(self.spinBox_5.value())
+		path = self.workspacePath + "/" + self.comboBox_1.currentText() + "/in/" + self.comboBox_2.currentText()[self.count:]
+
+		layers_dic = tools.getLayers(path)
+
+		num = 0 
+		index = 0
+		if layers_dic["background"] != "":
+			for i in range(layers_dic["background"]):
+				self.tableWidget_10.setItem(index, 1, QTableWidgetItem(str(num)))
+				self.tableWidget_10.setItem(index, 2, QTableWidgetItem("img_" + str(i) + ".png"))
+				self.tableWidget_10.setItem(index, 3, QTableWidgetItem("image/img_" + str(i) + ".png"))
+				index += 1
+			num += 1
+		if layers_dic["underArrow"] != "":
+			for i in range(layers_dic["underArrow"]):
+				self.tableWidget_10.setItem(index, 1, QTableWidgetItem(str(num)))
+				self.tableWidget_10.setItem(index, 2, QTableWidgetItem("img_" + str(i) + ".png"))
+				self.tableWidget_10.setItem(index, 3, QTableWidgetItem("image/img_" + str(i) + ".png"))
+				index += 1
+			num += 1
+		if layers_dic["text"] != "":
+			for i in range(layers_dic["text"]):
+				self.tableWidget_10.setItem(index, 1, QTableWidgetItem(str(num)))
+				self.tableWidget_10.setItem(index, 2, QTableWidgetItem("text"))
+				self.tableWidget_10.setItem(index, 3, QTableWidgetItem("image/img_" + str(i) + ".png"))
+				index += 1
+			num += 1
+		if layers_dic["cutout"] != "":
+			for i in range(layers_dic["cutout"]):
+				self.tableWidget_10.setItem(index, 1, QTableWidgetItem(str(num)))
+				self.tableWidget_10.setItem(index, 2, QTableWidgetItem("img_" + str(i) + ".png"))
+				self.tableWidget_10.setItem(index, 3, QTableWidgetItem("image/img_" + str(i) + ".png"))
+				index += 1
+			num += 1
+		if layers_dic["aboveArrow"] != "":
+			for i in range(layers_dic["aboveArrow"]):
+				self.tableWidget_10.setItem(index, 1, QTableWidgetItem(str(num)))
+				self.tableWidget_10.setItem(index, 2, QTableWidgetItem("img_" + str(i) + ".png"))
+				self.tableWidget_10.setItem(index, 3, QTableWidgetItem("image/img_" + str(i) + ".png"))
+				index += 1
+			num += 1
+		if layers_dic["foreground"] != "":
+			for i in range(layers_dic["foreground"]):
+				self.tableWidget_10.setItem(index, 1, QTableWidgetItem(str(num)))
+				self.tableWidget_10.setItem(index, 2, QTableWidgetItem("img_" + str(i) + ".png"))
+				self.tableWidget_10.setItem(index, 3, QTableWidgetItem("image/img_" + str(i) + ".png"))
+				index += 1
+			num += 1
+
 
 	def saveTable(self):
 		pass
