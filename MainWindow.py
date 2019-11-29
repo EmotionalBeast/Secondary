@@ -22,6 +22,12 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 		self.variableInit()
 		self.setupUi(self)
 		self.index = 0
+
+		with open("./resources/json/font.json", 'r') as lf:
+			jsonStr = lf.read()
+			self.dict1 = json.loads(jsonStr, strict = False)
+		#反转字典，赋值给新的字典
+		self.dict2 = {v:k for k,v in self.dict1.items()}
 		
 	def variableInit(self):
 		with open("./resources/json/setting.json", "r") as lf:
@@ -271,7 +277,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 				self.tableWidget_5.setItem(i, 3, QTableWidgetItem(self.text_list[i]["resourceDirectory"]))
 				self.tableWidget_5.setItem(i, 4, QTableWidgetItem(self.text_list[i]["animation"]))
 				self.tableWidget_5.setItem(i, 5, QTableWidgetItem(str(self.text_list[i]["fontSize"])))
-				self.tableWidget_5.setItem(i, 6, QTableWidgetItem(self.text_list[i]["fontName"]))
+				self.tableWidget_5.cellWidget(i,6).setCurrentText(self.text_list[i]["fontName"])
 				self.tableWidget_5.setItem(i, 7, QTableWidgetItem(self.text_list[i]["placeHolder"]))
 				self.tableWidget_5.setItem(i, 8, QTableWidgetItem(str(self.text_list[i]["lineSpacing"])))
 				self.tableWidget_5.setItem(i, 9, QTableWidgetItem(str(self.text_list[i]["letterSpacing"])))
@@ -482,6 +488,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 
 				if self.spinBox_4.value() != 0:
 					self.tableWidget_5.setRowCount(self.spinBox_4.value())
+					self.initComBox()
 					for i in range(self.spinBox_3.value()):
 						self.tableWidget_5.setItem(i, 0, QTableWidgetItem(str(j)))
 						self.tableWidget_5.setItem(i, 1, QTableWidgetItem(str(count)))
@@ -582,8 +589,30 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 	def checkValues(self):
 		pass
 
-	def tableValues(self):
-		pass
+	def getTableValues(self):
+		if self.checkBox_1.isChecked():
+			main_dic = {}
+			main_dic["version"] = self.tableWidget_1.item(0, 0).text()
+			main_dic["music"] = self.tableWidget_1.item(0, 1).text()
+			main_dic["templateId"] = self.tableWidget_1.item(0, 2).text()
+		if self.spinBox_1.value() != 0:
+			for i in range(self.spinBox_1.value()):
+				media_dic = {}
+				media_dic["id"] = self.tableWidget_2.item(i, 0).text()
+				media_dic["type"] = self.tableWidget_2.item(i, 1).text()
+				media_dic["blur"]["type"] = int(self.tableWidget_2.item(i, 2).text())
+				media_dic["blur"]["size"] = int(self.tableWidget_2.item(i, 3).text())
+				media_dic["constraints"]["left"]["constant"] = float(self.tableWidget_2.item(i, 4).text())
+				media_dic["constraints"]["left"]["percentage"] = float(self.tableWidget_2.item(i, 5).text())
+				media_dic["constraints"]["top"]["constant"] = float(self.tableWidget_2.item(i, 6).text())
+ 				media_dic["constraints"]["top"]["percentage"] = float(self.tableWidget_2.item(i, 7).text())
+ 				media_dic["constraints"]["width"]["constant"] = float(self.tableWidget_2.item(i, 8).text())
+ 				media_dic["constraints"]["width"]["percentage"] = float(self.tableWidget_2.item(i, 9).text())
+ 				media_dic["constraints"]["height"]["constant"] = float(self.tableWidget_2.item(i, 10).text())
+ 				media_dic["constraints"]["height"]["percentage"] = float(self.tableWidget_2.item(i, 5).text())
+
+
+		
 	
 	def encryption(self):
 		pass

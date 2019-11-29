@@ -3,7 +3,7 @@
 import sys, os, glob
 
 def getLayers(path):
-	layers_dic = {"aboveArrow":"", "background":"","cutout":"","foreground":"","text":"","underArrow":""}
+	layers_dic = {}
 	for root,dirs,files in os.walk(path):
 		if root[-17:] == "aboveArrow/images":
 			layers_dic["aboveArrow"] = len(glob.glob(root + "/*.png"))
@@ -18,6 +18,8 @@ def getLayers(path):
 		if root[-17:] == "underArrow/images":
 			layers_dic["underArrow"] = len(glob.glob(root + "/*.png"))
 	return layers_dic
+
+
 
 
 	

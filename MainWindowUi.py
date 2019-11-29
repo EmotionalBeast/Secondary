@@ -825,6 +825,58 @@ class Ui_MainWindow(object):
 
         self.tabWidget.show()
         self.index +=1
+
+    def initComBox(self):
+        #定义type的comBox
+        self.comBox_05 = QComboBox()
+        self.comBox_05.addItems(self.itemList())
+        self.comBox_05.setEditable(True)
+        self.comBox_05.setCurrentIndex(-1)
+
+        self.comBox_15 = QComboBox()
+        self.comBox_15.addItems(self.itemList())
+        self.comBox_15.setEditable(True)
+        self.comBox_15.setCurrentIndex(-1)
+
+        self.comBox_25 = QComboBox()
+        self.comBox_25.addItems(self.itemList())
+        self.comBox_25.setEditable(True)
+        self.comBox_25.setCurrentIndex(-1)
+
+        self.comBox_35 = QComboBox()
+        self.comBox_35.addItems(self.itemList())
+        self.comBox_35.setEditable(True)
+        self.comBox_35.setCurrentIndex(-1)
+
+        self.comBox_45 = QComboBox()
+        self.comBox_45.addItems(self.itemList())
+        self.comBox_45.setEditable(True)
+        self.comBox_45.setCurrentIndex(-1)
+
+        self.comBox_55 = QComboBox()
+        self.comBox_55.addItems(self.itemList())
+        self.comBox_55.setEditable(True)
+        self.comBox_55.setCurrentIndex(-1)
+
+        self.comBox_65 = QComboBox()
+        self.comBox_65.addItems(self.itemList())
+        self.comBox_65.setEditable(True)
+        self.comBox_65.setCurrentIndex(-1)
+
+        self.comBox_75 = QComboBox()
+        self.comBox_75.addItems(self.itemList())
+        self.comBox_75.setEditable(True)
+        self.comBox_75.setCurrentIndex(-1)
+
+        #在table中添加comBox
+        self.tableWidget_5.setCellWidget(0, 6, self.comBox_05)
+        self.tableWidget_5.setCellWidget(1, 6, self.comBox_15)
+        self.tableWidget_5.setCellWidget(2, 6, self.comBox_25)
+        self.tableWidget_5.setCellWidget(3, 6, self.comBox_35)
+        self.tableWidget_5.setCellWidget(4, 6, self.comBox_45)
+        self.tableWidget_5.setCellWidget(5, 6, self.comBox_55)
+        self.tableWidget_5.setCellWidget(6, 6, self.comBox_65)
+        self.tableWidget_5.setCellWidget(7, 6, self.comBox_75)
         
 
 
