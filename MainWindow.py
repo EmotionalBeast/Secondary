@@ -48,10 +48,9 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 
 	def openPaintWindow(self):
 		if self.comboBox_2.currentText() != "":
-			self.myPaintWindow = MyPaintWindow(self.comboBox_1.currentText(), self.comboBox_2.currentText())
+			self.myPaintWindow = MyPaintWindow(self.comBox_1.currentText(),self.comBox_2.currentText())
 			self.myPaintWindow.setWindowModality(Qt.ApplicationModal)
 			self.myPaintWindow.show()
-		else:
 			QMessageBox.information(self,"提示","请选择json文件!")
 
 	def openOrigin(self):
@@ -269,7 +268,9 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 			
 		#value text table
 		if self.spinBox_4.value() != 0:
+			self.initComBox()
 			self.tableWidget_5.setRowCount(self.spinBox_4.value())
+			print(self.spinBox_4.value())
 			for i in range(len(self.text_list)):
 				self.tableWidget_5.setItem(i, 0, QTableWidgetItem(self.text_list[i]["mediaId"]))
 				self.tableWidget_5.setItem(i, 1, QTableWidgetItem(self.text_list[i]["id"]))
@@ -605,15 +606,13 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 				media_dic["constraints"]["left"]["constant"] = float(self.tableWidget_2.item(i, 4).text())
 				media_dic["constraints"]["left"]["percentage"] = float(self.tableWidget_2.item(i, 5).text())
 				media_dic["constraints"]["top"]["constant"] = float(self.tableWidget_2.item(i, 6).text())
- 				media_dic["constraints"]["top"]["percentage"] = float(self.tableWidget_2.item(i, 7).text())
- 				media_dic["constraints"]["width"]["constant"] = float(self.tableWidget_2.item(i, 8).text())
- 				media_dic["constraints"]["width"]["percentage"] = float(self.tableWidget_2.item(i, 9).text())
- 				media_dic["constraints"]["height"]["constant"] = float(self.tableWidget_2.item(i, 10).text())
- 				media_dic["constraints"]["height"]["percentage"] = float(self.tableWidget_2.item(i, 5).text())
+				media_dic["constraints"]["top"]["percentage"] = float(self.tableWidget_2.item(i, 7).text())
+				media_dic["constraints"]["width"]["constant"] = float(self.tableWidget_2.item(i, 8).text())
+				media_dic["constraints"]["width"]["percentage"] = float(self.tableWidget_2.item(i, 9).text())
+				media_dic["constraints"]["height"]["constant"] = float(self.tableWidget_2.item(i, 10).text())
+				media_dic["constraints"]["height"]["percentage"] = float(self.tableWidget_2.item(i, 5).text())
 
 
-		
-	
 	def encryption(self):
 		pass
 

@@ -1,6 +1,6 @@
 # coding:utf-8
 
-import sys, os, glob
+import sys, os, glob, json
 
 def getLayers(path):
 	layers_dic = {}
@@ -18,6 +18,13 @@ def getLayers(path):
 		if root[-17:] == "underArrow/images":
 			layers_dic["underArrow"] = len(glob.glob(root + "/*.png"))
 	return layers_dic
+
+def getFonts():
+	with open("./resources/json/font.json","r") as lf:
+		jsonStr = lf.read()
+		dic = json.loads(jsonStr, strict = False)
+		list = dic.keys()
+	return list
 
 
 
