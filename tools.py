@@ -26,6 +26,12 @@ def getFonts():
 		list = dic.keys()
 	return list
 
+def writeJson(path, dic):
+	with open(path, "w") as df:
+		jsonStr = json.dumps(dic, sort_keys=True, indent=2, ensure_ascii=False)
+		df.write(jsonStr)
+
+
 
 
 

@@ -28,6 +28,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 			self.dict1 = json.loads(jsonStr, strict = False)
 		#反转字典，赋值给新的字典
 		self.dict2 = {v:k for k,v in self.dict1.items()}
+
 		
 	def variableInit(self):
 		with open("./resources/json/setting.json", "r") as lf:
@@ -48,9 +49,10 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 
 	def openPaintWindow(self):
 		if self.comboBox_2.currentText() != "":
-			self.myPaintWindow = MyPaintWindow(self.comBox_1.currentText(),self.comBox_2.currentText())
+			self.myPaintWindow = MyPaintWindow(self.comboBox_1.currentText(), self.comboBox_2.currentText())
 			self.myPaintWindow.setWindowModality(Qt.ApplicationModal)
 			self.myPaintWindow.show()
+		else:
 			QMessageBox.information(self,"提示","请选择json文件!")
 
 	def openOrigin(self):
@@ -268,9 +270,8 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 			
 		#value text table
 		if self.spinBox_4.value() != 0:
-			self.initComBox()
 			self.tableWidget_5.setRowCount(self.spinBox_4.value())
-			print(self.spinBox_4.value())
+			self.initComBox()
 			for i in range(len(self.text_list)):
 				self.tableWidget_5.setItem(i, 0, QTableWidgetItem(self.text_list[i]["mediaId"]))
 				self.tableWidget_5.setItem(i, 1, QTableWidgetItem(self.text_list[i]["id"]))
@@ -278,7 +279,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 				self.tableWidget_5.setItem(i, 3, QTableWidgetItem(self.text_list[i]["resourceDirectory"]))
 				self.tableWidget_5.setItem(i, 4, QTableWidgetItem(self.text_list[i]["animation"]))
 				self.tableWidget_5.setItem(i, 5, QTableWidgetItem(str(self.text_list[i]["fontSize"])))
-				self.tableWidget_5.cellWidget(i,6).setCurrentText(self.text_list[i]["fontName"])
+				self.tableWidget_5.cellWidget(i,6).setCurrentText(self.dict2[self.text_list[i]["fontName"]])
 				self.tableWidget_5.setItem(i, 7, QTableWidgetItem(self.text_list[i]["placeHolder"]))
 				self.tableWidget_5.setItem(i, 8, QTableWidgetItem(str(self.text_list[i]["lineSpacing"])))
 				self.tableWidget_5.setItem(i, 9, QTableWidgetItem(str(self.text_list[i]["letterSpacing"])))
@@ -585,34 +586,247 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 
 
 	def saveTable(self):
-		pass
+		if self.comboBox_2.currentText() != "":
+			self.nonEditable()
+			self.getTableValues()
+			name = self.comboBox_2.currentText()
+			path = self.workspacePath + "/" + self.comboBox_1.currentText() + "/in/" + name[self.count:] + "/" + name[:13]
+			tools.writeJson(path, self.dic)
+			QMessageBox.information(self, "提示", "保存成功！")
+
 
 	def checkValues(self):
 		pass
 
 	def getTableValues(self):
-		if self.checkBox_1.isChecked():
-			main_dic = {}
-			main_dic["version"] = self.tableWidget_1.item(0, 0).text()
-			main_dic["music"] = self.tableWidget_1.item(0, 1).text()
-			main_dic["templateId"] = self.tableWidget_1.item(0, 2).text()
 		if self.spinBox_1.value() != 0:
-			for i in range(self.spinBox_1.value()):
+			media_list = []
+			for k in range(self.spinBox_1.value()):
 				media_dic = {}
-				media_dic["id"] = self.tableWidget_2.item(i, 0).text()
-				media_dic["type"] = self.tableWidget_2.item(i, 1).text()
-				media_dic["blur"]["type"] = int(self.tableWidget_2.item(i, 2).text())
-				media_dic["blur"]["size"] = int(self.tableWidget_2.item(i, 3).text())
-				media_dic["constraints"]["left"]["constant"] = float(self.tableWidget_2.item(i, 4).text())
-				media_dic["constraints"]["left"]["percentage"] = float(self.tableWidget_2.item(i, 5).text())
-				media_dic["constraints"]["top"]["constant"] = float(self.tableWidget_2.item(i, 6).text())
-				media_dic["constraints"]["top"]["percentage"] = float(self.tableWidget_2.item(i, 7).text())
-				media_dic["constraints"]["width"]["constant"] = float(self.tableWidget_2.item(i, 8).text())
-				media_dic["constraints"]["width"]["percentage"] = float(self.tableWidget_2.item(i, 9).text())
-				media_dic["constraints"]["height"]["constant"] = float(self.tableWidget_2.item(i, 10).text())
-				media_dic["constraints"]["height"]["percentage"] = float(self.tableWidget_2.item(i, 5).text())
+				cutSeparate_list = []
+				media_dic["id"] = self.tableWidget_2.item(k, 0).text()
+				media_dic["type"] = self.tableWidget_2.item(k, 1).text()
+				item1 = int(self.tableWidget_2.item(k, 2).text())
+				item2 = int(self.tableWidget_2.item(k, 3).text())
+				media_dic["blur"] = {
+					"type":	item1,
+					"size": item2
+				}
+				item3 = float(self.tableWidget_2.item(k, 4).text())
+				item4 = float(self.tableWidget_2.item(k, 5).text())
+				item5 = float(self.tableWidget_2.item(k, 6).text())
+				item6 = float(self.tableWidget_2.item(k, 7).text())
+				item7 = float(self.tableWidget_2.item(k, 8).text())
+				item8 = float(self.tableWidget_2.item(k, 9).text())
+				item9 = float(self.tableWidget_2.item(k, 10).text())
+				item10 = float(self.tableWidget_2.item(k, 5).text())
+				media_dic["constraints"] = {
+					"left":{
+						"constant": item3,
+						"percentage": item4
+					},
+					"top":{
+						"constant": item5,
+						"percentage": item6
+					},
+					"width":{
+						"constant": item7,
+						"percentage": item8
+					},
+					"height":{
+						"constant": item9,
+						"percentage": item10
+					}
+				}
 
+				if self.spinBox_2.value() != 0:
+					for i in range(self.spinBox_2.value()):
+						background_dic = {}
+						background_dic["id"] = self.tableWidget_3.item(i, 1).text()
+						background_dic["type"] = int(self.tableWidget_3.item(i, 2).text())
+						background_dic["resourceDirectory"] = self.tableWidget_3.item(i, 3).text()
+						background_dic["animation"] = self.tableWidget_3.item(i, 4).text()
+						item1 = float(self.tableWidget_3.item(i, 5).text())
+						item2 = float(self.tableWidget_3.item(i, 6).text())
+						item3 = float(self.tableWidget_3.item(i, 7).text())
+						item4 = float(self.tableWidget_3.item(i, 8).text())
+						background_dic["rect"] = {
+							"x": item1,
+							"y": item2,
+							"width": item3,
+							"height": item4
+						}
+						background_dic["keyPath"] = self.tableWidget_3.item(i, 9).text()
+						background_dic["filter"] = self.tableWidget_3.item(i, 10).text()
+						background_dic["layers"] = []
+						for j in range(self.spinBox_9.value()):
+							if self.tableWidget_10.item(j, 1).text() == self.tableWidget_3.item(i, 1).text():
+								layer = {"name": self.tableWidget_10.item(j, 2).text(), "resource": self.tableWidget_10.item(j, 3).text()}
+								background_dic["layers"].append(layer)
+						if media_dic["id"] == self.tableWidget_3.item(i, 0).text():
+ 							cutSeparate_list.append(background_dic)
 
+				if self.spinBox_3.value() != 0:
+					for i in range(self.spinBox_3.value()):
+						underArrow_dic = {}
+						underArrow_dic["id"] = self.tableWidget_4.item(i, 1).text()
+						underArrow_dic["type"] = int(self.tableWidget_4.item(i, 2).text())
+						underArrow_dic["adjust"] = int(self.tableWidget_4.item(i, 3).text())
+						underArrow_dic["resourceDirectory"] = self.tableWidget_4.item(i, 4).text()
+						underArrow_dic["animation"] = self.tableWidget_4.item(i, 5).text()
+						item1 = float(self.tableWidget_4.item(i, 6).text())
+						item2 = float(self.tableWidget_4.item(i, 7).text())
+						item3 = float(self.tableWidget_4.item(i, 8).text())
+						item4 = float(self.tableWidget_4.item(i, 9).text())
+						underArrow_dic["rect"] = {
+							"x": item1,
+							"y": item2,
+							"width": item3,
+							"height": item4
+						}
+						underArrow_dic["keyPath"] = self.tableWidget_4.item(i, 7).text()
+						underArrow_dic["layers"] = []
+						for j in range(self.spinBox_9.value()):
+							if self.tableWidget_10.item(j, 1).text() == self.tableWidget_4.item(i, 1).text():
+								layer = {"name": self.tableWidget_10.item(j, 2).text(), "resource": self.tableWidget_10.item(j, 3).text()}
+								underArrow_dic["layers"].append(layer)
+						if media_dic["id"] == self.tableWidget_4.item(i, 0).text():
+							cutSeparate_list.append(underArrow_dic)
+
+				if self.spinBox_4.value() != 0:
+					for i in range(self.spinBox_4.value()):
+						text_dic = {}
+						text_dic["id"] = self.tableWidget_5.item(i, 1).text()
+						text_dic["type"] = int(self.tableWidget_5.item(i, 2).text())
+						text_dic["resourceDirectory"] = self.tableWidget_5.item(i, 3).text()
+						text_dic["animation"] = self.tableWidget_5.item(i, 4).text()
+						text_dic["fontSize"] = float(self.tableWidget_5.item(i, 5).text())
+						text_dic["fontName"] = self.dict1[self.tableWidget_5.cellWidget(i, 6).currentText()]
+						text_dic["placeHolder"] = self.tableWidget_5.item(i, 7).text()
+						text_dic["lineSpacing"] = float(self.tableWidget_5.item(i, 8).text())
+						text_dic["letterSpacing"] = float(self.tableWidget_5.item(i, 9).text())
+						text_dic["textAlignment"] = self.tableWidget_5.item(i, 10).text()
+						text_dic["textColor"] = self.tableWidget_5.item(i, 11).text()
+						text_dic["canvasWidth"] = float(self.tableWidget_5.item(i, 12).text())
+						text_dic["contentSize"] = [ int(self.tableWidget_5.item(i, 13).text()), int(self.tableWidget_5.item(i, 14).text())]
+						text_dic["keyPath"] = self.tableWidget_5.item(i, 15).text()
+						text_dic["layers"] = []
+						for j in range(self.spinBox_9.value()):
+							if self.tableWidget_10.item(j, 1).text() == self.tableWidget_5.item(i, 1).text():
+								layer = {"name": self.tableWidget_10.item(j, 2).text(), "resource": self.tableWidget_10.item(j, 3).text()}
+								text_dic["layers"].append(layer)
+						if media_dic["id"] == self.tableWidget_5.item(i, 0).text():
+							cutSeparate_list.append(text_dic)
+
+				if self.spinBox_5.value() != 0:
+					for i in range(self.spinBox_5.value()):
+						cutout_dic = {}
+						cutout_dic["id"] = self.tableWidget_6.item(i, 1).text()
+						cutout_dic["type"] = int(self.tableWidget_6.item(i, 2).text())
+						cutout_dic["resourceDirectory"] = self.tableWidget_6.item(i, 3).text()
+						cutout_dic["animation"] = self.tableWidget_6.item(i, 4).text()
+						item1 = float(self.tableWidget_6.item(i, 5).text())
+						item2 = float(self.tableWidget_6.item(i, 6).text())
+						item3 = float(self.tableWidget_6.item(i, 7).text())
+						item4 = float(self.tableWidget_6.item(i, 8).text())
+						cutout_dic["rect"] = {
+							"x": item1,
+							"y": item2,
+							"width": item3,
+							"height": item4
+						}
+						cutout_dic["keyPath"] = self.tableWidget_6.item(i, 9).text()
+						cutout_dic["filter"] = self.tableWidget_6.item(i, 10).text()
+						cutout_dic["layers"] = []
+						for j in range(self.spinBox_9.value()):
+							if self.tableWidget_10.item(j, 1).text() == self.tableWidget_6.item(i, 1).text():
+								layer = {"name": self.tableWidget_10.item(j, 2).text(), "resource": self.tableWidget_10.item(j, 3).text()}
+								cutout_dic["layers"].append(layer)
+						if media_dic["id"] == self.tableWidget_6.item(i, 0).text():
+							cutSeparate_list.append(cutout_dic)
+
+				if self.spinBox_6.value() != 0:
+					for i in range(self.spinBox_6.value()):
+						aboveArrow_dic = {}
+						aboveArrow_dic["id"] = self.tableWidget_7.item(i, 1).text()
+						aboveArrow_dic["type"] = int(self.tableWidget_7.item(i, 2).text())
+						aboveArrow_dic["adjust"] = int(self.tableWidget_7.item(i, 3).text())
+						aboveArrow_dic["resourceDirectory"] = self.tableWidget_7.item(i, 4).text()
+						aboveArrow_dic["animation"] = self.tableWidget_7.item(i, 5).text()
+						item1 = float(self.tableWidget_7.item(i, 6).text())
+						item2 = float(self.tableWidget_7.item(i, 7).text())
+						item3 = float(self.tableWidget_7.item(i, 8).text())
+						item4 = float(self.tableWidget_7.item(i, 9).text())
+						aboveArrow_dic["rect"] = {
+							"x": item1,
+							"y": item2,
+							"width": item3,
+							"height": item4
+						}
+						aboveArrow_dic["keyPath"] = self.tableWidget_7.item(i, 10).text()
+						aboveArrow_dic["layers"] = []
+						for j in range(self.spinBox_9.value()):
+							if self.tableWidget_10.item(j, 1).text() == self.tableWidget_7.item(i, 1).text():
+								layer = {"name": self.tableWidget_10.item(j, 2).text(), "resource": self.tableWidget_10.item(j, 3).text()}
+								aboveArrow_dic["layers"].append(layer)
+						if media_dic["id"] == self.tableWidget_7.item(i, 0).text():
+							cutSeparate_list.append(aboveArrow_dic)
+
+				if self.spinBox_7.value() != 0:
+					for i in range(self.spinBox_7.value()):
+						foreground_dic = {}
+						foreground_dic["id"] = self.tableWidget_8.item(i, 1).text()
+						foreground_dic["type"] = int(self.tableWidget_8.item(i, 2).text())
+						foreground_dic["resourceDirectory"] = self.tableWidget_8.item(i, 3).text()
+						foreground_dic["animation"] = self.tableWidget_8.item(i, 4).text()
+						item1 = float(self.tableWidget_8.item(i, 5).text())
+						item2 = float(self.tableWidget_8.item(i, 6).text())
+						item3 = float(self.tableWidget_8.item(i, 7).text())
+						item4 = float(self.tableWidget_8.item(i, 8).text())
+						foreground_dic["rect"] = {
+							"x": item1,
+							"y": item2,
+							"width": item3,
+							"height": item4
+						}
+						foreground_dic["keyPath"] = self.tableWidget_8.item(i, 9).text()
+						foreground_dic["layers"] = []
+						for j in range(self.spinBox_9.value()):
+							if self.tableWidget_10.item(j, 1).text() == self.tableWidget_8.item(i, 1).text():
+								layer = {"name": self.tableWidget_10.item(j, 2).text(), "resource": self.tableWidget_10.item(j, 3).text()}
+								foreground_dic["layers"].append(layer)
+						if media_dic["id"] == self.tableWidget_8.item(i, 0).text():
+							cutSeparate_list.append(foreground_dic)
+				media_dic["cutSeparate"] = cutSeparate_list
+				media_list.append(media_dic)
+
+		if self.spinBox_8.value() != 0:
+			sticker_list = []
+			for i in range(self.spinBox_8.value()):
+				sticker_dic = {}
+				sticker_dic["id"] = self.tableWidget_9.item(i, 0).text()
+				sticker_dic["resourceDirectory"] = self.tableWidget_9.item(i, 1).text()
+				item1 = float(self.tableWidget_9.item(i, 2).text())
+				item2 = float(self.tableWidget_9.item(i, 3).text())
+				item3 = float(self.tableWidget_9.item(i, 4).text())
+				item4 = float(self.tableWidget_9.item(i, 5).text())
+				sticker_dic["rect"] = {
+					"x": item1,
+					"y": item2,
+					"width": item3,
+					"height": item4
+				}
+				sticker_list.append(sticker_dic)
+
+		if self.checkBox_1.isChecked():
+				self.dic = {}
+				self.dic["version"] = self.tableWidget_1.item(0, 0).text()
+				self.dic["music"] = self.tableWidget_1.item(0, 1).text()
+				self.dic["templateId"] = self.tableWidget_1.item(0, 2).text()
+				self.dic["elements"] = media_list
+				self.dic["sticker"] = sticker_list
+
+	
 	def encryption(self):
 		pass
 
