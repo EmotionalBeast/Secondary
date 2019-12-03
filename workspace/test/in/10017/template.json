@@ -1,0 +1,131 @@
+{
+    "version": "1.0",
+    "elements": [
+        {
+            "id": "0",
+            "type": "media",
+            "constraints": {
+                "left": {
+                    "constant": 0.0,
+                    "percentage": 0.0
+                },
+                "top": {
+                    "constant": 0.0,
+                    "percentage": 0.0
+                },
+                "width": {
+                    "constant": 0.0,
+                    "percentage": 1.0
+                },
+                "height": {
+                    "constant": 0.0,
+                    "percentage": 1.0
+                }
+            },
+            "cutSeparate": [
+                {
+                    "id": "0",
+                    "type": 0,
+                    "resourceDirectory": "/beijing",
+                    "animation": "data.json",
+                    "layers": [
+                        {
+                            "name": "img_0.png",
+                            "resource": "images/img_0.png"
+                        }
+                    ],
+                    "rect": {
+                        "x": 0,
+                        "y": 0,
+                        "width": 375,
+                        "height": 667
+                    },
+                    "keyPath": "img_0.png"
+                },
+                {
+                    "id": "1",
+                    "type": 1,
+                    "adjust": 0,
+                    "resourceDirectory": "/sucai",
+                    "animation": "data.json",
+                    "layers": [
+                        {
+                            "name": "img_0.png",
+                            "resource": "images/img_0.png"
+                        },
+                        {
+                            "name": "img_1.png",
+                            "resource": "images/img_1.png"
+                        },
+                        {
+                            "name": "img_2.png",
+                            "resource": "images/img_2.png"
+                        },
+                        {
+                            "name": "img_3.png",
+                            "resource": "images/img_3.png"
+                        },
+                        {
+                            "name": "img_4.png",
+                            "resource": "images/img_4.png"
+                        },
+                        {
+                            "name": "img_5.png",
+                            "resource": "images/img_5.png"
+                        },
+                        {
+                            "name": "img_6.png",
+                            "resource": "images/img_6.png"
+                        },
+                        {
+                            "name": "img_7.png",
+                            "resource": "images/img_7.png"
+                        },
+                        {
+                            "name": "img_8.png",
+                            "resource": "images/img_8.png"
+                        },
+                        {
+                            "name": "img_9.png",
+                            "resource": "images/img_9.png"
+                        },
+                        {
+                            "name": "img_10.png",
+                            "resource": "images/img_10.png"
+                        },
+                        {
+                            "name": "img_11.png",
+                            "resource": "images/img_11.png"
+                        }
+                    ],
+                    "rect": {
+                        "x": 17,
+                        "y": 67,
+                        "width": 325,
+                        "height": 326
+                    }
+                },
+                {
+                    "id": "2",
+                    "type": 2,
+                    "resourceDirectory": "/ren",
+                    "animation": "data.json",
+                    "layers": [
+                        {
+                            "name": "img_0.png",
+                            "resource": "images/img_0.png"
+                        }
+                    ],
+                    "rect": {
+                        "x": 119,
+                        "y": 199,
+                        "width": 167.5,
+                        "height": 468
+                    },
+                    "keyPath": "img_0.png"
+                }
+            ]
+        }
+    ],
+    "templateId": 10017
+}

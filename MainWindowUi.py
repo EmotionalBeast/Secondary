@@ -231,16 +231,36 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "json文件："))
         self.label_3.setText(_translate("MainWindow", "media："))
         self.label_4.setText(_translate("MainWindow", "background："))
-        self.label_5.setText(_translate("MainWindow", "underArrow："))
+        self.label_5.setText(_translate("MainWindow", "underFloating："))
         self.label_6.setText(_translate("MainWindow", "text："))
         self.label_7.setText(_translate("MainWindow", "cutout："))
-        self.label_8.setText(_translate("MainWindow", "aboveArrow："))
+        self.label_8.setText(_translate("MainWindow", "aboveFloating："))
         self.label_9.setText(_translate("MainWindow", "foreground："))
         self.label_10.setText(_translate("MainWindow", "sticker："))
         self.label_11.setText(_translate("MainWindow", "layers："))
 
         self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.menuTools.setTitle(_translate("MainWindow", "Tools"))
+        #设置菜单栏的属性
+        self.menuFile.setTitle(_translate("MainWindow", "File"))
+        self.menuTools.setTitle(_translate("MainWindow", "Tools"))
+
+        #设置工具栏的属性
+        self.toolBar.setWindowTitle(_translate("MainWindow", "toolBar"))
+
+        #设置动作属性
+        self.actionNew.setText(_translate("MainWindow", "新建"))
+        self.actionNew.setShortcut(_translate("MainWindow", "Ctrl+N"))
+        self.actionSave.setText(_translate("MainWindow", "保存"))
+        self.actionSave.setShortcut(_translate("MainWindow", "Ctrl+S"))
+        self.actionSetting.setText(_translate("MainWindow", "设置"))
+        self.actionSetting.setShortcut(_translate("MainWindow", "Ctrl+U"))
+        self.actionQuit.setText(_translate("MainWindow", "退出"))
+        self.actionQuit.setShortcut(_translate("MainWindow", "Ctrl+Q"))
+        self.actionPaint.setText(_translate("MainWindow", "展示"))
+        self.actionPaint.setShortcut(_translate("MainWindow", "Ctrl+R"))
+        self.actionEnCom.setText(_translate("MainWindow", "加密压缩"))
+        self.actionEnCom.setShortcut(_translate("MainWindow", "Ctrl+K"))
 
     #setting table
     def mainTable(self):
@@ -401,7 +421,7 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "background"))
         self.tableWidget_3.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
 
-    def underArrowTable(self):
+    def underFloatingTable(self):
         self.tab_4 = QtWidgets.QWidget()
         self.tab_4.setObjectName("tab_4")
         self.tableWidget_4 = QtWidgets.QTableWidget(self.tab_4)
@@ -459,7 +479,7 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "rect_height"))
         item = self.tableWidget_4.horizontalHeaderItem(10)
         item.setText(_translate("MainWindow", "keyPath"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("MainWindow", "underArrow"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("MainWindow", "underFloating"))
         self.tableWidget_4.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
 
     def textTable(self):
@@ -608,7 +628,7 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_6), _translate("MainWindow", "cutout"))
         self.tableWidget_6.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
 
-    def aboveArrowTable(self):
+    def aboveFloatingTable(self):
         self.tab_7 = QtWidgets.QWidget()
         self.tab_7.setObjectName("tab_7")
         self.tableWidget_7 = QtWidgets.QTableWidget(self.tab_7)
@@ -666,7 +686,7 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "rect_height"))
         item = self.tableWidget_7.horizontalHeaderItem(10)
         item.setText(_translate("MainWindow", "keyPath"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_7), _translate("MainWindow", "aboveArrow"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_7), _translate("MainWindow", "aboveFloating"))
         self.tableWidget_7.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         
     def foregroundTable(self):
@@ -815,7 +835,7 @@ class Ui_MainWindow(object):
             self.backgroundTable()
 
         if self.spinBox_3.value() != 0:
-            self.underArrowTable()
+            self.underFloatingTable()
 
         if self.spinBox_4.value() != 0:
             self.textTable()
@@ -824,7 +844,7 @@ class Ui_MainWindow(object):
             self.cutoutTable()
 
         if self.spinBox_6.value() != 0:
-            self.aboveArrowTable()
+            self.aboveFloatingTable()
 
         if self.spinBox_7.value() != 0:
             self.foregroundTable()

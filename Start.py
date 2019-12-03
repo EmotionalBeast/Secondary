@@ -10,5 +10,3 @@ if __name__ == "__main__":
 	myWindow = MyMainWindow()
 	myWindow.show()
 	sys.exit(app.exec_())
-
-	QMessageBox.information(self, "提示", "保存成功！")

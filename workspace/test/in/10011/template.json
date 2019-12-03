@@ -1,15 +1,15 @@
+
 {
+  "version": "1.0",
   "elements": [
     {
+      "id": "0",
+      "type": "media",
       "blur": {
-        "size": 5,
-        "type": 0
+        "type": 0,
+        "size": 5
       },
       "constraints": {
-        "height": {
-          "constant": 0.0,
-          "percentage": 0.0
-        },
         "left": {
           "constant": 0.0,
           "percentage": 0.0
@@ -21,14 +21,18 @@
         "width": {
           "constant": 0.0,
           "percentage": 1.0
+        },
+        "height": {
+          "constant": 0.0,
+          "percentage": 1.0
         }
       },
       "cutSeparate": [
         {
-          "animation": "data.json",
-          "filter": "",
           "id": "0",
-          "keyPath": "img_1.png",
+          "type": 0,
+          "resourceDirectory": "/background",
+          "animation": "data.json",
           "layers": [
             {
               "name": "img_0.png",
@@ -40,19 +44,20 @@
             }
           ],
           "rect": {
-            "height": 667.0,
-            "width": 375.0,
-            "x": 0.0,
-            "y": 0.0
+            "x": 0,
+            "y": 0,
+            "width": 375,
+            "height": 667
           },
-          "resourceDirectory": "/background",
-          "type": 0
+          "keyPath": "img_1.png",
+          "filter": ""
         },
         {
-          "adjust": 0,
-          "animation": "data.json",
           "id": "1",
-          "keyPath": "273.5",
+          "type": 1,
+          "adjust": 0,
+          "resourceDirectory": "/underArrow",
+          "animation": "data.json",
           "layers": [
             {
               "name": "img_0.png",
@@ -60,64 +65,64 @@
             }
           ],
           "rect": {
-            "height": 108.0,
-            "width": 302.5,
             "x": 18.5,
-            "y": 273.5
+            "y": 273.5,
+            "width": 302.5,
+            "height": 108
           },
-          "resourceDirectory": "/underArrow",
-          "type": 1
+          "keyPath": "img_0.png"
         },
         {
-          "animation": "data.json",
-          "canvasWidth": 0.0,
-          "contentSize": [
-            314,
-            134
-          ],
-          "fontName": "Adobe Caslon Pro",
-          "fontSize": 70.0,
           "id": "2",
-          "keyPath": "text",
+          "type": 3,
+          "resourceDirectory": "/text",
+          "animation": "data.json",
           "layers": [
             {
               "name": "text",
               "resource": "images/img_0.png"
             }
           ],
-          "letterSpacing": 0.0,
-          "lineSpacing": 7.0,
+          "fontSize": 70.0,
+          "fontName": "Adobe Caslon Pro",
           "placeHolder": "Fine",
-          "resourceDirectory": "/text",
+          "lineSpacing": 7.0,
+          "letterSpacing": 0.0,
           "textAlignment": "center",
           "textColor": "ffffff",
-          "type": 3
+          "canvasWidth": 0.0,
+          "contentSize": [
+            314,
+            134
+          ],
+          "keyPath": "text"
         },
         {
-          "animation": "data.json",
-          "filter": "",
           "id": "3",
-          "keyPath": "img_0.png",
-          "layers": [
-            {
-              "name": "img_0.png",
-              "resource": "images/img_0.png"
-            }
-          ],
-          "rect": {
-            "height": 483.0,
-            "width": 277.0,
-            "x": 54.0,
-            "y": 184.0
-          },
+          "type": 2,
           "resourceDirectory": "/cutout",
-          "type": 2
+          "animation": "data.json",
+          "layers": [
+            {
+              "name": "img_0.png",
+              "resource": "images/img_0.png"
+            }
+          ],
+          "rect": {
+            "x": 54,
+            "y": 184,
+            "width": 277,
+            "height": 483
+          },
+          "keyPath": "img_0.png",
+          "filter": ""
         },
         {
-          "adjust": 0,
-          "animation": "data.json",
           "id": "4",
-          "keyPath": "img_0.png",
+          "type": 1,
+          "adjust": 0,
+          "resourceDirectory": "/aboveArrow",
+          "animation": "data.json",
           "layers": [
             {
               "name": "img_0.png",
@@ -125,18 +130,18 @@
             }
           ],
           "rect": {
-            "height": 108.5,
+            "x": 47,
+            "y": 361,
             "width": 307.5,
-            "x": 47.0,
-            "y": 361.0
+            "height": 108.5
           },
-          "resourceDirectory": "/aboveArrow",
-          "type": 1
+          "keyPath": "img_0.png"
         },
         {
-          "animation": "data.json",
           "id": "5",
-          "keyPath": "img_0.png",
+          "type": 0,
+          "resourceDirectory": "/foreground",
+          "animation": "data.json",
           "layers": [
             {
               "name": "img_0.png",
@@ -144,32 +149,28 @@
             }
           ],
           "rect": {
-            "height": 667.0,
-            "width": 375.0,
-            "x": 0.0,
-            "y": 0.0
+            "x": 0,
+            "y": 0,
+            "width": 375,
+            "height": 667
           },
-          "resourceDirectory": "/foreground",
-          "type": 0
+          "keyPath": "img_0.png"
         }
-      ],
-      "id": "0",
-      "type": "media"
+      ]
     }
   ],
   "music": "Memorable.aac",
   "sticker": [
     {
       "id": "0",
+      "resourceDirectory": "/sticker",
       "rect": {
-        "height": 667.0,
-        "width": 375.0,
-        "x": 0.0,
-        "y": 0.0
-      },
-      "resourceDirectory": "/sticker"
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 667
+      }
     }
   ],
-  "templateId": "10011",
-  "version": "1.0"
+  "templateId": 10011
 }

@@ -118,12 +118,11 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 	def resolveJson(self):
 		self.elements_list = []
 		self.cutSeparate_list = []
-		self.sticker_list = []
 		self.background_list = []
-		self.underArrow_list = []
+		self.underFloating_list = []
 		self.text_list = []
 		self.cutout_list = []
-		self.aboveArrow_list = []
+		self.aboveFloating_list = []
 		self.foreground_list = []
 		self.layers_list = []
 
@@ -139,14 +138,18 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 			self.spinBox_6.setValue(0)
 			self.spinBox_7.setValue(0)
 			self.spinBox_8.setValue(0)
-			self.spinBox_9.setValue(0)
+			path = self.workspacePath + "/" + self.comboBox_1.currentText() + "/in/" + self.comboBox_2.currentText()[self.count:]
+			_, count = tools.getLayers(path)
+			self.spinBox_9.setValue(count)
+
 		else:
 			self.checkBox_1.setChecked(True)
 			self.elements_list = self.dic["elements"]
 			self.spinBox_1.setValue(len(self.elements_list))
-			
-			self.sticker_list = self.dic["sticker"]
-			self.spinBox_8.setValue(len(self.sticker_list))
+			if "sticker" in self.dic.keys():	
+				self.sticker_list = []		
+				self.sticker_list = self.dic["sticker"]
+				self.spinBox_8.setValue(len(self.sticker_list))
 			temp_dic = {"mediaId":"","id":""}
 			temp_dic1 = {"mediaId":""}
 			for k in range(len(self.elements_list)):	
@@ -159,51 +162,57 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 					temp1.update(temp_dic1)
 					if self.cutSeparate_list[i]["resourceDirectory"][1:] == "background":						
 						self.background_list.append(temp1)
-						temp = self.cutSeparate_list[i]["layers"]
-						for j in range(len(temp)):
-							temp[j].update(temp_dic)
-							self.layers_list.append(temp[j])
+						if "layers" in self.cutSeparate_list[i].keys():
+							temp = self.cutSeparate_list[i]["layers"]
+							for j in range(len(temp)):
+								temp[j].update(temp_dic)
+								self.layers_list.append(temp[j])
 
-					if self.cutSeparate_list[i]["resourceDirectory"][1:] == "underArrow":
-						self.underArrow_list.append(temp1)
-						temp = self.cutSeparate_list[i]["layers"]
-						for j in range(len(temp)):
-							temp[j].update(temp_dic)
-							self.layers_list.append(temp[j])
+					if self.cutSeparate_list[i]["resourceDirectory"][1:] == "underFloating":
+						self.underFloating_list.append(temp1)
+						if "layers" in self.cutSeparate_list[i].keys():
+							temp = self.cutSeparate_list[i]["layers"]
+							for j in range(len(temp)):
+								temp[j].update(temp_dic)
+								self.layers_list.append(temp[j])
 
 					if self.cutSeparate_list[i]["resourceDirectory"][1:] == "text":
 						self.text_list.append(temp1)
-						temp = self.cutSeparate_list[i]["layers"]
-						for j in range(len(temp)):
-							temp[j].update(temp_dic)
-							self.layers_list.append(temp[j])
+						if "layers" in self.cutSeparate_list[i].keys():
+							temp = self.cutSeparate_list[i]["layers"]
+							for j in range(len(temp)):
+								temp[j].update(temp_dic)
+								self.layers_list.append(temp[j])
 
 					if self.cutSeparate_list[i]["resourceDirectory"][1:] == "cutout":
 						self.cutout_list.append(temp1)
-						temp = self.cutSeparate_list[i]["layers"]
-						for j in range(len(temp)):
-							temp[j].update(temp_dic)
-							self.layers_list.append(temp[j])
+						if "layers" in self.cutSeparate_list[i].keys():
+							temp = self.cutSeparate_list[i]["layers"]
+							for j in range(len(temp)):
+								temp[j].update(temp_dic)
+								self.layers_list.append(temp[j])
 
-					if self.cutSeparate_list[i]["resourceDirectory"][1:] == "aboveArrow":
-						self.aboveArrow_list.append(temp1)
-						temp = self.cutSeparate_list[i]["layers"]
-						for j in range(len(temp)):
-							temp[j].update(temp_dic)
-							self.layers_list.append(temp[j])
+					if self.cutSeparate_list[i]["resourceDirectory"][1:] == "aboveFloating":
+						self.aboveFloating_list.append(temp1)
+						if "layers" in self.cutSeparate_list[i].keys():
+							temp = self.cutSeparate_list[i]["layers"]
+							for j in range(len(temp)):
+								temp[j].update(temp_dic)
+								self.layers_list.append(temp[j])
 							
 					if self.cutSeparate_list[i]["resourceDirectory"][1:] == "foreground":
 						self.foreground_list.append(temp1)
-						temp = self.cutSeparate_list[i]["layers"]
-						for j in range(len(temp)):
-							temp[j].update(temp_dic)
-							self.layers_list.append(temp[j])
+						if "layers" in self.cutSeparate_list[i].keys():
+							temp = self.cutSeparate_list[i]["layers"]
+							for j in range(len(temp)):
+								temp[j].update(temp_dic)
+								self.layers_list.append(temp[j])
 
 			self.spinBox_2.setValue(len(self.background_list))
-			self.spinBox_3.setValue(len(self.underArrow_list))
+			self.spinBox_3.setValue(len(self.underFloating_list))
 			self.spinBox_4.setValue(len(self.text_list))
 			self.spinBox_5.setValue(len(self.cutout_list))
-			self.spinBox_6.setValue(len(self.aboveArrow_list))
+			self.spinBox_6.setValue(len(self.aboveFloating_list))
 			self.spinBox_7.setValue(len(self.foreground_list))
 			self.spinBox_9.setValue(len(self.layers_list))
 
@@ -215,8 +224,11 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 			# value main table
 			self.tableWidget_1.setRowCount(1)
 			self.tableWidget_1.setItem(0, 0, QTableWidgetItem(self.dic["version"]))
-			self.tableWidget_1.setItem(0, 1, QTableWidgetItem(self.dic["music"]))
 			self.tableWidget_1.setItem(0, 2, QTableWidgetItem(str(self.dic["templateId"])))
+			if "music" in self.dic.keys():
+				self.tableWidget_1.setItem(0, 1, QTableWidgetItem(self.dic["music"]))
+			else:
+				self.tableWidget_1.setItem(0, 1, QTableWidgetItem(""))
 
 		if self.spinBox_1.value() != 0:
 			#value elements
@@ -225,8 +237,6 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 			for i in range(len(self.elements_list)):
 				self.tableWidget_2.setItem(i, 0, QTableWidgetItem(self.elements_list[i]["id"]))
 				self.tableWidget_2.setItem(i, 1, QTableWidgetItem(self.elements_list[i]["type"]))
-				self.tableWidget_2.setItem(i, 2, QTableWidgetItem(str(self.elements_list[i]["blur"]["type"])))
-				self.tableWidget_2.setItem(i, 3, QTableWidgetItem(str(self.elements_list[i]["blur"]["size"])))
 				self.tableWidget_2.setItem(i, 4, QTableWidgetItem(str(self.elements_list[i]["constraints"]["left"]["constant"])))
 				self.tableWidget_2.setItem(i, 5, QTableWidgetItem(str(self.elements_list[i]["constraints"]["left"]["percentage"])))
 				self.tableWidget_2.setItem(i, 6, QTableWidgetItem(str(self.elements_list[i]["constraints"]["top"]["constant"])))
@@ -235,6 +245,12 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 				self.tableWidget_2.setItem(i, 9, QTableWidgetItem(str(self.elements_list[i]["constraints"]["width"]["percentage"])))
 				self.tableWidget_2.setItem(i, 10, QTableWidgetItem(str(self.elements_list[i]["constraints"]["height"]["constant"])))
 				self.tableWidget_2.setItem(i, 11, QTableWidgetItem(str(self.elements_list[i]["constraints"]["height"]["percentage"])))
+				if "blur" in self.elements_list[i].keys():
+					self.tableWidget_2.setItem(i, 2, QTableWidgetItem(str(self.elements_list[i]["blur"]["type"])))
+					self.tableWidget_2.setItem(i, 3, QTableWidgetItem(str(self.elements_list[i]["blur"]["size"])))
+				else:
+					self.tableWidget_2.setItem(i, 2, QTableWidgetItem(""))
+					self.tableWidget_2.setItem(i, 3, QTableWidgetItem(""))
 
 		#value background table
 		if self.spinBox_2.value() != 0:
@@ -249,24 +265,33 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 				self.tableWidget_3.setItem(i, 6, QTableWidgetItem(str(self.background_list[i]["rect"]["y"])))
 				self.tableWidget_3.setItem(i, 7, QTableWidgetItem(str(self.background_list[i]["rect"]["width"])))
 				self.tableWidget_3.setItem(i, 8, QTableWidgetItem(str(self.background_list[i]["rect"]["height"])))
-				self.tableWidget_3.setItem(i, 9, QTableWidgetItem(self.background_list[i]["keyPath"]))
-				self.tableWidget_3.setItem(i, 10, QTableWidgetItem(self.background_list[i]["filter"]))
+				if "keyPath" in self.background_list[i].keys():
+					self.tableWidget_3.setItem(i, 9, QTableWidgetItem(self.background_list[i]["keyPath"]))
+				else:
+					self.tableWidget_3.setItem(i, 9, QTableWidgetItem(""))
+				if "filter" in self.background_list[i].keys():
+					self.tableWidget_3.setItem(i, 10, QTableWidgetItem(self.background_list[i]["filter"]))
+				else:
+					self.tableWidget_3.setItem(i, 10, QTableWidgetItem(""))
 
-		#value underArrow table
+		#value underFloating table
 		if self.spinBox_3.value() != 0:
 			self.tableWidget_4.setRowCount(self.spinBox_3.value())
-			for i in range(len(self.underArrow_list)):
-				self.tableWidget_4.setItem(i, 0, QTableWidgetItem(self.underArrow_list[i]["mediaId"]))
-				self.tableWidget_4.setItem(i, 1, QTableWidgetItem(self.underArrow_list[i]["id"]))
-				self.tableWidget_4.setItem(i, 2, QTableWidgetItem(str(self.underArrow_list[i]["type"])))
-				self.tableWidget_4.setItem(i, 3, QTableWidgetItem(str(self.underArrow_list[i]["adjust"])))
-				self.tableWidget_4.setItem(i, 4, QTableWidgetItem(self.underArrow_list[i]["resourceDirectory"]))
-				self.tableWidget_4.setItem(i, 5, QTableWidgetItem(self.underArrow_list[i]["animation"]))
-				self.tableWidget_4.setItem(i, 6, QTableWidgetItem(str(self.underArrow_list[i]["rect"]["x"])))
-				self.tableWidget_4.setItem(i, 7, QTableWidgetItem(str(self.underArrow_list[i]["rect"]["y"])))
-				self.tableWidget_4.setItem(i, 8, QTableWidgetItem(str(self.underArrow_list[i]["rect"]["width"])))
-				self.tableWidget_4.setItem(i, 9, QTableWidgetItem(str(self.underArrow_list[i]["rect"]["height"])))
-				self.tableWidget_4.setItem(i, 10, QTableWidgetItem(self.underArrow_list[i]["keyPath"]))
+			for i in range(len(self.underFloating_list)):
+				self.tableWidget_4.setItem(i, 0, QTableWidgetItem(self.underFloating_list[i]["mediaId"]))
+				self.tableWidget_4.setItem(i, 1, QTableWidgetItem(self.underFloating_list[i]["id"]))
+				self.tableWidget_4.setItem(i, 2, QTableWidgetItem(str(self.underFloating_list[i]["type"])))
+				self.tableWidget_4.setItem(i, 3, QTableWidgetItem(str(self.underFloating_list[i]["adjust"])))
+				self.tableWidget_4.setItem(i, 4, QTableWidgetItem(self.underFloating_list[i]["resourceDirectory"]))
+				self.tableWidget_4.setItem(i, 5, QTableWidgetItem(self.underFloating_list[i]["animation"]))
+				self.tableWidget_4.setItem(i, 6, QTableWidgetItem(str(self.underFloating_list[i]["rect"]["x"])))
+				self.tableWidget_4.setItem(i, 7, QTableWidgetItem(str(self.underFloating_list[i]["rect"]["y"])))
+				self.tableWidget_4.setItem(i, 8, QTableWidgetItem(str(self.underFloating_list[i]["rect"]["width"])))
+				self.tableWidget_4.setItem(i, 9, QTableWidgetItem(str(self.underFloating_list[i]["rect"]["height"])))
+				if "keyPath" in self.underFloating_list[i].keys():
+					self.tableWidget_4.setItem(i, 10, QTableWidgetItem(self.underFloating_list[i]["keyPath"]))
+				else:
+					self.tableWidget_4.setItem(i, 10, QTableWidgetItem(""))
 			
 		#value text table
 		if self.spinBox_4.value() != 0:
@@ -288,7 +313,10 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 				self.tableWidget_5.setItem(i, 12, QTableWidgetItem(str(self.text_list[i]["canvasWidth"])))
 				self.tableWidget_5.setItem(i, 13, QTableWidgetItem(str(self.text_list[i]["contentSize"][0])))
 				self.tableWidget_5.setItem(i, 14, QTableWidgetItem(str(self.text_list[i]["contentSize"][1])))
-				self.tableWidget_5.setItem(i, 15, QTableWidgetItem(self.text_list[i]["keyPath"]))
+				if "keyPath" in self.text_list[i].keys():
+					self.tableWidget_5.setItem(i, 15, QTableWidgetItem(self.text_list[i]["keyPath"]))
+				else:
+					self.tableWidget_5.setItem(i, 15, QTableWidgetItem(""))
 
 		#value cutout table
 		if self.spinBox_5.value() != 0:
@@ -303,25 +331,33 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 				self.tableWidget_6.setItem(i, 6, QTableWidgetItem(str(self.cutout_list[i]["rect"]["y"])))
 				self.tableWidget_6.setItem(i, 7, QTableWidgetItem(str(self.cutout_list[i]["rect"]["width"])))
 				self.tableWidget_6.setItem(i, 8, QTableWidgetItem(str(self.cutout_list[i]["rect"]["height"])))
-				self.tableWidget_6.setItem(i, 9, QTableWidgetItem(self.cutout_list[i]["keyPath"]))
-				self.tableWidget_6.setItem(i, 10, QTableWidgetItem(self.cutout_list[i]["filter"]))
+				if "keyPath" in self.cutout_list[i].keys():
+					self.tableWidget_6.setItem(i, 9, QTableWidgetItem(self.cutout_list[i]["keyPath"]))
+				else:
+					self.tableWidget_6.setItem(i, 9, QTableWidgetItem(""))
+				if "filter" in self.cutout_list[i].keys():
+					self.tableWidget_6.setItem(i, 10, QTableWidgetItem(self.cutout_list[i]["filter"]))
+				else:
+					self.tableWidget_6.setItem(i, 10, QTableWidgetItem(""))
 
-		#value aboveArrow table
+		#value aboveFloating table
 		if self.spinBox_6.value() != 0:
 			self.tableWidget_7.setRowCount(self.spinBox_6.value())
-			for i in range(len(self.aboveArrow_list)):
-				self.tableWidget_7.setItem(i, 0, QTableWidgetItem(self.aboveArrow_list[i]["mediaId"]))
-				self.tableWidget_7.setItem(i, 1, QTableWidgetItem(self.aboveArrow_list[i]["id"]))
-				self.tableWidget_7.setItem(i, 2, QTableWidgetItem(str(self.aboveArrow_list[i]["type"])))
-				self.tableWidget_7.setItem(i, 3, QTableWidgetItem(str(self.aboveArrow_list[i]["adjust"])))
-				self.tableWidget_7.setItem(i, 4, QTableWidgetItem(self.aboveArrow_list[i]["resourceDirectory"]))
-				self.tableWidget_7.setItem(i, 5, QTableWidgetItem(self.aboveArrow_list[i]["animation"]))
-				self.tableWidget_7.setItem(i, 6, QTableWidgetItem(str(self.aboveArrow_list[i]["rect"]["x"])))
-				self.tableWidget_7.setItem(i, 7, QTableWidgetItem(str(self.aboveArrow_list[i]["rect"]["y"])))
-				self.tableWidget_7.setItem(i, 8, QTableWidgetItem(str(self.aboveArrow_list[i]["rect"]["width"])))
-				self.tableWidget_7.setItem(i, 9, QTableWidgetItem(str(self.aboveArrow_list[i]["rect"]["height"])))
-				self.tableWidget_7.setItem(i, 10, QTableWidgetItem(self.aboveArrow_list[i]["keyPath"]))
-
+			for i in range(len(self.aboveFloating_list)):
+				self.tableWidget_7.setItem(i, 0, QTableWidgetItem(self.aboveFloating_list[i]["mediaId"]))
+				self.tableWidget_7.setItem(i, 1, QTableWidgetItem(self.aboveFloating_list[i]["id"]))
+				self.tableWidget_7.setItem(i, 2, QTableWidgetItem(str(self.aboveFloating_list[i]["type"])))
+				self.tableWidget_7.setItem(i, 3, QTableWidgetItem(str(self.aboveFloating_list[i]["adjust"])))
+				self.tableWidget_7.setItem(i, 4, QTableWidgetItem(self.aboveFloating_list[i]["resourceDirectory"]))
+				self.tableWidget_7.setItem(i, 5, QTableWidgetItem(self.aboveFloating_list[i]["animation"]))
+				self.tableWidget_7.setItem(i, 6, QTableWidgetItem(str(self.aboveFloating_list[i]["rect"]["x"])))
+				self.tableWidget_7.setItem(i, 7, QTableWidgetItem(str(self.aboveFloating_list[i]["rect"]["y"])))
+				self.tableWidget_7.setItem(i, 8, QTableWidgetItem(str(self.aboveFloating_list[i]["rect"]["width"])))
+				self.tableWidget_7.setItem(i, 9, QTableWidgetItem(str(self.aboveFloating_list[i]["rect"]["height"])))
+				if "keyPath" in self.aboveFloating_list[i].keys()
+					self.tableWidget_7.setItem(i, 10, QTableWidgetItem(self.aboveFloating_list[i]["keyPath"]))
+				else:
+					self.tableWidget_7.setItem(i, 10, QTableWidgetItem(""))
 		#value foreground table
 		if self.spinBox_7.value() != 0:
 			self.tableWidget_8.setRowCount(self.spinBox_7.value())
@@ -335,7 +371,10 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 				self.tableWidget_8.setItem(i, 6, QTableWidgetItem(str(self.foreground_list[i]["rect"]["y"])))
 				self.tableWidget_8.setItem(i, 7, QTableWidgetItem(str(self.foreground_list[i]["rect"]["width"])))
 				self.tableWidget_8.setItem(i, 8, QTableWidgetItem(str(self.foreground_list[i]["rect"]["height"])))
-				self.tableWidget_8.setItem(i, 9, QTableWidgetItem(self.foreground_list[i]["keyPath"]))
+				if "keyPath" in self.foreground_list[i].keys():
+					self.tableWidget_8.setItem(i, 9, QTableWidgetItem(self.foreground_list[i]["keyPath"]))
+				else:
+					self.tableWidget_8.setItem(i, 9, QTableWidgetItem(""))
 
 		if self.spinBox_8.value() != 0:
 			self.tableWidget_9.setRowCount(self.spinBox_8.value())
@@ -484,7 +523,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 						self.tableWidget_4.setItem(i, 1, QTableWidgetItem(str(count)))
 						self.tableWidget_4.setItem(i, 2, QTableWidgetItem("1"))
 						self.tableWidget_4.setItem(i, 3, QTableWidgetItem("0"))
-						self.tableWidget_4.setItem(i, 4, QTableWidgetItem("/underArrow"))
+						self.tableWidget_4.setItem(i, 4, QTableWidgetItem("/underFloating"))
 						self.tableWidget_4.setItem(i, 5, QTableWidgetItem("data.json"))
 					count += 1
 
@@ -516,7 +555,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 						self.tableWidget_7.setItem(i, 1, QTableWidgetItem(str(count)))
 						self.tableWidget_7.setItem(i, 2, QTableWidgetItem("1"))
 						self.tableWidget_7.setItem(i, 3, QTableWidgetItem("0"))
-						self.tableWidget_7.setItem(i, 4, QTableWidgetItem("/aboveArrow"))
+						self.tableWidget_7.setItem(i, 4, QTableWidgetItem("/aboveFloating"))
 						self.tableWidget_7.setItem(i, 5, QTableWidgetItem("data.json"))
 					count += 1
 
@@ -537,9 +576,8 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 
 		path = self.workspacePath + "/" + self.comboBox_1.currentText() + "/in/" + self.comboBox_2.currentText()[self.count:]
 
-		layers_dic = tools.getLayers(path)
-
-		num = 0 
+		layers_dic, _ = tools.getLayers(path)
+		num = 0
 		index = 0
 		if layers_dic["background"] != "":
 			for i in range(layers_dic["background"]):
@@ -548,8 +586,8 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 				self.tableWidget_10.setItem(index, 3, QTableWidgetItem("image/img_" + str(i) + ".png"))
 				index += 1
 			num += 1
-		if layers_dic["underArrow"] != "":
-			for i in range(layers_dic["underArrow"]):
+		if layers_dic["underFloating"] != "":
+			for i in range(layers_dic["underFloating"]):
 				self.tableWidget_10.setItem(index, 1, QTableWidgetItem(str(num)))
 				self.tableWidget_10.setItem(index, 2, QTableWidgetItem("img_" + str(i) + ".png"))
 				self.tableWidget_10.setItem(index, 3, QTableWidgetItem("image/img_" + str(i) + ".png"))
@@ -569,8 +607,8 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 				self.tableWidget_10.setItem(index, 3, QTableWidgetItem("image/img_" + str(i) + ".png"))
 				index += 1
 			num += 1
-		if layers_dic["aboveArrow"] != "":
-			for i in range(layers_dic["aboveArrow"]):
+		if layers_dic["aboveFloating"] != "":
+			for i in range(layers_dic["aboveFloating"]):
 				self.tableWidget_10.setItem(index, 1, QTableWidgetItem(str(num)))
 				self.tableWidget_10.setItem(index, 2, QTableWidgetItem("img_" + str(i) + ".png"))
 				self.tableWidget_10.setItem(index, 3, QTableWidgetItem("image/img_" + str(i) + ".png"))
@@ -584,7 +622,6 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 				index += 1
 			num += 1
 
-
 	def saveTable(self):
 		if self.comboBox_2.currentText() != "":
 			self.nonEditable()
@@ -593,11 +630,9 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 			path = self.workspacePath + "/" + self.comboBox_1.currentText() + "/in/" + name[self.count:] + "/" + name[:13]
 			tools.writeJson(path, self.dic)
 			QMessageBox.information(self, "提示", "保存成功！")
-
-
-	def checkValues(self):
-		pass
-
+		else:
+			QMessageBox.information(self, "提示", "请选择保存模版！")
+		
 	def getTableValues(self):
 		if self.spinBox_1.value() != 0:
 			media_list = []
@@ -606,12 +641,13 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 				cutSeparate_list = []
 				media_dic["id"] = self.tableWidget_2.item(k, 0).text()
 				media_dic["type"] = self.tableWidget_2.item(k, 1).text()
-				item1 = int(self.tableWidget_2.item(k, 2).text())
-				item2 = int(self.tableWidget_2.item(k, 3).text())
-				media_dic["blur"] = {
-					"type":	item1,
-					"size": item2
-				}
+				if self.tableWidget_2.item(k, 2).text() != "" and self.tableWidget_2.item(k, 3).text() != "":
+					item1 = int(self.tableWidget_2.item(k, 2).text())
+					item2 = int(self.tableWidget_2.item(k, 3).text())
+					media_dic["blur"] = {
+						"type":	item1,
+						"size": item2
+					}
 				item3 = float(self.tableWidget_2.item(k, 4).text())
 				item4 = float(self.tableWidget_2.item(k, 5).text())
 				item5 = float(self.tableWidget_2.item(k, 6).text())
@@ -619,7 +655,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 				item7 = float(self.tableWidget_2.item(k, 8).text())
 				item8 = float(self.tableWidget_2.item(k, 9).text())
 				item9 = float(self.tableWidget_2.item(k, 10).text())
-				item10 = float(self.tableWidget_2.item(k, 5).text())
+				item10 = float(self.tableWidget_2.item(k, 11).text())
 				media_dic["constraints"] = {
 					"left":{
 						"constant": item3,
@@ -657,7 +693,8 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 							"height": item4
 						}
 						background_dic["keyPath"] = self.tableWidget_3.item(i, 9).text()
-						background_dic["filter"] = self.tableWidget_3.item(i, 10).text()
+						if self.tableWidget_3.item(i, 10).text() != "":
+							background_dic["filter"] = self.tableWidget_3.item(i, 10).text()
 						background_dic["layers"] = []
 						for j in range(self.spinBox_9.value()):
 							if self.tableWidget_10.item(j, 1).text() == self.tableWidget_3.item(i, 1).text():
@@ -668,30 +705,30 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 
 				if self.spinBox_3.value() != 0:
 					for i in range(self.spinBox_3.value()):
-						underArrow_dic = {}
-						underArrow_dic["id"] = self.tableWidget_4.item(i, 1).text()
-						underArrow_dic["type"] = int(self.tableWidget_4.item(i, 2).text())
-						underArrow_dic["adjust"] = int(self.tableWidget_4.item(i, 3).text())
-						underArrow_dic["resourceDirectory"] = self.tableWidget_4.item(i, 4).text()
-						underArrow_dic["animation"] = self.tableWidget_4.item(i, 5).text()
+						underFloating_dic = {}
+						underFloating_dic["id"] = self.tableWidget_4.item(i, 1).text()
+						underFloating_dic["type"] = int(self.tableWidget_4.item(i, 2).text())
+						underFloating_dic["adjust"] = int(self.tableWidget_4.item(i, 3).text())
+						underFloating_dic["resourceDirectory"] = self.tableWidget_4.item(i, 4).text()
+						underFloating_dic["animation"] = self.tableWidget_4.item(i, 5).text()
 						item1 = float(self.tableWidget_4.item(i, 6).text())
 						item2 = float(self.tableWidget_4.item(i, 7).text())
 						item3 = float(self.tableWidget_4.item(i, 8).text())
 						item4 = float(self.tableWidget_4.item(i, 9).text())
-						underArrow_dic["rect"] = {
+						underFloating_dic["rect"] = {
 							"x": item1,
 							"y": item2,
 							"width": item3,
 							"height": item4
 						}
-						underArrow_dic["keyPath"] = self.tableWidget_4.item(i, 7).text()
-						underArrow_dic["layers"] = []
+						underFloating_dic["keyPath"] = self.tableWidget_4.item(i, 10).text()
+						underFloating_dic["layers"] = []
 						for j in range(self.spinBox_9.value()):
 							if self.tableWidget_10.item(j, 1).text() == self.tableWidget_4.item(i, 1).text():
 								layer = {"name": self.tableWidget_10.item(j, 2).text(), "resource": self.tableWidget_10.item(j, 3).text()}
-								underArrow_dic["layers"].append(layer)
+								underFloating_dic["layers"].append(layer)
 						if media_dic["id"] == self.tableWidget_4.item(i, 0).text():
-							cutSeparate_list.append(underArrow_dic)
+							cutSeparate_list.append(underFloating_dic)
 
 				if self.spinBox_4.value() != 0:
 					for i in range(self.spinBox_4.value()):
@@ -736,7 +773,8 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 							"height": item4
 						}
 						cutout_dic["keyPath"] = self.tableWidget_6.item(i, 9).text()
-						cutout_dic["filter"] = self.tableWidget_6.item(i, 10).text()
+						if self.tableWidget_6.item(i, 10).text() != "":
+							cutout_dic["filter"] = self.tableWidget_6.item(i, 10).text()
 						cutout_dic["layers"] = []
 						for j in range(self.spinBox_9.value()):
 							if self.tableWidget_10.item(j, 1).text() == self.tableWidget_6.item(i, 1).text():
@@ -747,30 +785,30 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 
 				if self.spinBox_6.value() != 0:
 					for i in range(self.spinBox_6.value()):
-						aboveArrow_dic = {}
-						aboveArrow_dic["id"] = self.tableWidget_7.item(i, 1).text()
-						aboveArrow_dic["type"] = int(self.tableWidget_7.item(i, 2).text())
-						aboveArrow_dic["adjust"] = int(self.tableWidget_7.item(i, 3).text())
-						aboveArrow_dic["resourceDirectory"] = self.tableWidget_7.item(i, 4).text()
-						aboveArrow_dic["animation"] = self.tableWidget_7.item(i, 5).text()
+						aboveFloating_dic = {}
+						aboveFloating_dic["id"] = self.tableWidget_7.item(i, 1).text()
+						aboveFloating_dic["type"] = int(self.tableWidget_7.item(i, 2).text())
+						aboveFloating_dic["adjust"] = int(self.tableWidget_7.item(i, 3).text())
+						aboveFloating_dic["resourceDirectory"] = self.tableWidget_7.item(i, 4).text()
+						aboveFloating_dic["animation"] = self.tableWidget_7.item(i, 5).text()
 						item1 = float(self.tableWidget_7.item(i, 6).text())
 						item2 = float(self.tableWidget_7.item(i, 7).text())
 						item3 = float(self.tableWidget_7.item(i, 8).text())
 						item4 = float(self.tableWidget_7.item(i, 9).text())
-						aboveArrow_dic["rect"] = {
+						aboveFloating_dic["rect"] = {
 							"x": item1,
 							"y": item2,
 							"width": item3,
 							"height": item4
 						}
-						aboveArrow_dic["keyPath"] = self.tableWidget_7.item(i, 10).text()
-						aboveArrow_dic["layers"] = []
+						aboveFloating_dic["keyPath"] = self.tableWidget_7.item(i, 10).text()
+						aboveFloating_dic["layers"] = []
 						for j in range(self.spinBox_9.value()):
 							if self.tableWidget_10.item(j, 1).text() == self.tableWidget_7.item(i, 1).text():
 								layer = {"name": self.tableWidget_10.item(j, 2).text(), "resource": self.tableWidget_10.item(j, 3).text()}
-								aboveArrow_dic["layers"].append(layer)
+								aboveFloating_dic["layers"].append(layer)
 						if media_dic["id"] == self.tableWidget_7.item(i, 0).text():
-							cutSeparate_list.append(aboveArrow_dic)
+							cutSeparate_list.append(aboveFloating_dic)
 
 				if self.spinBox_7.value() != 0:
 					for i in range(self.spinBox_7.value()):
@@ -821,17 +859,32 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 		if self.checkBox_1.isChecked():
 				self.dic = {}
 				self.dic["version"] = self.tableWidget_1.item(0, 0).text()
-				self.dic["music"] = self.tableWidget_1.item(0, 1).text()
+				if self.tableWidget_1.item(0, 1).text() != "":
+					self.dic["music"] = self.tableWidget_1.item(0, 1).text()
 				self.dic["templateId"] = self.tableWidget_1.item(0, 2).text()
 				self.dic["elements"] = media_list
 				self.dic["sticker"] = sticker_list
 
 	
 	def encryption(self):
-		pass
+		pathIn = self.workspacePath + "/" + self.comboBox_1.currentText() + "/in"
+		pathOut = self.workspacePath + "/" + self.comboBox_1.currentText() + "/out"
+		pathJar = "./resources/jar/encrypt.jar"
+		command = "java -jar " + pathJar + " " + pathIn + " " + pathOut
+		os.system(command)
+		QMessageBox.information(self,"提示","加密到out文件夹成功！")
 
 	def compressing(self):
-		pass
+		pathOut = self.workspacePath + "/" + self.comboBox_1.currentText() + "/out"
+		pathOrigin = self.workspacePath + "/" + self.comboBox_1.currentText() + "/origin"
+		for root,dirs,files in os.walk(pathOut):
+			for dir in dirs:
+				if root == pathOut:
+					pathNeed = pathOut + "/" + dir + "/"
+					targetFile = pathOrigin + "/" + dir + ".7z"
+					command = "7z a " + targetFile + " " + pathNeed
+					os.system(command)
+		QMessageBox.information(self, "提示", "已压缩到origin文件夹！")
 
 	def EnCom(self):
 		if self.comboBox_1.currentText() != "":
@@ -840,8 +893,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 		else:
 			QMessageBox.information(self, "提示", "请选择素材组！")
 
-	def layers(self):
-    		pass
+
 
     			
     				
