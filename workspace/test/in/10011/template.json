@@ -83,6 +83,24 @@
               "resource": "images/img_0.png"
             }
           ],
+          "constraint":{
+            "left":{
+                "constant": 0.0,
+                "percentage": 0.23
+            },
+            "right":{
+              "constant": 0.0,
+              "percentage": 0.23
+            },
+            "top":{
+              "constant": 0.0,
+              "percentage": 0.36
+            },
+            "height":{
+              "constant": 0.0,
+              "percentage": 0.36
+            }
+          },
           "fontSize": 70.0,
           "fontName": "Adobe Caslon Pro",
           "placeHolder": "Fine",

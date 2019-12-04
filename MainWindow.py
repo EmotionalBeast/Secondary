@@ -313,6 +313,14 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 				self.tableWidget_5.setItem(i, 12, QTableWidgetItem(str(self.text_list[i]["canvasWidth"])))
 				self.tableWidget_5.setItem(i, 13, QTableWidgetItem(str(self.text_list[i]["contentSize"][0])))
 				self.tableWidget_5.setItem(i, 14, QTableWidgetItem(str(self.text_list[i]["contentSize"][1])))
+				self.tableWidget_5.setItem(i, 16, QTableWidgetItem(self.text_list[i]["constraint"]["left"]["constant"]))
+				self.tableWidget_5.setItem(i, 17, QTableWidgetItem(self.text_list[i]["constraint"]["left"]["percentage"]))
+				self.tableWidget_5.setItem(i, 18, QTableWidgetItem(self.text_list[i]["constraint"]["right"]["constant"]))
+				self.tableWidget_5.setItem(i, 19, QTableWidgetItem(self.text_list[i]["constraint"]["right"]["percentage"]))
+				self.tableWidget_5.setItem(i, 20, QTableWidgetItem(self.text_list[i]["constraint"]["top"]["constant"]))
+				self.tableWidget_5.setItem(i, 21, QTableWidgetItem(self.text_list[i]["constraint"]["top"]["percentage"]))
+				self.tableWidget_5.setItem(i, 22, QTableWidgetItem(self.text_list[i]["constraint"]["height"]["constant"]))
+				self.tableWidget_5.setItem(i, 23, QTableWidgetItem(self.text_list[i]["constraint"]["height"]["percentage"]))
 				if "keyPath" in self.text_list[i].keys():
 					self.tableWidget_5.setItem(i, 15, QTableWidgetItem(self.text_list[i]["keyPath"]))
 				else:
@@ -354,7 +362,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 				self.tableWidget_7.setItem(i, 7, QTableWidgetItem(str(self.aboveFloating_list[i]["rect"]["y"])))
 				self.tableWidget_7.setItem(i, 8, QTableWidgetItem(str(self.aboveFloating_list[i]["rect"]["width"])))
 				self.tableWidget_7.setItem(i, 9, QTableWidgetItem(str(self.aboveFloating_list[i]["rect"]["height"])))
-				if "keyPath" in self.aboveFloating_list[i].keys()
+				if "keyPath" in self.aboveFloating_list[i].keys():
 					self.tableWidget_7.setItem(i, 10, QTableWidgetItem(self.aboveFloating_list[i]["keyPath"]))
 				else:
 					self.tableWidget_7.setItem(i, 10, QTableWidgetItem(""))
@@ -452,9 +460,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 
 			if self.spinBox_5.value() != 0:
 				self.tableWidget_6.setEditTriggers(QAbstractItemView.NoEditTriggers)
-
-			if self.spinBox_6.value() != 0:
-				self.tableWidget_7.setEditTriggers(QAbstractItemView.NoEditTriggers)
+Item(self.text_list[i][]))rs(QAbstractItemView.NoEditTriggers)
 
 			if self.spinBox_7.value() != 0:
 				self.tableWidget_8.setEditTriggers(QAbstractItemView.NoEditTriggers)
@@ -536,6 +542,10 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 						self.tableWidget_5.setItem(i, 2, QTableWidgetItem("3"))
 						self.tableWidget_5.setItem(i, 3, QTableWidgetItem("/text"))
 						self.tableWidget_5.setItem(i, 4, QTableWidgetItem("data.json"))
+						self.tableWidget_5.setItem(i, 16, QTableWidgetItem("0"))
+						self.tableWidget_5.setItem(i, 18, QTableWidgetItem("0"))
+						self.tableWidget_5.setItem(i, 20, QTableWidgetItem("0"))
+						self.tableWidget_5.setItem(i, 22, QTableWidgetItem("0"))
 					count += 1
 
 				if self.spinBox_5.value() != 0:
@@ -613,7 +623,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 				self.tableWidget_10.setItem(index, 2, QTableWidgetItem("img_" + str(i) + ".png"))
 				self.tableWidget_10.setItem(index, 3, QTableWidgetItem("image/img_" + str(i) + ".png"))
 				index += 1
-			num += 1
+			num += 1left
 		if layers_dic["foreground"] != "":
 			for i in range(layers_dic["foreground"]):
 				self.tableWidget_10.setItem(index, 1, QTableWidgetItem(str(num)))
@@ -747,6 +757,32 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 						text_dic["canvasWidth"] = float(self.tableWidget_5.item(i, 12).text())
 						text_dic["contentSize"] = [ int(self.tableWidget_5.item(i, 13).text()), int(self.tableWidget_5.item(i, 14).text())]
 						text_dic["keyPath"] = self.tableWidget_5.item(i, 15).text()
+						item1 = float(self.tableWidget_5.item(i, 16).text())
+						item2 = float(self.tableWidget_5.item(i, 17).text())
+						item3 = float(self.tableWidget_5.item(i, 18).text())
+						item4 = float(self.tableWidget_5.item(i, 19).text())
+						item5 = float(self.tableWidget_5.item(i, 20).text())
+						item6 = float(self.tableWidget_5.item(i, 21).text())
+						item7 = float(self.tableWidget_5.item(i, 22).text())
+						item8 = float(self.tableWidget_5.item(i, 23).text())
+						text_dic["constraint"] = {
+							"left":{
+								"constant": item1,
+								"percentage": item2
+							},
+							"right":{
+								"constant": item3,
+								"percentage": item4
+							},
+							"top":{
+								"constant": item5,
+								"percentage": item6
+							},
+							"height":{
+								"constant": item7,
+								"percentage": item8
+							}
+						}
 						text_dic["layers"] = []
 						for j in range(self.spinBox_9.value()):
 							if self.tableWidget_10.item(j, 1).text() == self.tableWidget_5.item(i, 1).text():
@@ -773,8 +809,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 							"height": item4
 						}
 						cutout_dic["keyPath"] = self.tableWidget_6.item(i, 9).text()
-						if self.tableWidget_6.item(i, 10).text() != "":
-							cutout_dic["filter"] = self.tableWidget_6.item(i, 10).text()
+						cutout_dic["filter"] = self.tableWidget_6.item(i, 10).text()
 						cutout_dic["layers"] = []
 						for j in range(self.spinBox_9.value()):
 							if self.tableWidget_10.item(j, 1).text() == self.tableWidget_6.item(i, 1).text():
@@ -859,8 +894,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 		if self.checkBox_1.isChecked():
 				self.dic = {}
 				self.dic["version"] = self.tableWidget_1.item(0, 0).text()
-				if self.tableWidget_1.item(0, 1).text() != "":
-					self.dic["music"] = self.tableWidget_1.item(0, 1).text()
+				self.dic["music"] = self.tableWidget_1.item(0, 1).text()
 				self.dic["templateId"] = self.tableWidget_1.item(0, 2).text()
 				self.dic["elements"] = media_list
 				self.dic["sticker"] = sticker_list
