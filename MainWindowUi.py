@@ -67,7 +67,7 @@ class Ui_MainWindow(object):
         self.spinBox_2.setObjectName("spinBox_2")
 
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
-        self.label_5.setGeometry(QtCore.QRect(366, 60, 88, 30))
+        self.label_5.setGeometry(QtCore.QRect(356, 60, 98, 30))
         self.label_5.setObjectName("label_5")
         self.label_5.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignVCenter)
 
@@ -94,7 +94,7 @@ class Ui_MainWindow(object):
         self.spinBox_5.setObjectName("spinBox_5")
 
         self.label_8 = QtWidgets.QLabel(self.centralwidget)
-        self.label_8.setGeometry(QtCore.QRect(30, 100, 88, 30))
+        self.label_8.setGeometry(QtCore.QRect(20, 100, 98, 30))
         self.label_8.setObjectName("label_8")
         self.label_8.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignVCenter)
 
@@ -545,6 +545,14 @@ class Ui_MainWindow(object):
         self.tableWidget_5.setColumnWidth(3,150)
         self.tableWidget_5.setColumnWidth(6,300)
         self.tableWidget_5.setColumnWidth(7,400)
+        self.tableWidget_5.setColumnWidth(16,120)
+        self.tableWidget_5.setColumnWidth(17,120)
+        self.tableWidget_5.setColumnWidth(18,120)
+        self.tableWidget_5.setColumnWidth(19,120)
+        self.tableWidget_5.setColumnWidth(20,120)
+        self.tableWidget_5.setColumnWidth(21,120)
+        self.tableWidget_5.setColumnWidth(22,120)
+        self.tableWidget_5.setColumnWidth(23,120)
 
 
         _translate = QtCore.QCoreApplication.translate
@@ -592,9 +600,9 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "top_constant"))
         item = self.tableWidget_5.horizontalHeaderItem(21)
         item.setText(_translate("MainWindow", "top_percentage"))
-        item = self.tableWidget_5.horizontalHeaderItem(16)
+        item = self.tableWidget_5.horizontalHeaderItem(22)
         item.setText(_translate("MainWindow", "height_constant"))
-        item = self.tableWidget_5.horizontalHeaderItem(17)
+        item = self.tableWidget_5.horizontalHeaderItem(23)
         item.setText(_translate("MainWindow", "height_percentage"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), _translate("MainWindow", "text"))
         self.tableWidget_5.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)

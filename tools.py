@@ -7,8 +7,8 @@ def getLayers(path):
 	layers_dic = {}
 	count = 0
 	for root,dirs,files in os.walk(path):
-		if root[-17:] == "aboveArrow/images":
-			layers_dic["aboveArrow"] = len(glob.glob(root + "/*.png"))
+		if root[-20:] == "aboveFloating/images":
+			layers_dic["aboveFloating"] = len(glob.glob(root + "/*.png"))
 			count += len(glob.glob(root + "/*.png"))
 		if root[-17:] == "background/images":
 			layers_dic["background"] = len(glob.glob(root + "/*.png"))
@@ -22,9 +22,10 @@ def getLayers(path):
 		if root[-11:] == "text/images":
 			layers_dic["text"] = len(glob.glob(root + "/*.png"))
 			count += len(glob.glob(root + "/*.png"))
-		if root[-17:] == "underArrow/images":
-			layers_dic["underArrow"] = len(glob.glob(root + "/*.png"))
+		if root[-20:] == "underFloating/images":
+			layers_dic["underFloating"] = len(glob.glob(root + "/*.png"))
 			count += len(glob.glob(root + "/*.png"))
+			print(count)
 	return layers_dic, count
 
 def getFonts():

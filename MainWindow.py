@@ -313,14 +313,13 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 				self.tableWidget_5.setItem(i, 12, QTableWidgetItem(str(self.text_list[i]["canvasWidth"])))
 				self.tableWidget_5.setItem(i, 13, QTableWidgetItem(str(self.text_list[i]["contentSize"][0])))
 				self.tableWidget_5.setItem(i, 14, QTableWidgetItem(str(self.text_list[i]["contentSize"][1])))
-				self.tableWidget_5.setItem(i, 16, QTableWidgetItem(self.text_list[i]["constraint"]["left"]["constant"]))
-				self.tableWidget_5.setItem(i, 17, QTableWidgetItem(self.text_list[i]["constraint"]["left"]["percentage"]))
-				self.tableWidget_5.setItem(i, 18, QTableWidgetItem(self.text_list[i]["constraint"]["right"]["constant"]))
-				self.tableWidget_5.setItem(i, 19, QTableWidgetItem(self.text_list[i]["constraint"]["right"]["percentage"]))
-				self.tableWidget_5.setItem(i, 20, QTableWidgetItem(self.text_list[i]["constraint"]["top"]["constant"]))
-				self.tableWidget_5.setItem(i, 21, QTableWidgetItem(self.text_list[i]["constraint"]["top"]["percentage"]))
-				self.tableWidget_5.setItem(i, 22, QTableWidgetItem(self.text_list[i]["constraint"]["height"]["constant"]))
-				self.tableWidget_5.setItem(i, 23, QTableWidgetItem(self.text_list[i]["constraint"]["height"]["percentage"]))
+				self.tableWidget_5.setItem(i, 16, QTableWidgetItem(self.text_list[i]["constraints"]["left"]["constant"]))
+				self.tableWidget_5.setItem(i, 17, QTableWidgetItem(self.text_list[i]["constraints"]["left"]["percentage"]))
+				self.tableWidget_5.setItem(i, 18, QTableWidgetItem(self.text_list[i]["constraints"]["right"]["constant"]))
+				self.tableWidget_5.setItem(i, 19, QTableWidgetItem(self.text_list[i]["constraints"]["right"]["percentage"]))
+				self.tableWidget_5.setItem(i, 20, QTableWidgetItem(self.text_list[i]["constraints"]["top"]["constant"]))
+				self.tableWidget_5.setItem(i, 21, QTableWidgetItem(self.text_list[i]["constraints"]["height"]["constant"]))
+				self.tableWidget_5.setItem(i, 23, QTableWidgetItem(self.text_list[i]["constraints"]["height"]["percentage"]))
 				if "keyPath" in self.text_list[i].keys():
 					self.tableWidget_5.setItem(i, 15, QTableWidgetItem(self.text_list[i]["keyPath"]))
 				else:
@@ -460,7 +459,6 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 
 			if self.spinBox_5.value() != 0:
 				self.tableWidget_6.setEditTriggers(QAbstractItemView.NoEditTriggers)
-Item(self.text_list[i][]))rs(QAbstractItemView.NoEditTriggers)
 
 			if self.spinBox_7.value() != 0:
 				self.tableWidget_8.setEditTriggers(QAbstractItemView.NoEditTriggers)
@@ -476,6 +474,7 @@ Item(self.text_list[i][]))rs(QAbstractItemView.NoEditTriggers)
 			QMessageBox.information(self, "提示", "请选择json文件")
 
 	def setRefresh(self):
+		self.variableInit()
 		bc = self.comboBox_1.count()
 		text_1 = self.comboBox_1.currentText()
 		self.comboBox_1.clear()
@@ -493,6 +492,7 @@ Item(self.text_list[i][]))rs(QAbstractItemView.NoEditTriggers)
 			#main table
 			self.tableWidget_1.setRowCount(1)
 			self.tableWidget_1.setItem(0, 0, QTableWidgetItem("1.0"))
+			self.tableWidget_1.setItem(0, 1, QTableWidgetItem(""))
 			self.tableWidget_1.setItem(0, 2, QTableWidgetItem(self.comboBox_2.currentText()[self.count:]))
 			#media table
 		if self.spinBox_1.value() != 0:
@@ -500,10 +500,16 @@ Item(self.text_list[i][]))rs(QAbstractItemView.NoEditTriggers)
 			for j in range(self.spinBox_1.value()):
 				self.tableWidget_2.setItem(j, 0, QTableWidgetItem(str(j)))
 				self.tableWidget_2.setItem(j, 1, QTableWidgetItem("media"))
+				self.tableWidget_2.setItem(j, 2, QTableWidgetItem(""))
+				self.tableWidget_2.setItem(j, 3, QTableWidgetItem(""))
 				self.tableWidget_2.setItem(j, 4, QTableWidgetItem("0"))
+				self.tableWidget_2.setItem(j, 5, QTableWidgetItem("0"))
 				self.tableWidget_2.setItem(j, 6, QTableWidgetItem("0"))
+				self.tableWidget_2.setItem(j, 7, QTableWidgetItem("0"))
 				self.tableWidget_2.setItem(j, 8, QTableWidgetItem("0"))
+				self.tableWidget_2.setItem(j, 9, QTableWidgetItem("1"))
 				self.tableWidget_2.setItem(j, 10, QTableWidgetItem("0"))
+				self.tableWidget_2.setItem(j, 11, QTableWidgetItem("1"))
 
 				if self.spinBox_9.value() != 0:
 					self.tableWidget_10.setRowCount(self.spinBox_9.value())
@@ -520,6 +526,12 @@ Item(self.text_list[i][]))rs(QAbstractItemView.NoEditTriggers)
 						self.tableWidget_3.setItem(i, 2, QTableWidgetItem("0"))
 						self.tableWidget_3.setItem(i, 3, QTableWidgetItem("/background"))
 						self.tableWidget_3.setItem(i, 4, QTableWidgetItem("data.json"))
+						self.tableWidget_3.setItem(i, 5, QTableWidgetItem("0"))
+						self.tableWidget_3.setItem(i, 6, QTableWidgetItem("0"))
+						self.tableWidget_3.setItem(i, 7, QTableWidgetItem("375"))
+						self.tableWidget_3.setItem(i, 8, QTableWidgetItem("667"))
+						self.tableWidget_3.setItem(i, 9, QTableWidgetItem(""))
+						self.tableWidget_3.setItem(i, 10, QTableWidgetItem(""))
 					count += 1
 
 				if self.spinBox_3.value() != 0:
@@ -531,21 +543,7 @@ Item(self.text_list[i][]))rs(QAbstractItemView.NoEditTriggers)
 						self.tableWidget_4.setItem(i, 3, QTableWidgetItem("0"))
 						self.tableWidget_4.setItem(i, 4, QTableWidgetItem("/underFloating"))
 						self.tableWidget_4.setItem(i, 5, QTableWidgetItem("data.json"))
-					count += 1
-
-				if self.spinBox_4.value() != 0:
-					self.tableWidget_5.setRowCount(self.spinBox_4.value())
-					self.initComBox()
-					for i in range(self.spinBox_3.value()):
-						self.tableWidget_5.setItem(i, 0, QTableWidgetItem(str(j)))
-						self.tableWidget_5.setItem(i, 1, QTableWidgetItem(str(count)))
-						self.tableWidget_5.setItem(i, 2, QTableWidgetItem("3"))
-						self.tableWidget_5.setItem(i, 3, QTableWidgetItem("/text"))
-						self.tableWidget_5.setItem(i, 4, QTableWidgetItem("data.json"))
-						self.tableWidget_5.setItem(i, 16, QTableWidgetItem("0"))
-						self.tableWidget_5.setItem(i, 18, QTableWidgetItem("0"))
-						self.tableWidget_5.setItem(i, 20, QTableWidgetItem("0"))
-						self.tableWidget_5.setItem(i, 22, QTableWidgetItem("0"))
+						self.tableWidget_4.setItem(i, 10, QTableWidgetItem(""))
 					count += 1
 
 				if self.spinBox_5.value() != 0:
@@ -556,6 +554,8 @@ Item(self.text_list[i][]))rs(QAbstractItemView.NoEditTriggers)
 						self.tableWidget_6.setItem(i, 2, QTableWidgetItem("2"))
 						self.tableWidget_6.setItem(i, 3, QTableWidgetItem("/cutout"))
 						self.tableWidget_6.setItem(i, 4, QTableWidgetItem("data.json"))
+						self.tableWidget_6.setItem(i, 9, QTableWidgetItem(""))
+						self.tableWidget_6.setItem(i, 10, QTableWidgetItem(""))
 					count += 1
 
 				if self.spinBox_6.value() != 0:
@@ -567,16 +567,38 @@ Item(self.text_list[i][]))rs(QAbstractItemView.NoEditTriggers)
 						self.tableWidget_7.setItem(i, 3, QTableWidgetItem("0"))
 						self.tableWidget_7.setItem(i, 4, QTableWidgetItem("/aboveFloating"))
 						self.tableWidget_7.setItem(i, 5, QTableWidgetItem("data.json"))
+						self.tableWidget_7.setItem(i, 10, QTableWidgetItem(""))
 					count += 1
 
 				if self.spinBox_7.value() != 0:
 					self.tableWidget_8.setRowCount(self.spinBox_7.value())
-					for i in range(self.spinBox_6.value()):
+					for i in range(self.spinBox_7.value()):
 						self.tableWidget_8.setItem(i, 0, QTableWidgetItem(str(j)))
 						self.tableWidget_8.setItem(i, 1, QTableWidgetItem(str(count)))
 						self.tableWidget_8.setItem(i, 2, QTableWidgetItem("0"))
 						self.tableWidget_8.setItem(i, 3, QTableWidgetItem("/foreground"))
 						self.tableWidget_8.setItem(i, 0, QTableWidgetItem("data.json"))
+						self.tableWidget_8.setItem(i, 9, QTableWidgetItem(""))
+					count += 1
+
+				if self.spinBox_4.value() != 0:
+					self.tableWidget_5.setRowCount(self.spinBox_4.value())
+					self.initComBox()
+					for i in range(self.spinBox_4.value()):
+						self.tableWidget_5.setItem(i, 0, QTableWidgetItem(str(j)))
+						self.tableWidget_5.setItem(i, 1, QTableWidgetItem(str(count)))
+						self.tableWidget_5.setItem(i, 2, QTableWidgetItem("3"))
+						self.tableWidget_5.setItem(i, 3, QTableWidgetItem("/text"))
+						self.tableWidget_5.setItem(i, 4, QTableWidgetItem("data.json"))
+						self.tableWidget_5.setItem(i, 8, QTableWidgetItem("0"))
+						self.tableWidget_5.setItem(i, 9, QTableWidgetItem("0"))
+						self.tableWidget_5.setItem(i, 12, QTableWidgetItem("375"))
+						self.tableWidget_5.setItem(i, 15, QTableWidgetItem(""))
+						self.tableWidget_5.setItem(i, 16, QTableWidgetItem("0"))
+						self.tableWidget_5.setItem(i, 18, QTableWidgetItem("0"))
+						self.tableWidget_5.setItem(i, 20, QTableWidgetItem("0"))
+						self.tableWidget_5.setItem(i, 22, QTableWidgetItem("0"))
+
 					
 		if self.spinBox_8.value() != 0:
 			self.tableWidget_9.setRowCount(self.spinBox_8.value())
@@ -589,52 +611,53 @@ Item(self.text_list[i][]))rs(QAbstractItemView.NoEditTriggers)
 		layers_dic, _ = tools.getLayers(path)
 		num = 0
 		index = 0
-		if layers_dic["background"] != "":
+		if "background" in layers_dic.keys():
 			for i in range(layers_dic["background"]):
 				self.tableWidget_10.setItem(index, 1, QTableWidgetItem(str(num)))
 				self.tableWidget_10.setItem(index, 2, QTableWidgetItem("img_" + str(i) + ".png"))
-				self.tableWidget_10.setItem(index, 3, QTableWidgetItem("image/img_" + str(i) + ".png"))
+				self.tableWidget_10.setItem(index, 3, QTableWidgetItem("images/img_" + str(i) + ".png"))
 				index += 1
 			num += 1
-		if layers_dic["underFloating"] != "":
+		if "underFloating" in layers_dic.keys():
 			for i in range(layers_dic["underFloating"]):
 				self.tableWidget_10.setItem(index, 1, QTableWidgetItem(str(num)))
 				self.tableWidget_10.setItem(index, 2, QTableWidgetItem("img_" + str(i) + ".png"))
-				self.tableWidget_10.setItem(index, 3, QTableWidgetItem("image/img_" + str(i) + ".png"))
+				self.tableWidget_10.setItem(index, 3, QTableWidgetItem("images/img_" + str(i) + ".png"))
 				index += 1
 			num += 1
-		if layers_dic["text"] != "":
+		if "text" in layers_dic.keys():
 			for i in range(layers_dic["text"]):
 				self.tableWidget_10.setItem(index, 1, QTableWidgetItem(str(num)))
 				self.tableWidget_10.setItem(index, 2, QTableWidgetItem("text"))
-				self.tableWidget_10.setItem(index, 3, QTableWidgetItem("image/img_" + str(i) + ".png"))
+				self.tableWidget_10.setItem(index, 3, QTableWidgetItem("images/img_" + str(i) + ".png"))
 				index += 1
 			num += 1
-		if layers_dic["cutout"] != "":
+		if "cutout" in layers_dic.keys():
 			for i in range(layers_dic["cutout"]):
 				self.tableWidget_10.setItem(index, 1, QTableWidgetItem(str(num)))
 				self.tableWidget_10.setItem(index, 2, QTableWidgetItem("img_" + str(i) + ".png"))
-				self.tableWidget_10.setItem(index, 3, QTableWidgetItem("image/img_" + str(i) + ".png"))
+				self.tableWidget_10.setItem(index, 3, QTableWidgetItem("images/img_" + str(i) + ".png"))
 				index += 1
 			num += 1
-		if layers_dic["aboveFloating"] != "":
+		if "aboveFloating" in layers_dic.keys():
 			for i in range(layers_dic["aboveFloating"]):
 				self.tableWidget_10.setItem(index, 1, QTableWidgetItem(str(num)))
 				self.tableWidget_10.setItem(index, 2, QTableWidgetItem("img_" + str(i) + ".png"))
-				self.tableWidget_10.setItem(index, 3, QTableWidgetItem("image/img_" + str(i) + ".png"))
+				self.tableWidget_10.setItem(index, 3, QTableWidgetItem("images/img_" + str(i) + ".png"))
 				index += 1
-			num += 1left
-		if layers_dic["foreground"] != "":
+			num += 1
+		if "foreground" in layers_dic.keys():
 			for i in range(layers_dic["foreground"]):
 				self.tableWidget_10.setItem(index, 1, QTableWidgetItem(str(num)))
 				self.tableWidget_10.setItem(index, 2, QTableWidgetItem("img_" + str(i) + ".png"))
-				self.tableWidget_10.setItem(index, 3, QTableWidgetItem("image/img_" + str(i) + ".png"))
+				self.tableWidget_10.setItem(index, 3, QTableWidgetItem("images/img_" + str(i) + ".png"))
 				index += 1
 			num += 1
 
 	def saveTable(self):
 		if self.comboBox_2.currentText() != "":
 			self.nonEditable()
+			self.checkTableItem()
 			self.getTableValues()
 			name = self.comboBox_2.currentText()
 			path = self.workspacePath + "/" + self.comboBox_1.currentText() + "/in/" + name[self.count:] + "/" + name[:13]
@@ -731,7 +754,8 @@ Item(self.text_list[i][]))rs(QAbstractItemView.NoEditTriggers)
 							"width": item3,
 							"height": item4
 						}
-						underFloating_dic["keyPath"] = self.tableWidget_4.item(i, 10).text()
+						if self.tableWidget_4.item(i, 10).text() != "":
+							underFloating_dic["keyPath"] = self.tableWidget_4.item(i, 10).text()
 						underFloating_dic["layers"] = []
 						for j in range(self.spinBox_9.value()):
 							if self.tableWidget_10.item(j, 1).text() == self.tableWidget_4.item(i, 1).text():
@@ -740,56 +764,6 @@ Item(self.text_list[i][]))rs(QAbstractItemView.NoEditTriggers)
 						if media_dic["id"] == self.tableWidget_4.item(i, 0).text():
 							cutSeparate_list.append(underFloating_dic)
 
-				if self.spinBox_4.value() != 0:
-					for i in range(self.spinBox_4.value()):
-						text_dic = {}
-						text_dic["id"] = self.tableWidget_5.item(i, 1).text()
-						text_dic["type"] = int(self.tableWidget_5.item(i, 2).text())
-						text_dic["resourceDirectory"] = self.tableWidget_5.item(i, 3).text()
-						text_dic["animation"] = self.tableWidget_5.item(i, 4).text()
-						text_dic["fontSize"] = float(self.tableWidget_5.item(i, 5).text())
-						text_dic["fontName"] = self.dict1[self.tableWidget_5.cellWidget(i, 6).currentText()]
-						text_dic["placeHolder"] = self.tableWidget_5.item(i, 7).text()
-						text_dic["lineSpacing"] = float(self.tableWidget_5.item(i, 8).text())
-						text_dic["letterSpacing"] = float(self.tableWidget_5.item(i, 9).text())
-						text_dic["textAlignment"] = self.tableWidget_5.item(i, 10).text()
-						text_dic["textColor"] = self.tableWidget_5.item(i, 11).text()
-						text_dic["canvasWidth"] = float(self.tableWidget_5.item(i, 12).text())
-						text_dic["contentSize"] = [ int(self.tableWidget_5.item(i, 13).text()), int(self.tableWidget_5.item(i, 14).text())]
-						text_dic["keyPath"] = self.tableWidget_5.item(i, 15).text()
-						item1 = float(self.tableWidget_5.item(i, 16).text())
-						item2 = float(self.tableWidget_5.item(i, 17).text())
-						item3 = float(self.tableWidget_5.item(i, 18).text())
-						item4 = float(self.tableWidget_5.item(i, 19).text())
-						item5 = float(self.tableWidget_5.item(i, 20).text())
-						item6 = float(self.tableWidget_5.item(i, 21).text())
-						item7 = float(self.tableWidget_5.item(i, 22).text())
-						item8 = float(self.tableWidget_5.item(i, 23).text())
-						text_dic["constraint"] = {
-							"left":{
-								"constant": item1,
-								"percentage": item2
-							},
-							"right":{
-								"constant": item3,
-								"percentage": item4
-							},
-							"top":{
-								"constant": item5,
-								"percentage": item6
-							},
-							"height":{
-								"constant": item7,
-								"percentage": item8
-							}
-						}
-						text_dic["layers"] = []
-						for j in range(self.spinBox_9.value()):
-							if self.tableWidget_10.item(j, 1).text() == self.tableWidget_5.item(i, 1).text():
-								layer = {"name": self.tableWidget_10.item(j, 2).text(), "resource": self.tableWidget_10.item(j, 3).text()}
-								text_dic["layers"].append(layer)
-						if media_dic["id"] == self.tableWidget_5.item(i, 0).text():
-							cutSeparate_list.append(text_dic)
 
 				if self.spinBox_5.value() != 0:
 					for i in range(self.spinBox_5.value()):
@@ -809,7 +783,8 @@ Item(self.text_list[i][]))rs(QAbstractItemView.NoEditTriggers)
 							"height": item4
 						}
 						cutout_dic["keyPath"] = self.tableWidget_6.item(i, 9).text()
-						cutout_dic["filter"] = self.tableWidget_6.item(i, 10).text()
+						if self.tableWidget_6.item(i, 10).text() != "":
+							cutout_dic["filter"] = self.tableWidget_6.item(i, 10).text()
 						cutout_dic["layers"] = []
 						for j in range(self.spinBox_9.value()):
 							if self.tableWidget_10.item(j, 1).text() == self.tableWidget_6.item(i, 1).text():
@@ -836,7 +811,8 @@ Item(self.text_list[i][]))rs(QAbstractItemView.NoEditTriggers)
 							"width": item3,
 							"height": item4
 						}
-						aboveFloating_dic["keyPath"] = self.tableWidget_7.item(i, 10).text()
+						if self.tableWidget_7.item(i, 10).text() != "":
+							aboveFloating_dic["keyPath"] = self.tableWidget_7.item(i, 10).text()
 						aboveFloating_dic["layers"] = []
 						for j in range(self.spinBox_9.value()):
 							if self.tableWidget_10.item(j, 1).text() == self.tableWidget_7.item(i, 1).text():
@@ -862,7 +838,8 @@ Item(self.text_list[i][]))rs(QAbstractItemView.NoEditTriggers)
 							"width": item3,
 							"height": item4
 						}
-						foreground_dic["keyPath"] = self.tableWidget_8.item(i, 9).text()
+						if self.tableWidget_8.item(i, 9).text() != "":
+							foreground_dic["keyPath"] = self.tableWidget_8.item(i, 9).text()
 						foreground_dic["layers"] = []
 						for j in range(self.spinBox_9.value()):
 							if self.tableWidget_10.item(j, 1).text() == self.tableWidget_8.item(i, 1).text():
@@ -870,6 +847,57 @@ Item(self.text_list[i][]))rs(QAbstractItemView.NoEditTriggers)
 								foreground_dic["layers"].append(layer)
 						if media_dic["id"] == self.tableWidget_8.item(i, 0).text():
 							cutSeparate_list.append(foreground_dic)
+
+				if self.spinBox_4.value() != 0:
+					for i in range(self.spinBox_4.value()):
+						text_dic = {}
+						text_dic["id"] = self.tableWidget_5.item(i, 1).text()
+						text_dic["type"] = int(self.tableWidget_5.item(i, 2).text())
+						text_dic["resourceDirectory"] = self.tableWidget_5.item(i, 3).text()
+						text_dic["animation"] = self.tableWidget_5.item(i, 4).text()
+						text_dic["fontSize"] = float(self.tableWidget_5.item(i, 5).text())
+						text_dic["fontName"] = self.dict1[self.tableWidget_5.cellWidget(i, 6).currentText()]
+						text_dic["placeHolder"] = self.tableWidget_5.item(i, 7).text()
+						text_dic["lineSpacing"] = float(self.tableWidget_5.item(i, 8).text())
+						text_dic["letterSpacing"] = float(self.tableWidget_5.item(i, 9).text())
+						text_dic["textAlignment"] = self.tableWidget_5.item(i, 10).text()
+						text_dic["textColor"] = self.tableWidget_5.item(i, 11).text()
+						text_dic["canvasWidth"] = float(self.tableWidget_5.item(i, 12).text())
+						text_dic["contentSize"] = [ int(self.tableWidget_5.item(i, 13).text()), int(self.tableWidget_5.item(i, 14).text())]
+						text_dic["keyPath"] = self.tableWidget_5.item(i, 15).text()
+						item1 = float(self.tableWidget_5.item(i, 16).text())
+						item2 = float(self.tableWidget_5.item(i, 17).text())
+						item3 = float(self.tableWidget_5.item(i, 18).text())
+						item4 = float(self.tableWidget_5.item(i, 19).text())
+						item5 = float(self.tableWidget_5.item(i, 20).text())
+						item6 = float(self.tableWidget_5.item(i, 21).text())
+						item7 = float(self.tableWidget_5.item(i, 22).text())
+						item8 = float(self.tableWidget_5.item(i, 23).text())
+						text_dic["constraints"] = {
+							"left":{
+								"constant": item1,
+								"percentage": item2
+							},
+							"right":{
+								"constant": item3,
+								"percentage": item4
+							},
+							"top":{
+								"constant": item5,
+								"percentage": item6
+							},
+							"height":{
+								"constant": item7,
+								"percentage": item8
+							}
+						}
+						text_dic["layers"] = []
+						for j in range(self.spinBox_9.value()):
+							if self.tableWidget_10.item(j, 1).text() == self.tableWidget_5.item(i, 1).text():
+								layer = {"name": self.tableWidget_10.item(j, 2).text(), "resource": self.tableWidget_10.item(j, 3).text()}
+								text_dic["layers"].append(layer)
+						if media_dic["id"] == self.tableWidget_5.item(i, 0).text():
+							cutSeparate_list.append(text_dic)
 				media_dic["cutSeparate"] = cutSeparate_list
 				media_list.append(media_dic)
 
@@ -894,12 +922,71 @@ Item(self.text_list[i][]))rs(QAbstractItemView.NoEditTriggers)
 		if self.checkBox_1.isChecked():
 				self.dic = {}
 				self.dic["version"] = self.tableWidget_1.item(0, 0).text()
-				self.dic["music"] = self.tableWidget_1.item(0, 1).text()
+				if self.tableWidget_1.item(0, 1).text() != "":
+					self.dic["music"] = self.tableWidget_1.item(0, 1).text()
 				self.dic["templateId"] = self.tableWidget_1.item(0, 2).text()
 				self.dic["elements"] = media_list
-				self.dic["sticker"] = sticker_list
+				if self.spinBox_8.value() != 0:
+					self.dic["sticker"] = sticker_list
 
-	
+	def checkTableItem(self):
+		if self.spinBox_1.value() != 0:
+			for i in range(self.spinBox_1.value()):
+				for j in range(self.tableWidget_2.columnCount()):
+					if self.tableWidget_2.item(i,j) == None:
+						message = "media表第" + str(i) + "行，第" + str(j) + "列，为空！" 
+						QMessageBox.information(self, "提示", message)
+
+		if self.spinBox_2.value() != 0:
+			for i in range(self.spinBox_2.value()):
+				for j in range(self.tableWidget_3.columnCount()):
+					if self.tableWidget_3.item(i, j) == None:
+						message = "background表第" + str(i) + "行，第" + str(j) + "列，为空！" 
+						QMessageBox.information(self, "提示", message)
+
+		if self.spinBox_3.value() != 0:
+			for i in range(self.spinBox_3.value()):
+				for j in range(self.tableWidget_4.columnCount()):
+					if self.tableWidget_4.item(i, j) == None:
+						message = "underFloating表第" + str(i) + "行，第" + str(j) + "列，为空！" 
+						QMessageBox.information(self, "提示", message)
+
+		if self.spinBox_4.value() != 0:
+			for i in range(self.spinBox_4.value()):
+				if i != 6:
+					for j in range(self.tableWidget_5.columnCount()):
+						if self.tableWidget_5.item(i, j) == None:
+							message = "text表第" + str(i) + "行，第" + str(j) + "列，为空！" 
+							QMessageBox.information(self, "提示", message)
+
+		if self.spinBox_5.value() != 0:
+			for i in range(self.spinBox_5.value()):
+				for j in range(self.tableWidget_6.columnCount()):
+					if self.tableWidget_6.item(i, j) == None:
+						message = "cutout表第" + str(i) + "行，第" + str(j) + "列，为空！" 
+						QMessageBox.information(self, "提示", message)
+
+		if self.spinBox_6.value() != 0:
+			for i in range(self.spinBox_6.value()):
+				for j in range(self.tableWidget_7.columnCount()):
+					if self.tableWidget_7.item(i, j) == None:
+						message = "aboveFloating表第" + str(i) + "行，第" + str(j) + "列，为空！" 
+						QMessageBox.information(self, "提示", message)
+
+		if self.spinBox_7.value() != 0:
+			for i in range(self.spinBox_7.value()):
+				for j in range(self.tableWidget_8.columnCount()):
+					if self.tableWidget_8.item(i, j) != None:
+						message = "forground表第" + str(i) + "行，第" + str(j) + "列，为空！" 
+						QMessageBox.information(self, "提示", message)
+
+		if self.spinBox_8.value() != 0:
+			for i in range(self.spinBox_8.value()):
+				for j in range(self.tableWidget_9.columnCount()):
+					if self.tableWidget_9.item(i, j) != None:
+						message = "sticker表第" + str(i) + "行，第" + str(j) + "列，为空！" 
+						QMessageBox.information(self, "提示", message)
+
 	def encryption(self):
 		pathIn = self.workspacePath + "/" + self.comboBox_1.currentText() + "/in"
 		pathOut = self.workspacePath + "/" + self.comboBox_1.currentText() + "/out"
