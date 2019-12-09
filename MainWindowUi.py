@@ -48,15 +48,17 @@ class Ui_MainWindow(object):
         self.comboBox_2.setObjectName("comboBox_2")
 
         #数组box
+        #meida table
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
-        self.label_3.setGeometry(QtCore.QRect(40, 60, 78, 30))
+        self.label_3.setGeometry(QtCore.QRect(712, 60, 78, 30))
         self.label_3.setObjectName("label_3")
         self.label_3.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignVCenter)
 
         self.spinBox_1 = QtWidgets.QSpinBox(self.centralwidget)
-        self.spinBox_1.setGeometry(QtCore.QRect(128, 60, 40, 30))
+        self.spinBox_1.setGeometry(QtCore.QRect(800, 60, 40, 30))
         self.spinBox_1.setObjectName("spinBox_1")
 
+        #background table
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
         self.label_4.setGeometry(QtCore.QRect(198, 60, 88, 30))
         self.label_4.setObjectName("label_4")
@@ -66,33 +68,37 @@ class Ui_MainWindow(object):
         self.spinBox_2.setGeometry(QtCore.QRect(296, 60, 40, 30))
         self.spinBox_2.setObjectName("spinBox_2")
 
+        #underFloating table
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
-        self.label_5.setGeometry(QtCore.QRect(356, 60, 98, 30))
+        self.label_5.setGeometry(QtCore.QRect(20, 60, 98, 30))
         self.label_5.setObjectName("label_5")
         self.label_5.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignVCenter)
 
         self.spinBox_3 = QtWidgets.QSpinBox(self.centralwidget)
-        self.spinBox_3.setGeometry(QtCore.QRect(464, 60, 40, 30))
+        self.spinBox_3.setGeometry(QtCore.QRect(128, 60, 40, 30))
         self.spinBox_3.setObjectName("spinBox_3")
 
+        #text table
         self.label_6 = QtWidgets.QLabel(self.centralwidget)
-        self.label_6.setGeometry(QtCore.QRect(544, 60, 78, 30))
+        self.label_6.setGeometry(QtCore.QRect(376, 100, 78, 30))
         self.label_6.setObjectName("label_6")
         self.label_6.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignVCenter)
 
         self.spinBox_4 = QtWidgets.QSpinBox(self.centralwidget)
-        self.spinBox_4.setGeometry(QtCore.QRect(632, 60, 40, 30))
+        self.spinBox_4.setGeometry(QtCore.QRect(464, 100, 40, 30))
         self.spinBox_4.setObjectName("spinBox_4")
 
+        #cutout table
         self.label_7 = QtWidgets.QLabel(self.centralwidget)
-        self.label_7.setGeometry(QtCore.QRect(712, 60, 78, 30))
+        self.label_7.setGeometry(QtCore.QRect(356, 60, 98, 30))
         self.label_7.setObjectName("label_7")
         self.label_7.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignVCenter)
 
         self.spinBox_5 = QtWidgets.QSpinBox(self.centralwidget)
-        self.spinBox_5.setGeometry(QtCore.QRect(800, 60, 40, 30))
+        self.spinBox_5.setGeometry(QtCore.QRect(464, 60, 40, 30))
         self.spinBox_5.setObjectName("spinBox_5")
 
+        #aboveFloating table
         self.label_8 = QtWidgets.QLabel(self.centralwidget)
         self.label_8.setGeometry(QtCore.QRect(20, 100, 98, 30))
         self.label_8.setObjectName("label_8")
@@ -102,6 +108,7 @@ class Ui_MainWindow(object):
         self.spinBox_6.setGeometry(QtCore.QRect(128, 100, 40, 30))
         self.spinBox_6.setObjectName("spinBox_6")
 
+        #foreground table
         self.label_9 = QtWidgets.QLabel(self.centralwidget)
         self.label_9.setGeometry(QtCore.QRect(198, 100, 88, 30))
         self.label_9.setObjectName("label_9")
@@ -111,15 +118,17 @@ class Ui_MainWindow(object):
         self.spinBox_7.setGeometry(QtCore.QRect(296, 100, 40, 30))
         self.spinBox_7.setObjectName("spinBox_7")
 
+        #sticker table
         self.label_10 = QtWidgets.QLabel(self.centralwidget)
-        self.label_10.setGeometry(QtCore.QRect(376, 100, 78, 30))
+        self.label_10.setGeometry(QtCore.QRect(544, 60, 78, 30))
         self.label_10.setObjectName("label_10")
         self.label_10.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignVCenter)
 
         self.spinBox_8 = QtWidgets.QSpinBox(self.centralwidget)
-        self.spinBox_8.setGeometry(QtCore.QRect(464, 100, 40, 30))
+        self.spinBox_8.setGeometry(QtCore.QRect(632, 60, 40, 30))
         self.spinBox_8.setObjectName("spinBox_8")
 
+        #layers table
         self.label_11 = QtWidgets.QLabel(self.centralwidget)
         self.label_11.setGeometry(QtCore.QRect(544, 100, 78, 30))
         self.label_11.setObjectName("label_11")
@@ -130,13 +139,14 @@ class Ui_MainWindow(object):
         self.spinBox_9.setObjectName("spinBox_9")
 
         #第二行，json选项
+        #main table
         self.checkBox_1 = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBox_1.setGeometry(QtCore.QRect(712, 100, 100, 30))
+        self.checkBox_1.setGeometry(QtCore.QRect(762, 100, 100, 30))
         self.checkBox_1.setObjectName("checkBox_1")
 
-
+        #生成按钮
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(852, 100, 80, 30))
+        self.pushButton.setGeometry(QtCore.QRect(902, 100, 80, 30))
         self.pushButton.setObjectName("pushButton")
 
         
@@ -949,6 +959,7 @@ class Ui_MainWindow(object):
         self.tableWidget_5.setCellWidget(5, 6, self.comBox_55)
         self.tableWidget_5.setCellWidget(6, 6, self.comBox_65)
         self.tableWidget_5.setCellWidget(7, 6, self.comBox_75)
+
 
 
 

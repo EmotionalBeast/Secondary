@@ -1,0 +1,227 @@
+{
+  "elements": [
+    {
+      "constraints": {
+        "height": {
+          "constant": 0.0,
+          "percentage": 1.0
+        },
+        "left": {
+          "constant": 0.0,
+          "percentage": 0.0
+        },
+        "top": {
+          "constant": 0.0,
+          "percentage": 0.0
+        },
+        "width": {
+          "constant": 0.0,
+          "percentage": 1.0
+        }
+      },
+      "cutSeparate": [
+        {
+          "animation": "data.json",
+          "id": "0",
+          "keyPath": "img_0.png",
+          "layers": [
+            {
+              "name": "img_0.png",
+              "resource": "images/img_0.png"
+            }
+          ],
+          "rect": {
+            "height": 667.0,
+            "width": 375.0,
+            "x": 0.0,
+            "y": 0.0
+          },
+          "resourceDirectory": "/background",
+          "type": 0
+        },
+        {
+          "adjust": 1,
+          "animation": "data.json",
+          "id": "1",
+          "layers": [
+            {
+              "name": "img_0.png",
+              "resource": "images/img_0.png"
+            },
+            {
+              "name": "img_1.png",
+              "resource": "images/img_1.png"
+            },
+            {
+              "name": "img_2.png",
+              "resource": "images/img_2.png"
+            },
+            {
+              "name": "img_3.png",
+              "resource": "images/img_3.png"
+            },
+            {
+              "name": "img_4.png",
+              "resource": "images/img_4.png"
+            },
+            {
+              "name": "img_5.png",
+              "resource": "images/img_5.png"
+            },
+            {
+              "name": "img_6.png",
+              "resource": "images/img_6.png"
+            },
+            {
+              "name": "img_7.png",
+              "resource": "images/img_7.png"
+            },
+            {
+              "name": "img_8.png",
+              "resource": "images/img_8.png"
+            },
+            {
+              "name": "img_9.png",
+              "resource": "images/img_9.png"
+            },
+            {
+              "name": "img_10.png",
+              "resource": "images/img_10.png"
+            },
+            {
+              "name": "img_11.png",
+              "resource": "images/img_11.png"
+            },
+            {
+              "name": "img_12.png",
+              "resource": "images/img_12.png"
+            },
+            {
+              "name": "img_13.png",
+              "resource": "images/img_13.png"
+            },
+            {
+              "name": "img_14.png",
+              "resource": "images/img_14.png"
+            },
+            {
+              "name": "img_15.png",
+              "resource": "images/img_15.png"
+            },
+            {
+              "name": "img_16.png",
+              "resource": "images/img_16.png"
+            },
+            {
+              "name": "img_17.png",
+              "resource": "images/img_17.png"
+            },
+            {
+              "name": "img_18.png",
+              "resource": "images/img_18.png"
+            },
+            {
+              "name": "img_19.png",
+              "resource": "images/img_19.png"
+            },
+            {
+              "name": "img_20.png",
+              "resource": "images/img_20.png"
+            },
+            {
+              "name": "img_21.png",
+              "resource": "images/img_21.png"
+            },
+            {
+              "name": "img_22.png",
+              "resource": "images/img_22.png"
+            },
+            {
+              "name": "img_23.png",
+              "resource": "images/img_23.png"
+            },
+            {
+              "name": "img_24.png",
+              "resource": "images/img_24.png"
+            }
+          ],
+          "rect": {
+            "height": 359.0,
+            "width": 374.0,
+            "x": 2.0,
+            "y": 119.0
+          },
+          "resourceDirectory": "/underFloating",
+          "type": 1
+        },
+        {
+          "animation": "data.json",
+          "id": "2",
+          "keyPath": "img_0.png",
+          "layers": [
+            {
+              "name": "img_0.png",
+              "resource": "images/img_0.png"
+            }
+          ],
+          "rect": {
+            "height": 344.0,
+            "width": 81.0,
+            "x": 148.0,
+            "y": 292.0
+          },
+          "resourceDirectory": "/cutout",
+          "type": 2
+        },
+        {
+          "animation": "data.json",
+          "canvasWidth": 375.0,
+          "constraints": {
+            "height": {
+              "constant": 0.0,
+              "percentage": 0.1
+            },
+            "left": {
+              "constant": 0.0,
+              "percentage": 0.2173
+            },
+            "right": {
+              "constant": 0.0,
+              "percentage": 0.2147
+            },
+            "top": {
+              "constant": 0.0,
+              "percentage": 0.1094
+            }
+          },
+          "contentSize": [
+            558,
+            283
+          ],
+          "fontName": "Quentin",
+          "fontSize": 70.0,
+          "id": "3",
+          "keyPath": "text1",
+          "layers": [
+            {
+              "name": "text1",
+              "resource": "images/img_0.png"
+            }
+          ],
+          "letterSpacing": 0.0,
+          "lineSpacing": 0.0,
+          "placeHolder": "Queen",
+          "resourceDirectory": "/text",
+          "textAlignment": "center",
+          "textColor": "ffffff",
+          "type": 3
+        }
+      ],
+      "id": "0",
+      "type": "media"
+    }
+  ],
+  "music": "Dynamic.aac",
+  "templateId": "1004",
+  "version": "1.0"
+}

@@ -1,0 +1,112 @@
+{
+  "elements": [
+    {
+      "constraints": {
+        "height": {
+          "constant": 0.0,
+          "percentage": 1.0
+        },
+        "left": {
+          "constant": 0.0,
+          "percentage": 0.0
+        },
+        "top": {
+          "constant": 0.0,
+          "percentage": 0.0
+        },
+        "width": {
+          "constant": 0.0,
+          "percentage": 1.0
+        }
+      },
+      "cutSeparate": [
+        {
+          "animation": "data.json",
+          "id": "0",
+          "keyPath": "img_0.png",
+          "layers": [
+            {
+              "name": "img_0.png",
+              "resource": "images/img_0.png"
+            }
+          ],
+          "rect": {
+            "height": 667.0,
+            "width": 375.0,
+            "x": 0.0,
+            "y": 0.0
+          },
+          "resourceDirectory": "/background",
+          "type": 0
+        },
+        {
+          "animation": "data.json",
+          "id": "1",
+          "keyPath": "img_0.png",
+          "layers": [
+            {
+              "name": "img_0.png",
+              "resource": "images/img_0.png"
+            }
+          ],
+          "rect": {
+            "height": 473.0,
+            "width": 174.0,
+            "x": 106.0,
+            "y": 145.0
+          },
+          "resourceDirectory": "/cutout",
+          "type": 2
+        },
+        {
+          "animation": "data.json",
+          "canvasWidth": 375.0,
+          "constraints": {
+            "height": {
+              "constant": 0.0,
+              "percentage": 0.06
+            },
+            "left": {
+              "constant": 0.0,
+              "percentage": 0.1787
+            },
+            "right": {
+              "constant": 0.0,
+              "percentage": 0.1773
+            },
+            "top": {
+              "constant": 0.0,
+              "percentage": 0.4591
+            }
+          },
+          "contentSize": [
+            520,
+            100
+          ],
+          "fontName": "himagsikan-italic",
+          "fontSize": 36.0,
+          "id": "2",
+          "keyPath": "text",
+          "layers": [
+            {
+              "name": "text",
+              "resource": "images/img_0.png"
+            }
+          ],
+          "letterSpacing": 0.0,
+          "lineSpacing": 0.0,
+          "placeHolder": "On the road",
+          "resourceDirectory": "/text",
+          "textAlignment": "center",
+          "textColor": "ffffff",
+          "type": 3
+        }
+      ],
+      "id": "0",
+      "type": "media"
+    }
+  ],
+  "music": "Spring Snow.aac",
+  "templateId": "1002",
+  "version": "1.0"
+}

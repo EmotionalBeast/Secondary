@@ -130,17 +130,25 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 		self.dic = self.readJson()
 
 		if self.dic == 0:
-			self.spinBox_1.setValue(0)
-			self.spinBox_2.setValue(0)
-			self.spinBox_3.setValue(0)
-			self.spinBox_4.setValue(0)
-			self.spinBox_5.setValue(0)
-			self.spinBox_6.setValue(0)
-			self.spinBox_7.setValue(0)
-			self.spinBox_8.setValue(0)
 			path = self.workspacePath + "/" + self.comboBox_1.currentText() + "/in/" + self.comboBox_2.currentText()[self.count:]
-			_, count = tools.getLayers(path)
-			self.spinBox_9.setValue(count)
+			layers_dic, count = tools.getLayers(path)
+			self.checkBox_1.setChecked(True)
+			self.spinBox_1.setValue(1)
+			if "background" in layers_dic.keys():
+				self.spinBox_2.setValue(1) #background
+			if "underFloating" in layers_dic.keys():
+				self.spinBox_3.setValue(1)	#underFloating
+			if "text" in layers_dic.keys():
+				self.spinBox_4.setValue(1)	#text
+			if "cutout" in layers_dic.keys():
+				self.spinBox_5.setValue(1)	#cutout
+			if "aboveFloating" in layers_dic.keys():
+				self.spinBox_6.setValue(1)	#aboveFloating
+			if "foreground" in layers_dic.keys():
+				self.spinBox_7.setValue(1)	#foreground
+			self.spinBox_8.setValue(0)	#sticker
+			self.spinBox_9.setValue(count) #layers
+			return False
 
 		else:
 			self.checkBox_1.setChecked(True)
@@ -215,10 +223,12 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 			self.spinBox_6.setValue(len(self.aboveFloating_list))
 			self.spinBox_7.setValue(len(self.foreground_list))
 			self.spinBox_9.setValue(len(self.layers_list))
-
+			return True
 
 	def showTemplateData(self):
-		self.resolveJson()
+		self.tabWidget.clear()
+		if self.resolveJson() == False:
+			return 0
 		self.initTable()
 		if self.checkBox_1.isChecked() == True:
 			# value main table
@@ -313,13 +323,14 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 				self.tableWidget_5.setItem(i, 12, QTableWidgetItem(str(self.text_list[i]["canvasWidth"])))
 				self.tableWidget_5.setItem(i, 13, QTableWidgetItem(str(self.text_list[i]["contentSize"][0])))
 				self.tableWidget_5.setItem(i, 14, QTableWidgetItem(str(self.text_list[i]["contentSize"][1])))
-				self.tableWidget_5.setItem(i, 16, QTableWidgetItem(self.text_list[i]["constraints"]["left"]["constant"]))
-				self.tableWidget_5.setItem(i, 17, QTableWidgetItem(self.text_list[i]["constraints"]["left"]["percentage"]))
-				self.tableWidget_5.setItem(i, 18, QTableWidgetItem(self.text_list[i]["constraints"]["right"]["constant"]))
-				self.tableWidget_5.setItem(i, 19, QTableWidgetItem(self.text_list[i]["constraints"]["right"]["percentage"]))
-				self.tableWidget_5.setItem(i, 20, QTableWidgetItem(self.text_list[i]["constraints"]["top"]["constant"]))
-				self.tableWidget_5.setItem(i, 21, QTableWidgetItem(self.text_list[i]["constraints"]["height"]["constant"]))
-				self.tableWidget_5.setItem(i, 23, QTableWidgetItem(self.text_list[i]["constraints"]["height"]["percentage"]))
+				self.tableWidget_5.setItem(i, 16, QTableWidgetItem(str(self.text_list[i]["constraints"]["left"]["constant"])))
+				self.tableWidget_5.setItem(i, 17, QTableWidgetItem(str(self.text_list[i]["constraints"]["left"]["percentage"])))
+				self.tableWidget_5.setItem(i, 18, QTableWidgetItem(str(self.text_list[i]["constraints"]["right"]["constant"])))
+				self.tableWidget_5.setItem(i, 19, QTableWidgetItem(str(self.text_list[i]["constraints"]["right"]["percentage"])))
+				self.tableWidget_5.setItem(i, 20, QTableWidgetItem(str(self.text_list[i]["constraints"]["top"]["constant"])))
+				self.tableWidget_5.setItem(i, 21, QTableWidgetItem(str(self.text_list[i]["constraints"]["top"]["percentage"])))
+				self.tableWidget_5.setItem(i, 22, QTableWidgetItem(str(self.text_list[i]["constraints"]["height"]["constant"])))
+				self.tableWidget_5.setItem(i, 23, QTableWidgetItem(str(self.text_list[i]["constraints"]["height"]["percentage"])))
 				if "keyPath" in self.text_list[i].keys():
 					self.tableWidget_5.setItem(i, 15, QTableWidgetItem(self.text_list[i]["keyPath"]))
 				else:
@@ -402,8 +413,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 				self.tableWidget_10.setItem(i, 3, QTableWidgetItem(str(self.layers_list[i]["resource"])))
 
 		self.statusbar.showMessage("NonEditable")
-				
-				
+								
 	def editable(self):
 		if self.comboBox_2.currentText() != "":
 			if self.checkBox_1.isChecked() == True:
@@ -469,7 +479,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 			if self.spinBox_9.value() != 0:
 				self.tableWidget_10.setEditTriggers(QAbstractItemView.NoEditTriggers)
 
-			self.statusbar.showMessage("Editable")
+			self.statusbar.showMessage("NonEditable")
 		else:
 			QMessageBox.information(self, "提示", "请选择json文件")
 
@@ -657,12 +667,14 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 	def saveTable(self):
 		if self.comboBox_2.currentText() != "":
 			self.nonEditable()
-			self.checkTableItem()
-			self.getTableValues()
-			name = self.comboBox_2.currentText()
-			path = self.workspacePath + "/" + self.comboBox_1.currentText() + "/in/" + name[self.count:] + "/" + name[:13]
-			tools.writeJson(path, self.dic)
-			QMessageBox.information(self, "提示", "保存成功！")
+			if self.checkTableItem():
+				self.getTableValues()
+				name = self.comboBox_2.currentText()
+				path = self.workspacePath + "/" + self.comboBox_1.currentText() + "/in/" + name[self.count:] + "/" + name[:13]
+				tools.writeJson(path, self.dic)
+				QMessageBox.information(self, "提示", "保存成功！")
+			else:
+				QMessageBox.information(self, "提示", self.message)
 		else:
 			QMessageBox.information(self, "提示", "请选择保存模版！")
 		
@@ -936,56 +948,57 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 					if self.tableWidget_2.item(i,j) == None:
 						message = "media表第" + str(i) + "行，第" + str(j) + "列，为空！" 
 						QMessageBox.information(self, "提示", message)
+						return False
 
 		if self.spinBox_2.value() != 0:
 			for i in range(self.spinBox_2.value()):
 				for j in range(self.tableWidget_3.columnCount()):
 					if self.tableWidget_3.item(i, j) == None:
-						message = "background表第" + str(i) + "行，第" + str(j) + "列，为空！" 
-						QMessageBox.information(self, "提示", message)
+						self.message = "background表第" + str(i) + "行，第" + str(j) + "列，为空！" 
+						return False
 
 		if self.spinBox_3.value() != 0:
 			for i in range(self.spinBox_3.value()):
 				for j in range(self.tableWidget_4.columnCount()):
 					if self.tableWidget_4.item(i, j) == None:
-						message = "underFloating表第" + str(i) + "行，第" + str(j) + "列，为空！" 
-						QMessageBox.information(self, "提示", message)
+						self.message = "underFloating表第" + str(i) + "行，第" + str(j) + "列，为空！" 
+						return False
 
 		if self.spinBox_4.value() != 0:
 			for i in range(self.spinBox_4.value()):
-				if i != 6:
-					for j in range(self.tableWidget_5.columnCount()):
-						if self.tableWidget_5.item(i, j) == None:
-							message = "text表第" + str(i) + "行，第" + str(j) + "列，为空！" 
-							QMessageBox.information(self, "提示", message)
+				for j in range(self.tableWidget_5.columnCount()):
+					if j != 6 and self.tableWidget_5.item(i, j) == None:
+						self.message = "text表第" + str(i) + "行，第" + str(j) + "列，为空！" 
+						return False
 
 		if self.spinBox_5.value() != 0:
 			for i in range(self.spinBox_5.value()):
 				for j in range(self.tableWidget_6.columnCount()):
 					if self.tableWidget_6.item(i, j) == None:
-						message = "cutout表第" + str(i) + "行，第" + str(j) + "列，为空！" 
-						QMessageBox.information(self, "提示", message)
+						self.message = "cutout表第" + str(i) + "行，第" + str(j) + "列，为空！" 
+						return False
 
 		if self.spinBox_6.value() != 0:
 			for i in range(self.spinBox_6.value()):
 				for j in range(self.tableWidget_7.columnCount()):
 					if self.tableWidget_7.item(i, j) == None:
-						message = "aboveFloating表第" + str(i) + "行，第" + str(j) + "列，为空！" 
-						QMessageBox.information(self, "提示", message)
+						self.message = "aboveFloating表第" + str(i) + "行，第" + str(j) + "列，为空！" 
+						return False
 
 		if self.spinBox_7.value() != 0:
 			for i in range(self.spinBox_7.value()):
 				for j in range(self.tableWidget_8.columnCount()):
 					if self.tableWidget_8.item(i, j) != None:
-						message = "forground表第" + str(i) + "行，第" + str(j) + "列，为空！" 
-						QMessageBox.information(self, "提示", message)
+						self.message = "forground表第" + str(i) + "行，第" + str(j) + "列，为空！" 
+						return False
 
 		if self.spinBox_8.value() != 0:
 			for i in range(self.spinBox_8.value()):
 				for j in range(self.tableWidget_9.columnCount()):
 					if self.tableWidget_9.item(i, j) != None:
-						message = "sticker表第" + str(i) + "行，第" + str(j) + "列，为空！" 
-						QMessageBox.information(self, "提示", message)
+						self.message = "sticker表第" + str(i) + "行，第" + str(j) + "列，为空！" 
+						return False
+		return True
 
 	def encryption(self):
 		pathIn = self.workspacePath + "/" + self.comboBox_1.currentText() + "/in"
